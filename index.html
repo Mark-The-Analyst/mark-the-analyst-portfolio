@@ -551,8 +551,19 @@
     .timeline-period { font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; letter-spacing: .5px; color: var(--accent); }
     .timeline-role   { font-family: 'EB Garamond', Georgia, serif; font-weight: 600; font-size: 19px; margin-top: 5px; }
     .timeline-org    { font-size: 14px; color: var(--ink-3); margin-top: 2px; }
-    .timeline-detail { font-size: 14.5px; line-height: 1.6; color: var(--ink-2); margin: 9px 0 0; max-width: none; padding-left: 14px; text-indent: -14px; text-wrap: pretty;}
-
+    .timeline { position: relative; padding-left: 30px; max-width: none; }
+    .timeline-item > .timeline-detail:first-of-type { margin-top: 12px; }
+    .timeline-detail {
+      font-size: 14.5px;
+      line-height: 1.6;
+      color: var(--ink-2);
+      margin: 9px 0 0;
+      max-width: none;
+      padding-left: 14px;
+      text-indent: -14px;
+      text-wrap: pretty;
+    }
+    
     /* Certifications */
     .certs-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
     .cert-card {
@@ -1027,7 +1038,7 @@
   </div>
 
   <div id="page-about" class="page">
-    <main class="container-md" style="padding-top:64px; padding-bottom:90px;">
+    <main class="container" style="padding-top:64px; padding-bottom:90px;">
       <div class="about-grid">
         <div class="about-photo-wrap">
           <div class="about-photo">

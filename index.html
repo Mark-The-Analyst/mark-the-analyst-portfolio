@@ -1280,26 +1280,26 @@
        PROJECT LIBRARY — this is the only place you edit
        ------------------------------------------------------------
        Every project below is a placeholder. To fill one in, add a
-       6th argument object to its P(...) call:
+       6th argument object to its P(...) call: */
 
-         P('p01', "Adventure Works", 'Business', 'Dashboard / BI Report', ['Power BI'], {
+         P('26', "Synthea — Dashboard DS 2400", 'Health', 'Dashboard / BI Report', ['R'], ['Power BI'], {
            blurb: 'One-line summary shown on the card.',
            desc:  'Longer paragraph shown inside the project modal.',
            metrics: [{ value:'↑12%', label:'Forecast accuracy' }],
            highlights: ['What I did, bullet one.', 'Bullet two.'],
            media: [
-             { type:'image', src:'assets/adventure-works-1.png', label:'Sales overview' },
-             { type:'pdf',   src:'assets/adventure-works.pdf',   label:'Case study PDF' }
+             { type:'image', src:'https://github.com/Mark-The-Analyst/Population-Health-Intelligence-System-Dashboard-Synthea/blob/93d48ea4570906fc3ccde8e5d59395d26396bce3/dashboard%20images/Final_Dashboard_Synthea_0.png', label:'Executive overview' },
+             { type:'pdf',   src:'https://github.com/Mark-The-Analyst/Population-Health-Intelligence-System-Dashboard-Synthea/blob/93d48ea4570906fc3ccde8e5d59395d26396bce3/Final_Dashboard_Synthea_Output.pdf',   label:'Case study PDF' }
            ],
            links: [
-             { label:'View code',       url:'https://github.com/you/repo', style:'dark'  },
-             { label:'Open dashboard',  url:'https://public.tableau.com/…', style:'blue' },
+             { label:'View code',       url:'https://github.com/Mark-The-Analyst/Population-Health-Intelligence-System-Dashboard-Synthea.git', style:'dark'  },
+             { label:'Open dashboard',  url:'https://github.com/Mark-The-Analyst/Population-Health-Intelligence-System-Dashboard-Synthea/blob/main/Final_Dashboard_Synthea_Output.pdf', style:'blue' },
              { label:'Download data',   url:'assets/data.csv',             style:'light' }
            ],
            featured: true            // show it on the home page
          }),
 
-       Media files: commit them into this repo (e.g. an /assets folder)
+   /*    Media files: commit them into this repo (e.g. an /assets folder)
        and point src at the relative path, or paste any public URL.
        Because the file lives in your repo, you are the only person who
        can add or change project media — visitors can only view it.

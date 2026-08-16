@@ -1,0 +1,1862 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mark The Analyst — Data Analyst Portfolio</title>
+  <meta name="description" content="Portfolio of Mark The Analyst — data analyst specialising in forecasting, BI dashboards, machine learning, and experimentation.">
+  <meta property="og:title" content="Mark The Analyst">
+  <meta property="og:description" content="Turning messy data into decisions that move the business.">
+  <meta property="og:url" content="https://marktheanalyst.com">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#F4F1EA">
+  <link rel="canonical" href="https://marktheanalyst.com/">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='6' fill='%231B1917'/%3E%3Ctext x='32' y='46' font-family='Georgia%2Cserif' font-size='40' font-weight='700' fill='white' text-anchor='middle'%3EM%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&family=Karla:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg:           #F5F4F9;
+      --surface:      #FFFFFF;
+      --surface-2:    #EDECF3;
+      --ink:          #0A3E51;
+      --ink-2:        #4A5563;
+      --ink-3:        #8A91A0;
+      --accent:       #0A3E51;
+      --accent-2:     #14708F;
+      --accent-soft:  #E1EAEE;
+      --border:       #E1E0EA;
+      --shadow:       0 1px 2px rgba(10,62,81,.04), 0 6px 20px rgba(10,62,81,.06);
+      --shadow-lg:    0 18px 48px rgba(10,62,81,.16);
+    }
+    [data-theme="dark"] {
+      --bg:           #0C1418;
+      --surface:      #12212A;
+      --surface-2:    #1A2E39;
+      --ink:          #EAF2F5;
+      --ink-2:        #A6B6BF;
+      --ink-3:        #6E8089;
+      --accent:       #6FB2C9;
+      --accent-2:     #A9CEDB;
+      --accent-soft:  #17323F;
+      --border:       #21343E;
+      --shadow:       0 1px 2px rgba(0,0,0,.3), 0 10px 30px rgba(0,0,0,.35);
+      --shadow-lg:    0 22px 60px rgba(0,0,0,.5);
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: 'Karla', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+      transition: background .35s ease, color .35s ease;
+    }
+    a { color: inherit; text-decoration: none; }
+    p { margin: 0; }
+    h1, h2, h3 { margin: 0; font-family: 'EB Garamond', Georgia, serif; }
+    button { font-family: 'Karla', system-ui, sans-serif; cursor: pointer; }
+    ::selection { background: var(--accent-soft); color: var(--ink); }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: none; }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    @keyframes scaleIn {
+      from { opacity: 0; transform: translateY(14px) scale(.985); }
+      to   { opacity: 1; transform: none; }
+    }
+    .page-enter  { animation: fadeUp .5s cubic-bezier(.2,.8,.2,1) both; }
+    .modal-enter { animation: scaleIn .28s cubic-bezier(.2,.8,.2,1) both; }
+    .nav-bar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: color-mix(in srgb, var(--bg) 82%, transparent);
+      backdrop-filter: saturate(140%) blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 32px;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+      border: none;
+      background: none;
+      padding: 0;
+    }
+    .nav-logo-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: var(--ink);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--surface);
+      font-family: 'IBM Plex Mono', monospace;
+      font-weight: 600;
+      font-size: 17px;
+    }
+    .nav-logo-name  { font-family: 'EB Garamond', Georgia, serif; font-weight: 600; font-size: 16px; line-height: 1; }
+    .nav-logo-sub   { font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--ink-3); }
+    .nav-links      { display: flex; align-items: center; gap: 6px; }
+    .nav-btn {
+      border: none;
+      font-weight: 500;
+      font-size: 14.5px;
+      padding: 9px 15px;
+      border-radius: 9px;
+      transition: all .18s ease;
+      background: transparent;
+      color: var(--ink-2);
+    }
+    .nav-btn.active { background: var(--accent-soft); color: var(--accent); }
+    .nav-btn:hover:not(.active) { background: var(--surface-2); }
+    .theme-toggle {
+      margin-left: 8px;
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--ink-2);
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all .2s ease;
+    }
+    .theme-toggle:hover { background: var(--surface-2); }
+    .page { display: none; }
+    .page.active { display: block; }
+    .container      { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+    .container-md   { max-width: 1080px; margin: 0 auto; padding: 0 32px; }
+    .section-pad    { padding: 52px 0; }
+    .eyebrow        { font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); }
+    .section-title  { font-weight: 500; font-size: 42px; letter-spacing: -.6px; margin-top: 10px; }
+    .hero {
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(820px 460px at 80% -14%, color-mix(in srgb, var(--accent) 9%, transparent), transparent 72%);
+      pointer-events: none;
+    }
+    .hero-inner {
+      position: relative;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 84px 32px 64px;
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 56px;
+      align-items: center;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 7px 14px;
+      border-radius: 999px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      letter-spacing: .5px;
+      color: var(--ink-2);
+      box-shadow: var(--shadow);
+    }
+    .hero-badge-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #22C55E;
+      box-shadow: 0 0 0 4px color-mix(in srgb, #22C55E 22%, transparent);
+    }
+    .hero-title {
+      font-weight: 500;
+      font-size: 66px;
+      line-height: 1.06;
+      letter-spacing: -1px;
+      margin: 22px 0 0;
+    }
+    .hero-desc {
+      font-size: 19px;
+      line-height: 1.6;
+      color: var(--ink-2);
+      margin: 22px 0 0;
+      max-width: 540px;
+    }
+    .hero-cta {
+      display: flex;
+      gap: 14px;
+      margin-top: 34px;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      border: none;
+      font-weight: 600;
+      font-size: 15px;
+      padding: 14px 26px;
+      border-radius: 11px;
+      background: var(--accent);
+      color: var(--surface);
+      box-shadow: 0 6px 16px color-mix(in srgb, var(--accent) 26%, transparent);
+      transition: transform .18s ease;
+    }
+    .btn-primary:hover { transform: translateY(-2px); }
+    .btn-secondary {
+      font-weight: 600;
+      font-size: 15px;
+      padding: 14px 26px;
+      border-radius: 11px;
+      background: var(--surface);
+      color: var(--ink);
+      border: 1px solid var(--border);
+      transition: all .18s ease;
+    }
+    .btn-secondary:hover { background: var(--surface-2); }
+    .hero-stats {
+      display: flex;
+      gap: 34px;
+      margin-top: 44px;
+      flex-wrap: wrap;
+    }
+    .stat-num   { font-family: 'EB Garamond', Georgia, serif; font-weight: 600; font-size: 30px; letter-spacing: -.5px; }
+    .stat-label { font-size: 13px; color: var(--ink-3); margin-top: 2px; }
+    .hero-portrait-wrap { position: relative; display: flex; justify-content: center; }
+    .hero-portrait {
+      width: 340px;
+      height: 420px;
+      border-radius: 4px;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+    }
+    .hero-portrait img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .hero-portrait-initial { font-family: 'EB Garamond', Georgia, serif; font-size: 80px; font-weight: 600; color: var(--accent); opacity: .3; }
+    .hero-float-card {
+      position: absolute;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px 18px;
+      box-shadow: var(--shadow-lg);
+    }
+    .hero-float-card.bottom-left { left: -34px; bottom: 44px; min-width: 170px; }
+    .hero-float-card.top-right   { right: -26px; top: 34px; }
+    .float-mono { font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: var(--ink-2); }
+    .float-label { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: var(--ink-3); }
+    .float-metric { font-family: 'EB Garamond', Georgia, serif; font-weight: 600; font-size: 26px; color: var(--accent); margin-top: 3px; }
+    .float-bars { display: flex; gap: 3px; align-items: flex-end; height: 24px; margin-top: 8px; }
+    .float-bar { flex: 1; border-radius: 2px; }
+    .skills-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      align-items: center;
+      padding: 24px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .skills-strip-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11.5px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--ink-3);
+      margin-right: 8px;
+    }
+    .skill-chip {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 13.5px;
+      color: var(--ink-2);
+      padding: 6px 13px;
+      border-radius: 8px;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+    }
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .project-card {
+      cursor: pointer;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform .2s ease, box-shadow .2s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    .project-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+    .card-cover {
+      position: relative;
+      aspect-ratio: 16 / 10;
+      background: var(--surface-2);
+      overflow: hidden;
+    }
+    .card-cover img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .card-cover-label {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: .15;
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 48px;
+      font-weight: 700;
+      color: var(--accent);
+      pointer-events: none;
+    }
+    .card-category {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      letter-spacing: .5px;
+      padding: 5px 10px;
+      border-radius: 7px;
+      background: color-mix(in srgb, var(--surface) 88%, transparent);
+      backdrop-filter: blur(6px);
+      border: 1px solid var(--border);
+      color: var(--ink-2);
+    }
+    .card-body  { padding: 20px 20px 22px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+    .card-title { font-weight: 600; font-size: 20px; letter-spacing: -.3px; }
+    .card-blurb { font-size: 14.5px; line-height: 1.55; color: var(--ink-2); flex: 1; }
+    .card-tools { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--ink-3); }
+    .card-badges { display: flex; flex-wrap: wrap; gap: 6px; }
+    .badge {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      letter-spacing: .3px;
+      padding: 4px 9px;
+      border-radius: 6px;
+      background: var(--accent-soft);
+      color: var(--accent);
+    }
+    .tag-row { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tag {
+      font-size: 11.5px;
+      letter-spacing: .2px;
+      padding: 4px 9px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--surface-2);
+      color: var(--ink-2);
+      white-space: nowrap;
+    }
+    .tag-type { border-color: color-mix(in srgb, var(--accent) 32%, transparent); color: var(--accent); background: var(--accent-soft); }
+    .tag-tool { font-family: 'IBM Plex Mono', monospace; font-size: 11px; }
+    .badge-empty { background: var(--surface-2); color: var(--ink-3); }
+    .card-blurb-empty { color: var(--ink-3); font-style: italic; }
+    .cover-empty {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      background:
+        repeating-linear-gradient(135deg, transparent 0 9px, color-mix(in srgb, var(--accent) 7%, transparent) 9px 10px);
+    }
+    .cover-pdf {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--surface-2);
+    }
+    .cover-pdf-sheet {
+      width: 62%;
+      max-width: 190px;
+      aspect-ratio: 4 / 3;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px;
+      text-align: center;
+    }
+    .cover-pdf-kind {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 1.6px;
+      padding: 3px 8px;
+      border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
+      border-radius: 2px;
+      color: var(--accent);
+    }
+    .cover-pdf-label { font-size: 12.5px; line-height: 1.35; color: var(--ink-2); }
+    .cover-empty-mark { font-family: 'EB Garamond', Georgia, serif; font-size: 30px; font-weight: 600; color: var(--accent); opacity: .35; }
+    .cover-empty-hint { font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 1px; text-transform: uppercase; color: var(--ink-3); }
+    .filter-stack { display: flex; flex-direction: column; gap: 10px; margin: 30px 0 8px; }
+    .filter-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+    .filter-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--ink-3);
+      width: 62px;
+      flex: none;
+    }
+    .search-row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin: 26px 0 4px; }
+    .search-input {
+      flex: 1;
+      min-width: 240px;
+      font-family: 'Karla', system-ui, sans-serif;
+      font-size: 15px;
+      color: var(--ink);
+      padding: 12px 16px;
+      border-radius: 11px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      outline: none;
+    }
+    .search-input:focus { border-color: var(--accent); }
+    .result-count { font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: var(--ink-3); }
+    .reset-btn {
+      font-size: 13px;
+      padding: 9px 15px;
+      border-radius: 9px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--ink-2);
+    }
+    .reset-btn:hover { background: var(--surface-2); }
+    .empty-state { grid-column: 1 / -1; color: var(--ink-3); font-size: 15px; padding: 40px 0; }
+    .proof-empty { font-size: 14px; color: var(--ink-3); }
+    .filter-bar { display: flex; flex-wrap: wrap; gap: 9px; margin: 34px 0 30px; }
+    .filter-btn {
+      font-weight: 500;
+      font-size: 13.5px;
+      padding: 9px 16px;
+      border-radius: 999px;
+      transition: all .18s ease;
+      background: var(--surface);
+      color: var(--ink-2);
+      border: 1px solid var(--border);
+    }
+    .filter-btn.active {
+      background: var(--ink);
+      color: var(--surface);
+      border-color: var(--ink);
+    }
+    .filter-btn:hover:not(.active) { background: var(--surface-2); }
+    .cta-banner {
+      position: relative;
+      overflow: hidden;
+      border-radius: 22px;
+      background: var(--ink);
+      padding: 56px 48px;
+      color: var(--surface);
+      box-shadow: var(--shadow-lg);
+    }
+    .cta-banner::after {
+      content: '';
+      position: absolute;
+      right: -40px;
+      top: -40px;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: color-mix(in srgb, var(--surface) 8%, transparent);
+      pointer-events: none;
+    }
+    .cta-content { position: relative; max-width: 640px; }
+    .cta-title { font-weight: 500; font-size: 40px; letter-spacing: -.6px; line-height: 1.1; }
+    .cta-desc  { font-size: 17px; line-height: 1.6; opacity: .92; margin: 16px 0 28px; }
+    .cta-btn {
+      border: none;
+      font-weight: 600;
+      font-size: 15px;
+      padding: 14px 28px;
+      border-radius: 11px;
+      background: var(--surface);
+      color: var(--ink);
+    }
+    .cta-btn:hover { opacity: .9; }
+    .about-grid {
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 52px;
+      align-items: start;
+    }
+    .about-photo-wrap { position: sticky; top: 100px; }
+    .about-photo {
+      width: 100%;
+      aspect-ratio: 4/5;
+      border-radius: 18px;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+    }
+    .about-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .about-photo-initial { font-family: 'EB Garamond', Georgia, serif; font-size: 120px; font-weight: 600; color: var(--accent); opacity: .25; }
+    .about-title { font-weight: 500; font-size: 48px; letter-spacing: -.9px; margin: 12px 0 0; line-height: 1.08; }
+    .about-bio { font-size: 16.5px; line-height: 1.75; color: var(--ink-2); margin-top: 22px; display: flex; flex-direction: column; gap: 16px; }
+    .skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .skill-group {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 22px 24px;
+      box-shadow: var(--shadow);
+    }
+    .skill-group-name {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 14px;
+    }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .skill-tag {
+      font-size: 14px;
+      color: var(--ink);
+      padding: 7px 13px;
+      border-radius: 8px;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+    }
+    .timeline { position: relative; padding-left: 30px; max-width: none; }
+    .timeline-item > .timeline-detail:first-of-type { margin-top: 12px; }
+    .timeline::before { content: ''; position: absolute; left: 6px; top: 6px; bottom: 6px; width: 2px; background: var(--border); }
+    .timeline-item { position: relative; padding-bottom: 30px; }
+    .timeline-dot {
+      position: absolute;
+      left: -30px;
+      top: 5px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 3px solid var(--bg);
+      box-shadow: 0 0 0 2px var(--accent);
+    }
+    .timeline-period { font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; letter-spacing: .5px; color: var(--accent); }
+    .timeline-role   { font-family: 'EB Garamond', Georgia, serif; font-weight: 600; font-size: 19px; margin-top: 5px; }
+    .timeline-org    { font-size: 14px; color: var(--ink-3); margin-top: 2px; }
+    .timeline-detail {
+      font-size: 14.5px;
+      line-height: 1.6;
+      color: var(--ink-2);
+      margin: 9px 0 0;
+      max-width: none;
+      padding-left: 14px;
+      text-indent: -14px;
+      text-wrap: pretty;
+    }
+
+    /* Certifications */
+    .certs-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
+    .cert-card {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px 22px;
+      box-shadow: var(--shadow);
+    }
+    .cert-card-head { display: flex; gap: 14px; align-items: flex-start; }
+    .cert-mark {
+      flex: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'EB Garamond', Georgia, serif;
+      font-weight: 600;
+      font-size: 14px;
+    }
+    .cert-title  { font-weight: 600; font-size: 15.5px; line-height: 1.3; }
+    .cert-issuer { font-size: 13px; color: var(--ink-3); margin-top: 3px; }
+    .cert-media-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+    .cert-cover {
+      position: relative;
+      flex: 1;
+      min-width: 220px;
+      aspect-ratio: 21/8;
+      border-radius: 10px;
+      overflow: hidden;
+      background: var(--surface-2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--border);
+    }
+    .cert-cover.has-media { cursor: zoom-in; }
+    .cert-cover img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .cert-cover-empty { display: flex; flex-direction: column; align-items: center; gap: 6px; color: var(--ink-3); font-size: 12.5px; }
+    .cert-cover-embed { padding: 0; overflow: hidden; }
+    .cert-embed {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+      background: var(--surface-2);
+    }
+    .cert-embed-expand {
+      position: absolute;
+      right: 10px;
+      bottom: 10px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10.5px;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      padding: 5px 10px;
+      border-radius: 3px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--ink-2);
+      cursor: pointer;
+    }
+    .cert-embed-expand:hover { background: var(--surface-2); }
+    .cover-embed {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+      background: var(--surface-2);
+    }
+    .cover-embed-shield { position: absolute; inset: 0; }
+    .cert-file-kind {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10.5px;
+      letter-spacing: 1.4px;
+      padding: 3px 8px;
+      border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
+      border-radius: 2px;
+      color: var(--accent);
+      font-weight: 500;
+    }
+    .cert-slot-plus {
+      font-size: 20px;
+      line-height: 1;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px dashed var(--border);
+      border-radius: 50%;
+      color: var(--ink-3);
+    }
+    .cert-cover-pdf { display: flex; flex-direction: column; align-items: center; gap: 6px; color: var(--ink-2); font-size: 13px; font-weight: 600; cursor: pointer; }
+    .certs-heading-row { margin: 0 0 24px; }
+
+    .contact-header { text-align: center; max-width: 600px; margin: 0 auto 44px; }
+    .contact-title  { font-weight: 500; font-size: 50px; letter-spacing: -1px; margin: 12px 0 0; line-height: 1.08; }
+    .contact-desc   { font-size: 17px; line-height: 1.6; color: var(--ink-2); margin: 18px 0 0; }
+    .contact-links  { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .contact-card {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px 22px;
+      box-shadow: var(--shadow);
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .contact-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+    .contact-mark {
+      flex: none;
+      width: 46px;
+      height: 46px;
+      border-radius: 11px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'IBM Plex Mono', monospace;
+      font-weight: 600;
+      font-size: 18px;
+    }
+    .contact-label { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: var(--ink-3); }
+    .contact-value { font-weight: 600; font-size: 15.5px; margin-top: 3px; word-break: break-all; }
+    .contact-email-box {
+      margin-top: 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 26px 24px;
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+    .contact-email-hint { font-size: 14.5px; color: var(--ink-2); }
+    .contact-email-link { font-family: 'EB Garamond', Georgia, serif; font-weight: 600; font-size: 24px; color: var(--accent); margin-top: 6px; display: inline-block; }
+    .contact-location   { font-size: 13px; color: var(--ink-3); margin-top: 8px; }
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      background: rgba(8,14,26,.62);
+      backdrop-filter: blur(6px);
+      align-items: flex-start;
+      justify-content: center;
+      padding: 56px 24px;
+      overflow-y: auto;
+      animation: fadeIn .22s ease both;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal-box {
+      width: 100%;
+      max-width: 820px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+      animation: scaleIn .28s cubic-bezier(.2,.8,.2,1) both;
+    }
+    .carousel {
+      position: relative;
+      aspect-ratio: 20/9;
+      background: var(--surface-2);
+      overflow: hidden;
+    }
+    .carousel-slide {
+      display: none;
+      position: absolute;
+      inset: 0;
+    }
+    .carousel-slide.active { display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 12px; }
+    .carousel-slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .carousel-slide.img-slide { padding: 0; }
+    .slide-placeholder-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 16px;
+      background: color-mix(in srgb, var(--accent) 18%, transparent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .slide-placeholder-icon svg { color: var(--accent); }
+    .slide-placeholder-label { font-size: 14px; color: var(--ink-3); }
+    .slide-placeholder-hint  { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--ink-3); opacity: .7; }
+    .slide-pdf-icon {
+      width: 72px;
+      height: 72px;
+      border-radius: 16px;
+      background: color-mix(in srgb, #EF4444 15%, transparent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .slide-pdf-title { font-weight: 600; font-size: 15px; color: var(--ink); }
+    .slide-pdf-btn {
+      font-weight: 600;
+      font-size: 13.5px;
+      padding: 10px 20px;
+      border-radius: 9px;
+      background: var(--accent);
+      color: var(--surface);
+      border: none;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .slide-pdf-btn:hover { opacity: .88; }
+    .carousel-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: color-mix(in srgb, var(--surface) 90%, transparent);
+      backdrop-filter: blur(8px);
+      color: var(--ink);
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background .15s ease;
+      z-index: 2;
+      line-height: 1;
+    }
+    .carousel-arrow:hover { background: var(--surface); }
+    .carousel-arrow.prev { left: 12px; }
+    .carousel-arrow.next { right: 52px; }
+    .carousel-close {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 36px;
+      height: 36px;
+      border-radius: 9px;
+      border: 1px solid var(--border);
+      background: color-mix(in srgb, var(--surface) 90%, transparent);
+      backdrop-filter: blur(6px);
+      color: var(--ink);
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 3;
+    }
+    .carousel-category {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      letter-spacing: .5px;
+      padding: 5px 10px;
+      border-radius: 7px;
+      background: color-mix(in srgb, var(--surface) 88%, transparent);
+      backdrop-filter: blur(6px);
+      border: 1px solid var(--border);
+      color: var(--ink-2);
+      z-index: 2;
+    }
+    .carousel-counter {
+      position: absolute;
+      top: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: var(--ink-3);
+      padding: 5px 10px;
+      border-radius: 7px;
+      background: color-mix(in srgb, var(--surface) 88%, transparent);
+      backdrop-filter: blur(6px);
+      border: 1px solid var(--border);
+      z-index: 2;
+    }
+    .carousel-dots {
+      position: absolute;
+      bottom: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 6px;
+      align-items: center;
+      z-index: 2;
+    }
+    .carousel-dot {
+      height: 7px;
+      border-radius: 999px;
+      border: none;
+      background: rgba(255,255,255,.55);
+      transition: all .2s ease;
+      width: 7px;
+    }
+    .carousel-dot.active {
+      width: 20px;
+      background: var(--accent);
+    }
+    .modal-body { padding: 32px 34px 36px; }
+    .modal-title { font-weight: 500; font-size: 34px; letter-spacing: -.6px; }
+    .modal-tools { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+    .modal-metrics {
+      display: flex;
+      gap: 22px;
+      margin: 22px 0;
+      padding: 18px 20px;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      flex-wrap: wrap;
+    }
+    .metric-value { font-family: 'EB Garamond', Georgia, serif; font-weight: 600; font-size: 26px; letter-spacing: -.4px; color: var(--accent); }
+    .metric-label { font-size: 12.5px; color: var(--ink-3); margin-top: 2px; }
+    .modal-desc   { font-size: 16px; line-height: 1.7; color: var(--ink-2); margin: 0 0 20px; }
+    .modal-section-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11.5px;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--ink-3);
+      margin-bottom: 12px;
+    }
+    .highlight-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 26px; }
+    .highlight-item { display: flex; gap: 12px; align-items: flex-start; font-size: 15px; line-height: 1.55; color: var(--ink); }
+    .highlight-arrow {
+      flex: none;
+      width: 20px;
+      height: 20px;
+      border-radius: 6px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      margin-top: 2px;
+    }
+    .proof-links { display: flex; flex-wrap: wrap; gap: 12px; }
+    .proof-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      font-weight: 600;
+      font-size: 14px;
+      padding: 11px 18px;
+      border-radius: 10px;
+      transition: transform .15s ease;
+    }
+    .proof-link:hover { transform: translateY(-2px); }
+    .proof-link-mono { font-family: 'IBM Plex Mono', monospace; }
+    .proof-link.dark  { background: var(--ink); color: var(--surface); border: 1px solid var(--ink); }
+    .proof-link.blue  { background: var(--accent); color: var(--surface); border: 1px solid var(--accent); }
+    .proof-link.light { background: var(--surface-2); color: var(--ink); border: 1px solid var(--border); }
+    .footer {
+      border-top: 1px solid var(--border);
+      background: var(--surface);
+    }
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 28px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .footer-copy  { font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: var(--ink-3); }
+    .footer-links { display: flex; gap: 18px; font-size: 13.5px; color: var(--ink-3); }
+    .footer-links a:hover { color: var(--accent); }
+    @media (max-width: 900px) {
+      .hero-inner       { grid-template-columns: 1fr; }
+      .hero-portrait-wrap { display: none; }
+      .cards-grid       { grid-template-columns: repeat(2, 1fr); }
+      .about-grid       { grid-template-columns: 1fr; }
+      .about-photo-wrap { position: static; }
+      .contact-links    { grid-template-columns: 1fr; }
+      .skills-grid      { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .cards-grid { grid-template-columns: 1fr; }
+      .hero-title { font-size: 38px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="nav-bar">
+    <nav class="nav-inner">
+      <button class="nav-logo" onclick="showPage('home')">
+        <div class="nav-logo-icon">M</div>
+        <div>
+          <div class="nav-logo-name">Mark</div>
+          <div class="nav-logo-sub">The Analyst</div>
+        </div>
+      </button>
+      <div class="nav-links">
+        <button class="nav-btn active" id="nav-home"     onclick="showPage('home')">Home</button>
+        <button class="nav-btn"        id="nav-projects" onclick="showPage('projects')">Projects</button>
+        <button class="nav-btn"        id="nav-about"    onclick="showPage('about')">About</button>
+        <button class="nav-btn"        id="nav-contact"  onclick="showPage('contact')">Contact</button>
+        <button class="theme-toggle"   id="theme-btn"    onclick="toggleTheme()" title="Toggle dark mode">☾</button>
+      </div>
+    </nav>
+  </header>
+
+  <div id="page-home" class="page active page-enter">
+    <section class="hero">
+      <div class="hero-inner">
+        <div>
+          <div class="hero-badge">
+            <span class="hero-badge-dot"></span>
+            Available for data roles &amp; freelance
+          </div>
+          <h1 class="hero-title">Turning messy data into decisions that move the business — ongoing work.</h1>
+          <p class="hero-desc">I'm Mark — a data analyst who builds forecasting models, ships BI dashboards, and runs experiments that leaders actually act on. Every project below ships with proof: code, dashboards, and case studies.</p>
+          <div class="hero-cta">
+            <button class="btn-primary"    onclick="showPage('projects')">View my work</button>
+            <button class="btn-secondary"  onclick="showPage('contact')">Get in touch</button>
+          </div>
+          <div class="hero-stats">
+            <div><div class="stat-num">5+</div><div class="stat-label">Years experience</div></div>
+            <div><div class="stat-num">40+</div><div class="stat-label">Dashboards shipped</div></div>
+            <div><div class="stat-num">67</div><div class="stat-label">Projects</div></div>
+            <div><div class="stat-num">9</div><div class="stat-label">Domains</div></div>
+          </div>
+        </div>
+        <div class="hero-portrait-wrap">
+          <div style="position:relative; width:340px; height:420px;">
+            <div class="hero-portrait">
+              <span class="hero-portrait-initial">M</span>
+            </div>
+            <div class="hero-float-card bottom-left">
+              <div class="float-label">Forecast accuracy</div>
+              <div class="float-metric">↑ 12%</div>
+              <div class="float-bars">
+                <div class="float-bar" style="background:var(--accent-soft);height:40%"></div>
+                <div class="float-bar" style="background:var(--accent-soft);height:62%"></div>
+                <div class="float-bar" style="background:var(--accent);height:80%"></div>
+                <div class="float-bar" style="background:var(--accent);height:100%"></div>
+                <div class="float-bar" style="background:var(--accent-2);height:74%"></div>
+              </div>
+            </div>
+            <div class="hero-float-card top-right">
+              <div class="float-mono">SELECT insight<br>FROM data;</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section style="padding: 8px 0 24px;">
+      <div class="container">
+        <div class="skills-strip">
+          <span class="skills-strip-label">Core stack</span>
+          <span class="skill-chip">Python</span>
+          <span class="skill-chip">SQL</span>
+          <span class="skill-chip">R</span>
+          <span class="skill-chip">Tableau</span>
+          <span class="skill-chip">Power BI</span>
+          <span class="skill-chip">scikit-learn</span>
+          <span class="skill-chip">BigQuery</span>
+          <span class="skill-chip">Git</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-pad">
+      <div class="container">
+        <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:24px; flex-wrap:wrap; margin-bottom:32px;">
+          <div>
+            <div class="eyebrow">Selected work</div>
+            <h2 class="section-title">Featured projects</h2>
+          </div>
+          <button class="btn-secondary" onclick="showPage('projects')">Browse all projects →</button>
+        </div>
+        <div class="cards-grid" id="featured-cards"></div>
+      </div>
+    </section>
+
+    <section style="padding: 0 0 84px;">
+      <div class="container">
+        <div class="cta-banner">
+          <div class="cta-content">
+            <h2 class="cta-title">Have data that needs a story?</h2>
+            <p class="cta-desc">I help teams find the signal, build the dashboard, and make the call. Let's talk about what you're trying to figure out.</p>
+            <button class="cta-btn" onclick="showPage('contact')">Start a conversation</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div id="page-projects" class="page">
+    <main class="container" style="padding-top:64px; padding-bottom:90px;">
+      <div class="eyebrow">Portfolio</div>
+      <h1 style="font-weight:500; font-size:52px; letter-spacing:-1px; margin:12px 0 0;">Projects &amp; case studies</h1>
+      <p style="font-size:17px; line-height:1.6; color:var(--ink-2); max-width:640px; margin:16px 0 0;">
+        The full library. Filter by domain, project type or tool, then open any card for media, write-up and links.
+      </p>
+      <div class="search-row">
+        <input class="search-input" id="search-input" type="search" placeholder="Search projects…" oninput="onSearch(this.value)">
+        <span class="result-count" id="result-count"></span>
+        <button class="reset-btn" onclick="resetFilters()">Reset</button>
+      </div>
+      <div class="filter-stack">
+        <div class="filter-row" id="filter-domain"></div>
+        <div class="filter-row" id="filter-type"></div>
+        <div class="filter-row" id="filter-tool"></div>
+      </div>
+      <div style="height:22px;"></div>
+      <div class="cards-grid" id="project-cards"></div>
+    </main>
+  </div>
+
+  <div id="page-about" class="page">
+    <main class="container" style="padding-top:64px; padding-bottom:90px;">
+      <div class="about-grid">
+        <div class="about-photo-wrap">
+          <div class="about-photo">
+            <span class="about-photo-initial">M</span>
+          </div>
+        </div>
+        <div>
+          <div class="eyebrow">About</div>
+          <h1 class="about-title">Analyst by training, storyteller by habit.</h1>
+          <div class="about-bio">
+            <p>I've spent the last five years turning raw, messy data into things people can act on — forecasts, dashboards, and experiments across retail, logistics, and public health. My work sits at the intersection of solid statistics and clear communication.</p>
+            <p>I care about the whole pipeline: clean data in, honest analysis in the middle, and a decision-ready story out. I'd rather ship one dashboard a director checks every morning than ten no one opens.</p>
+          </div>
+        </div>
+      </div>
+
+      <section style="margin-top:72px;">
+        <h2 style="font-weight:500; font-size:34px; letter-spacing:-.5px; margin:0 0 26px;">Skills &amp; tools</h2>
+        <div class="skills-grid">
+          <div class="skill-group">
+            <div class="skill-group-name">Languages</div>
+            <div class="skill-tags">
+              <span class="skill-tag">Python</span><span class="skill-tag">SQL</span><span class="skill-tag">R</span><span class="skill-tag">DAX</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-name">Visualization &amp; BI</div>
+            <div class="skill-tags">
+              <span class="skill-tag">Tableau</span><span class="skill-tag">Power BI</span><span class="skill-tag">Looker</span><span class="skill-tag">Plotly</span><span class="skill-tag">Matplotlib</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-name">ML &amp; Statistics</div>
+            <div class="skill-tags">
+              <span class="skill-tag">scikit-learn</span><span class="skill-tag">XGBoost</span><span class="skill-tag">statsmodels</span><span class="skill-tag">A/B testing</span><span class="skill-tag">Forecasting</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-name">Data engineering</div>
+            <div class="skill-tags">
+              <span class="skill-tag">Pandas</span><span class="skill-tag">dbt</span><span class="skill-tag">Airflow</span><span class="skill-tag">PostgreSQL</span><span class="skill-tag">BigQuery</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section style="margin-top:64px;">
+        <h2 style="font-weight:500; font-size:34px; letter-spacing:-.5px; margin:0 0 30px;">Experience</h2>
+        <div class="timeline">
+          <div class="timeline-item">
+            <span class="timeline-dot"></span>
+            <div class="timeline-period">2023 — Present</div>
+            <div class="timeline-role">Freelance Data Analyst</div>
+            <div class="timeline-org">Multiple Clients</div>
+            <p class="timeline-detail">• Spearheaded end-to-end data analysis projects from collection to visualization, enabling data-driven decisions across diverse client industries.</p>
+            <p class="timeline-detail">• Mined large, structured datasets with SQL and Python/R, surfacing trends and anomalies that directly shaped client business strategy.</p>
+            <p class="timeline-detail">• Engineered custom data models and statistical analyses that exposed key trends and sharpened strategic planning.</p>
+            <p class="timeline-detail">• Designed interactive Tableau and Power BI dashboards that converted complex data into clear insights and accelerated stakeholder decisions.</p>
+            <p class="timeline-detail">• Streamlined data-collection workflows and enforced data-integrity checks, eliminating errors and ensuring reproducible results.</p>
+            <p class="timeline-detail">• Delivered data-driven recommendations that drove cost savings, revenue growth, and operational efficiency.</p>
+            <p class="timeline-detail">• Orchestrated multiple concurrent projects, consistently meeting deadlines and exceeding client expectations.</p>
+          </div>
+
+          <div class="timeline-item">
+            <span class="timeline-dot"></span>
+            <div class="timeline-period">2023 — 2025</div>
+            <div class="timeline-role">Special Science Teacher I</div>
+            <div class="timeline-org">DepEd - Department of Education</div>
+            <p class="timeline-detail">• Implemented the curriculum and tracked academic performance, attendance, and behavior, triggering timely, evidence-based interventions for at-risk learners.</p>
+            <p class="timeline-detail">• Spearheaded school-based data analytics initiatives now relied upon for institutional policy development and teaching-strategy decisions.</p>
+            <p class="timeline-detail">• Mentored students in research methods, data analytics, visualization, data storytelling, and technical writing, strengthening their evidence-based research output through the Capstone Culminating Activity.</p>
+          </div>
+
+          <div class="timeline-item">
+            <span class="timeline-dot"></span>
+            <div class="timeline-period">2023 — 2025</div>
+            <div class="timeline-role">Biological and Chemical Laboratory Head Personnel</div>
+            <div class="timeline-org">DepEd - Department of Education</div>
+            <p class="timeline-detail">• Managed daily laboratory operations, safety protocols, and resource allocations for the biological and chemical laboratories; integrated modern STEM data tools and digitized tracking workflows, which reduced material usage inefficiencies and established real-time inventory visibility.</p>
+            <p class="timeline-detail">• Trained and mentored students in complex protocols, safety standards, and the proper preparation, testing, and calibration of specialized analytical instruments; increased independent equipment proficiency among students and drastically reduced instrumentation downtime.</p>
+            <p class="timeline-detail">• Authored and maintained comprehensive annual inventory logs, safety incident/accident reviews, and operational achievement reports; ensured good compliance with institutional safety standards and streamlined end-of-year administrative audits.</p>
+          </div>
+
+          <div class="timeline-item">
+            <span class="timeline-dot"></span>
+            <div class="timeline-period">January – April 2023</div>
+            <div class="timeline-role">Pharmaceutical Industrial Microbiological Analyst</div>
+            <div class="timeline-org">EL Laboratories, Inc.</div>
+            <p class="timeline-detail">· Complied with regulatory frameworks by strictly executing Good Laboratory Practices (GLP) and current Good Manufacturing Practices (cGMP), contributing to a safe, zero-accident, and audit-ready Quality Control (QC) laboratory environment.</p>
+            <p class="timeline-detail">· Conducted routine physical and chemical analysis on raw materials, in-process/bulk products, finished goods, stability samples (actual/accelerated), validation lots, and packaging materials to verify product quality.</p>
+            <p class="timeline-detail">· Supported Out-of-Specification (OOS) investigations by performing rapid, accurate diagnostic re-testing, ensuring precise data documentation and on-time submission of results.</p>
+            <p class="timeline-detail">· Prepared and standardized laboratory test solutions following approved standard operating procedures (SOPs), ensuring accurate chemical labeling and complete traceability.</p>
+            <p class="timeline-detail">· Performed routine maintenance and calibration checks on assigned analytical laboratory instruments and apparatus, updating operational logs to support equipment availability.</p>
+            <p class="timeline-detail">· Assisted with laboratory inventory management by conducting routine tracking and counts of reagents, glassware, and equipment accessories to prevent supply shortages.</p>
+            <p class="timeline-detail">· Executed hazardous waste handling protocols, ensuring the safe collection, segregation, and containment of chemical and biological waste in compliance with safety standards.</p>
+            <p class="timeline-detail">· Maintained strict data integrity and document control by systematically organizing, archiving, and storing sensitive QC laboratory records for streamlined regulatory review.</p>
+            <p class="timeline-detail">· Collaborated closely with the QC Laboratory Head and Senior Analysts, executing cross-functional testing tasks to help the team meet institutional targets and production objectives.</p>
+          </div>
+
+          <div class="timeline-item">
+            <span class="timeline-dot"></span>
+            <div class="timeline-period">August 2022 – January 2023</div>
+            <div class="timeline-role">Instructor I</div>
+            <div class="timeline-org">Rizal College of Laguna - Calamba City</div>
+            <p class="timeline-detail">• Facilitated knowledge and skills acquisition, developing students' analytical and creative capabilities.</p>
+            <p class="timeline-detail">• Designed course requirements and assessed performance per departmental standards, upholding consistent grading integrity.</p>
+            <p class="timeline-detail">• Tracked and recorded student learning data to drive informed academic advising.</p>
+            <p class="timeline-detail">• Conducted discipline-related research and contributed to curriculum committees and peer evaluation.</p>
+          </div>
+
+          <div class="timeline-item">
+            <span class="timeline-dot"></span>
+            <div class="timeline-period">August 2022 – January 2023</div>
+            <div class="timeline-role">IBM SkillsBuild Program Co-Administrator</div>
+            <div class="timeline-org">Rizal College of Laguna - Calamba City</div>
+            <p class="timeline-detail">• Co-led the pilot rollout of the IBM SkillsBuild online learning program, briefing students and curating the recommended course catalog across technical, workplace, and enrichment tracks.</p>
+            <p class="timeline-detail">• Selected and onboarded priority STEM participants and extended enrollment to additional students, broadening access to digital-skills training.</p>
+            <p class="timeline-detail">• Motivated participants to earn industry-recognized digital skills badges across multiple online courses.</p>
+            <p class="timeline-detail">• Monitored learner progress and produced accomplishment reports documenting badge attainment and course completion.</p>
+            <p class="timeline-detail">• Evaluated and reported program effectiveness against objectives and identified key access barriers (internet connectivity, devices, course difficulty) to guide future rollouts.</p>
+          </div>
+
+          <div class="timeline-item">
+            <span class="timeline-dot"></span>
+            <div class="timeline-period">2021</div>
+            <div class="timeline-role">Laboratory Intern</div>
+            <div class="timeline-org">Philippine Nuclear Research Institute</div>
+            <p class="timeline-detail">• Analyzed and processed classified chromosome images using MS Excel and OneDrive, delivering accurate data for identification.</p>
+            <p class="timeline-detail">• Authored detailed technical reports and communicated findings clearly to supervisors and peers.</p>
+            <p class="timeline-detail">• Completed training in radiation safety, nuclear science, cytogenetics, and biological dosimetry.</p>
+            <p class="timeline-detail">• Upheld Good Laboratory Practices (GLP) across all assigned tasks.</p>
+          </div>
+
+          <div class="timeline-item">
+            <span class="timeline-dot"></span>
+            <div class="timeline-period">November – December 2017</div>
+            <div class="timeline-role">Hospital Intern</div>
+            <div class="timeline-org">Internship</div>
+            <p class="timeline-detail">· Assisted the Patient Care Coordination team in managing patient flow, communication, and care transitions across multiple departments. Actively participated in daily huddles and care planning meetings.</p>
+            <p class="timeline-detail">· Worked alongside the Quality Assurance and Patient Safety Department to observe and analyze clinical operations, quality metrics, and patient safety protocols.</p>
+            <p class="timeline-detail">· Supported various department operations and administrative services with scheduling, resource allocation, compliance management, and reporting. Gained exposure to different aspects of hospital management.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Certifications -->
+      <section style="margin-top:56px;">
+        <div class="certs-heading-row">
+          <h2 style="font-weight:500; font-size:34px; letter-spacing:-.5px; margin:0;">Certifications &amp; education</h2>
+        </div>
+        <div class="certs-grid" id="certs-grid"></div>
+      </section>
+    </main>
+  </div>
+
+  <div id="page-contact" class="page">
+    <main class="container-md" style="padding-top:76px; padding-bottom:90px;">
+      <div class="contact-header">
+        <div class="eyebrow">Contact</div>
+        <h1 class="contact-title">Let's build something with your data.</h1>
+        <p class="contact-desc">Open to full-time data roles, freelance analytics, and dashboard builds. The fastest way to reach me is email — I usually reply within a day.</p>
+      </div>
+      <div class="contact-links">
+        <a href="mailto:mrgmagsino2026@gmail.com" class="contact-card">
+          <div class="contact-mark">@</div>
+          <div>
+            <div class="contact-label">Email</div>
+            <div class="contact-value">mrgmagsino2026@gmail.com</div>
+          </div>
+        </a>
+        <a href="https://github.com/mark-analyst" target="_blank" class="contact-card">
+          <div class="contact-mark">GH</div>
+          <div>
+            <div class="contact-label">GitHub</div>
+            <div class="contact-value">github.com/mark-analyst</div>
+          </div>
+        </a>
+        <a href="https://linkedin.com/in/mark-analyst" target="_blank" class="contact-card">
+          <div class="contact-mark">in</div>
+          <div>
+            <div class="contact-label">LinkedIn</div>
+            <div class="contact-value">linkedin.com/in/mark-analyst</div>
+          </div>
+        </a>
+        <a href="https://public.tableau.com" target="_blank" class="contact-card">
+          <div class="contact-mark">Tb</div>
+          <div>
+            <div class="contact-label">Tableau Public</div>
+            <div class="contact-value">public.tableau.com/mark</div>
+          </div>
+        </a>
+      </div>
+      <div class="contact-email-box">
+        <div class="contact-email-hint">Prefer email? Reach me directly at</div>
+        <a href="mailto:mrgmagsino2026@gmail.com" class="contact-email-link">mrgmagsino2026@gmail.com</a>
+        <div class="contact-location">Based in Manila, Philippines · Working GMT+8, remote-friendly</div>
+      </div>
+    </main>
+  </div>
+
+  <div class="modal-overlay" id="modal" onclick="closeModal(event)">
+    <div class="modal-box modal-enter">
+      <div class="carousel" id="carousel">
+        <button class="carousel-arrow prev" onclick="prevSlide(event)">&#8249;</button>
+        <button class="carousel-arrow next" onclick="nextSlide(event)">&#8250;</button>
+        <button class="carousel-close"      onclick="closeModalDirect()">✕</button>
+        <div class="carousel-category"  id="modal-category"></div>
+        <div class="carousel-counter"   id="modal-counter"></div>
+        <div class="carousel-dots"      id="modal-dots"></div>
+        <div id="carousel-slides"></div>
+      </div>
+      <div class="modal-body">
+        <h2 class="modal-title"  id="modal-title"></h2>
+        <div class="modal-tools" id="modal-tools"></div>
+        <div class="modal-metrics" id="modal-metrics"></div>
+        <p class="modal-desc"    id="modal-desc"></p>
+        <div class="modal-section-label" id="label-highlights">What I did</div>
+        <div class="highlight-list" id="modal-highlights"></div>
+        <div class="modal-section-label">Proof of work</div>
+        <div class="proof-links" id="modal-proof"></div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-copy">© 2026 Mark · The Analyst — hosted free on GitHub Pages</div>
+      <div class="footer-links">
+        <a href="https://github.com/mark-analyst"       target="_blank">GitHub</a>
+        <a href="https://linkedin.com/in/mark-analyst"  target="_blank">LinkedIn</a>
+        <a href="mailto:mrgmagsino2026@gmail.com">Email</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+
+    /* ============================================================
+       PROJECT LIBRARY — this is the only place you edit
+       ------------------------------------------------------------
+       Every project below is a placeholder. To fill one in, add a
+       6th argument object to its P(...) call:
+
+         P('p01', "Adventure Works", 'Business', 'Dashboard / BI Report', ['Power BI'], {
+           blurb: 'One-line summary shown on the card.',
+           desc:  'Longer paragraph shown inside the project modal.',
+           metrics: [{ value:'↑12%', label:'Forecast accuracy' }],
+           highlights: ['What I did, bullet one.', 'Bullet two.'],
+           media: [
+             { type:'image', src:'assets/adventure-works-1.png', label:'Sales overview' },
+             { type:'pdf',   src:'assets/adventure-works.pdf',   label:'Case study PDF' }
+           ],
+           links: [
+             { label:'View code',       url:'https://github.com/you/repo', style:'dark'  },
+             { label:'Open dashboard',  url:'https://public.tableau.com/…', style:'blue' },
+             { label:'Download data',   url:'assets/data.csv',             style:'light' }
+           ],
+           featured: true            // show it on the home page
+         }),
+
+       Media files: commit them into this repo (e.g. an /assets folder)
+       and point src at the relative path, or paste any public URL.
+       Because the file lives in your repo, you are the only person who
+       can add or change project media — visitors can only view it.
+    ============================================================ */
+
+    const DOMAINS = ['Education','Manufacturing','Health','Finance','Customer','Logistics','Business','Science','Others'];
+
+    const TYPES = ['Data Analysis','Dashboard / BI Report','Machine Learning Model','Data Engineering / ETL',
+                   'Automation / Scripting','Statistical Study','Web / App Development','Data Visualization',
+                   'Survey / Research','Process Improvement','Training / Documentation','Computer Vision'];
+
+    const TOOLS = ['Excel','Google Sheets','Power BI','Tableau','Python','R'];
+
+    const P = (id, title, domain, type, tools, extra) => Object.assign({
+      id, title, domain, type, tools,
+      blurb: '', desc: '', metrics: [], highlights: [], media: [], links: [], featured: false
+    }, extra || {});
+
+    const PROJECTS = [
+      P('p01', "ADVENTURE WORKS", 'Business', 'Dashboard / BI Report', ['Power BI'], { featured:true }),
+      P('p02', "FOOD AND BEVERAGE SALES", 'Business', 'Dashboard / BI Report', ['Power BI'], { featured:true }),
+      P('p03', "Adventure Works Sales", 'Business', 'Dashboard / BI Report', ['Power BI']),
+      P('p04', "VanArsdel Sales Report", 'Business', 'Dashboard / BI Report', ['Power BI']),
+      P('p05', "HRIS Data Analytics", 'Business', 'Dashboard / BI Report', ['Power BI']),
+      P('p06', "Manufacturing Downtime", 'Manufacturing', 'Dashboard / BI Report', ['Power BI'], { featured:true }),
+      P('p07', "Competitive Marketing Analysis", 'Business', 'Data Analysis', ['Power BI']),
+      P('p08', "Corporate Spend", 'Finance', 'Dashboard / BI Report', ['Power BI']),
+      P('p09', "eCommerce (Full-scale Solution)", 'Business', 'Dashboard / BI Report', ['Power BI']),
+      P('p10', "Employee Hiring and History", 'Business', 'Dashboard / BI Report', ['Power BI']),
+      P('p11', "HR Analytics Case Study", 'Business', 'Data Analysis', ['Power BI']),
+      P('p12', "Regional Sales Sample", 'Business', 'Dashboard / BI Report', ['Power BI']),
+      P('p13', "Revenue Opportunities", 'Business', 'Dashboard / BI Report', ['Power BI']),
+      P('p14', "Store Sales", 'Business', 'Dashboard / BI Report', ['Power BI']),
+      P('p15', "DSA Python Works", 'Others', 'Automation / Scripting', ['Python']),
+      P('p16', "Attendance Monitoring", 'Education', 'Automation / Scripting', ['Excel']),
+      P('p17', "PHIL IRRI Version 1.0", 'Science', 'Web / App Development', ['Python']),
+      P('p18', "PHIL IRRI Version 2.0", 'Science', 'Web / App Development', ['Python']),
+      P('p19', "Hydrophonics", 'Science', 'Data Analysis', ['Excel']),
+      P('p20', "DepEd Enrollment", 'Education', 'Data Visualization', ['Power BI']),
+      P('p21', "Literacy and Numeracy", 'Education', 'Statistical Study', ['Excel']),
+      P('p22', "ACAI AKAP", 'Education', 'Data Analysis', ['Excel']),
+      P('p23', "Canteen", 'Business', 'Process Improvement', ['Excel']),
+      P('p24', "Bank Transaction Anomaly Analysis (Google Colab)", 'Finance', 'Machine Learning Model', ['Python']),
+      P('p25', "Bank Transaction Anomaly Analysis (HPC)", 'Finance', 'Data Engineering / ETL', ['Python']),
+      P('p26', "Synthea — Dashboard DS 2400", 'Health', 'Dashboard / BI Report', ['Tableau'], {
+        blurb: 'Population health intelligence dashboard built on the Synthea synthetic patient records.',
+        desc: 'A population health intelligence system built on Synthea synthetic patient data, covering patient demographics, encounter volumes, condition prevalence and cost drivers in a single dashboard for DS 2400.',
+        media: [
+          { type:'pdf', src:'https://github.com/Mark-The-Analyst/Population-Health-Intelligence-System-Dashboard-Synthea/blob/93d48ea4570906fc3ccde8e5d59395d26396bce3/Final_Dashboard_Synthea_Output.pdf', label:'Final dashboard output (PDF)' }
+        ],
+        links: [
+          { label:'View code', url:'https://github.com/Mark-The-Analyst/Population-Health-Intelligence-System-Dashboard-Synthea', style:'dark' },
+          { label:'Dashboard PDF', url:'https://github.com/Mark-The-Analyst/Population-Health-Intelligence-System-Dashboard-Synthea/blob/93d48ea4570906fc3ccde8e5d59395d26396bce3/Final_Dashboard_Synthea_Output.pdf', style:'blue' }
+        ],
+        featured: true
+      }),
+      P('p27', "Synthea — Network Analysis", 'Health', 'Data Analysis', ['Python']),
+      P('p28', "Synthea Medication Anomaly Analysis", 'Health', 'Data Analysis', ['Python']),
+      P('p29', "Synthea Machine Learning", 'Health', 'Machine Learning Model', ['Python']),
+      P('p30', "BNF 216 — Prostate Cancer Classifier", 'Health', 'Machine Learning Model', ['Python']),
+      P('p31', "Brain Tumor", 'Health', 'Computer Vision', ['Python']),
+      P('p32', "DS 220 — Survival Classification", 'Health', 'Machine Learning Model', ['Python']),
+      P('p33', "DS 240 — Global Health Indicator", 'Health', 'Data Visualization', ['R']),
+      P('p34', "Skin Disease Tag", 'Health', 'Computer Vision', ['Python']),
+      P('p35', "Ethics — Vaccine Dashboard", 'Health', 'Dashboard / BI Report', ['Tableau']),
+      P('p36', "Algo — Disease Network", 'Health', 'Data Analysis', ['Python']),
+      P('p37', "2026 ER Analysis", 'Health', 'Data Analysis', ['Python']),
+      P('p38', "SWIMSS", 'Others', 'Web / App Development', ['Python']),
+      P('p39', "ALIMS", 'Others', 'Web / App Development', ['Python']),
+      P('p40', "PB DSA Airplanes", 'Logistics', 'Data Analysis', ['Python']),
+      P('p41', "DPWH Contract", 'Business', 'Data Analysis', ['Power BI']),
+      P('p42', "Flood Control", 'Others', 'Data Visualization', ['Power BI']),
+      P('p43', "Voter EDA", 'Others', 'Data Analysis', ['Python']),
+      P('p44', "Project Monitoring", 'Business', 'Dashboard / BI Report', ['Power BI']),
+      P('p45', "DPWH Network Contract", 'Business', 'Data Analysis', ['Python']),
+      P('p46', "ElaborAid", 'Education', 'Web / App Development', ['Python']),
+      P('p47', "Emerson Manufacturing Downtime", 'Manufacturing', 'Dashboard / BI Report', ['Power BI'], { featured:true }),
+      P('p48', "Trade Database", 'Logistics', 'Data Engineering / ETL', ['Python']),
+      P('p49', "CITES Trade Evaluation", 'Science', 'Data Analysis', ['R']),
+      P('p50', "Churn Rate in DataCamp", 'Customer', 'Data Analysis', ['Python']),
+      P('p51', "Customer Satisfaction", 'Customer', 'Survey / Research', ['Excel']),
+      P('p52', "Consumer Financial Complaints", 'Finance', 'Data Analysis', ['Python']),
+      P('p53', "Bioinformatics Evaluation", 'Science', 'Statistical Study', ['R']),
+      P('p54', "Aurora Bank", 'Finance', 'Dashboard / BI Report', ['Power BI']),
+      P('p55', "Mental Health Dashboard", 'Health', 'Dashboard / BI Report', ['Tableau']),
+      P('p56', "Dog Adoption", 'Others', 'Data Analysis', ['Tableau']),
+      P('p57', "Café Rewards", 'Customer', 'Data Analysis', ['Power BI']),
+      P('p58', "Coffee Shop", 'Business', 'Dashboard / BI Report', ['Excel']),
+      P('p59', "Merchandise Sales", 'Business', 'Dashboard / BI Report', ['Power BI']),
+      P('p60', "AI Impact on Students", 'Education', 'Survey / Research', ['Python']),
+      P('p61', "PISA 2022", 'Education', 'Statistical Study', ['R']),
+      P('p62', "DepEd Health", 'Health', 'Data Analysis', ['Power BI']),
+      P('p63', "Credit Score Analysis", 'Finance', 'Machine Learning Model', ['Python']),
+      P('p64', "Pharma", 'Health', 'Data Analysis', ['Power BI']),
+      P('p65', "Medicare", 'Health', 'Data Analysis', ['Tableau']),
+      P('p66', "Animal Shelter", 'Others', 'Data Analysis', ['Tableau']),
+      P('p67', "Dynasty", 'Others', 'Data Analysis', ['Python']),
+    ];
+
+    function showPage(name) {
+      document.querySelectorAll('.page').forEach(p => { p.classList.remove('active','page-enter'); });
+      document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+      const pg = document.getElementById('page-' + name);
+      pg.classList.add('active','page-enter');
+      document.getElementById('nav-' + name).classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'auto' });
+    }
+
+    let dark = false;
+    function toggleTheme() {
+      dark = !dark;
+      document.body.setAttribute('data-theme', dark ? 'dark' : '');
+      document.getElementById('theme-btn').textContent = dark ? '☀' : '☾';
+    }
+
+    function mediaBadges(proj) {
+      const imgs = proj.media.filter(m => m.type === 'image').length;
+      const pdfs = proj.media.filter(m => m.type === 'pdf').length;
+      const links = proj.links.length;
+      const out = [];
+      if (imgs)  out.push(`<span class="badge">${imgs} image${imgs>1?'s':''}</span>`);
+      if (pdfs)  out.push(`<span class="badge">${pdfs} PDF${pdfs>1?'s':''}</span>`);
+      if (links) out.push(`<span class="badge">${links} link${links>1?'s':''}</span>`);
+      if (!out.length) out.push('<span class="badge badge-empty">No media yet</span>');
+      return out.join('');
+    }
+
+    function buildCard(proj) {
+      const card = document.createElement('div');
+      card.className = 'project-card';
+      card.onclick = () => openModal(proj.id);
+
+      const firstImage = proj.media.find(m => m.type === 'image');
+      const firstDrive = proj.media.find(m => m.type === 'drive');
+      const firstPdf   = proj.media.find(m => m.type === 'pdf');
+      let coverHTML;
+      if (firstDrive) {
+        coverHTML = `<iframe class="cover-embed" src="${driveEmbed(firstDrive.src)}" title="${firstDrive.label || proj.title}" loading="lazy"></iframe>
+                     <span class="cover-embed-shield"></span>`;
+      } else if (firstImage) {
+        coverHTML = `<img src="${firstImage.src}" alt="${firstImage.label || proj.title}">`;
+      } else if (firstPdf) {
+        coverHTML = `<div class="cover-pdf">
+             <div class="cover-pdf-sheet">
+               <span class="cover-pdf-kind">PDF</span>
+               <span class="cover-pdf-label">${firstPdf.label || 'Project document'}</span>
+             </div>
+           </div>`;
+      } else {
+        coverHTML = `<div class="cover-empty">
+             <div class="cover-empty-mark">${proj.type.split(' ')[0]}</div>
+             <div class="cover-empty-hint">drop cover image</div>
+           </div>`;
+      }
+
+      card.innerHTML = `
+        <div class="card-cover">
+          ${coverHTML}
+          <span class="card-category">${proj.domain}</span>
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">${proj.title}</h3>
+          ${proj.blurb ? `<p class="card-blurb">${proj.blurb}</p>` : '<p class="card-blurb card-blurb-empty">Summary coming soon.</p>'}
+          <div class="card-badges">${mediaBadges(proj)}</div>
+          <div class="tag-row">
+            <span class="tag tag-type">${proj.type}</span>
+            ${proj.tools.map(t => `<span class="tag tag-tool">${t}</span>`).join('')}
+          </div>
+        </div>`;
+      return card;
+    }
+
+    function renderFeatured() {
+      const el = document.getElementById('featured-cards');
+      el.innerHTML = '';
+      const hasMedia = p => p.media.length || p.links.length;
+      const feat = PROJECTS.filter(p => p.featured)
+        .sort((a, b) => (hasMedia(b) ? 1 : 0) - (hasMedia(a) ? 1 : 0));
+      (feat.length ? feat : PROJECTS).slice(0, 3).forEach(p => el.appendChild(buildCard(p)));
+    }
+
+    const active = { domain: 'All', type: 'All', tool: 'All' };
+    let search = '';
+
+    function filtered() {
+      const q = search.trim().toLowerCase();
+      return PROJECTS.filter(p =>
+        (active.domain === 'All' || p.domain === active.domain) &&
+        (active.type   === 'All' || p.type   === active.type) &&
+        (active.tool   === 'All' || p.tools.includes(active.tool)) &&
+        (!q || p.title.toLowerCase().includes(q) || p.blurb.toLowerCase().includes(q))
+      );
+    }
+
+    function renderProjects() {
+      const el = document.getElementById('project-cards');
+      el.innerHTML = '';
+      const visible = filtered();
+      document.getElementById('result-count').textContent =
+        visible.length + (visible.length === 1 ? ' project' : ' projects');
+      if (!visible.length) {
+        el.innerHTML = '<p class="empty-state">No projects match these filters yet.</p>';
+        return;
+      }
+      visible.forEach(p => el.appendChild(buildCard(p)));
+    }
+
+    function renderFilterGroup(containerId, label, values, key) {
+      const wrap = document.getElementById(containerId);
+      wrap.innerHTML = `<span class="filter-label">${label}</span>`;
+      ['All'].concat(values).forEach(v => {
+        const btn = document.createElement('button');
+        btn.className = 'filter-btn' + (v === active[key] ? ' active' : '');
+        btn.textContent = v;
+        btn.onclick = () => { active[key] = v; renderFilters(); renderProjects(); };
+        wrap.appendChild(btn);
+      });
+    }
+
+    function renderFilters() {
+      renderFilterGroup('filter-domain', 'Domain', DOMAINS, 'domain');
+      renderFilterGroup('filter-type',   'Type',   TYPES,   'type');
+      renderFilterGroup('filter-tool',   'Tool',   TOOLS,   'tool');
+    }
+
+    function onSearch(value) { search = value; renderProjects(); }
+
+    function resetFilters() {
+      active.domain = active.type = active.tool = 'All';
+      search = '';
+      document.getElementById('search-input').value = '';
+      renderFilters();
+      renderProjects();
+    }
+
+    let currentSlide = 0;
+    let currentSlides = [];
+
+    function openModal(id) {
+      const proj = PROJECTS.find(p => p.id === id);
+      if (!proj) return;
+
+      document.getElementById('modal-category').textContent = proj.domain;
+      document.getElementById('modal-title').textContent    = proj.title;
+      document.getElementById('modal-tools').innerHTML =
+        `<span class="tag tag-type">${proj.type}</span>` +
+        proj.tools.map(t => `<span class="tag tag-tool">${t}</span>`).join('');
+
+      const descEl = document.getElementById('modal-desc');
+      descEl.textContent = proj.desc || 'Write-up in progress — media and links will appear here.';
+      descEl.style.opacity = proj.desc ? '' : '.6';
+
+      const metricsEl = document.getElementById('modal-metrics');
+      metricsEl.style.display = proj.metrics.length ? '' : 'none';
+      metricsEl.innerHTML = proj.metrics.map(m =>
+        `<div><div class="metric-value">${m.value}</div><div class="metric-label">${m.label}</div></div>`
+      ).join('');
+
+      const hlEl = document.getElementById('modal-highlights');
+      document.getElementById('label-highlights').style.display = proj.highlights.length ? '' : 'none';
+      hlEl.innerHTML = proj.highlights.map(h =>
+        `<div class="highlight-item"><span class="highlight-arrow">→</span><span>${h}</span></div>`
+      ).join('');
+
+      const proofEl = document.getElementById('modal-proof');
+      proofEl.innerHTML = proj.links.length
+        ? proj.links.map(l =>
+            `<a href="${l.url || '#'}" target="_blank" rel="noopener" class="proof-link ${l.style || 'light'}">${l.label}</a>`
+          ).join('')
+        : '<span class="proof-empty">No links added yet.</span>';
+
+      currentSlides = (proj.media.length ? proj.media : [{ type:'placeholder', label: proj.title }])
+        .map(m => m.type === 'drive' ? { type:'embed', src: driveEmbed(m.src), label: m.label } : m);
+      currentSlide  = 0;
+      renderCarousel(proj);
+
+      document.getElementById('modal').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function renderCarousel(proj) {
+      const slidesEl = document.getElementById('carousel-slides');
+      const dotsEl   = document.getElementById('modal-dots');
+      const arrowPrev = document.querySelector('.carousel-arrow.prev');
+      const arrowNext = document.querySelector('.carousel-arrow.next');
+
+      slidesEl.innerHTML = '';
+      dotsEl.innerHTML   = '';
+
+      const total = currentSlides.length;
+      document.getElementById('modal-counter').textContent = total > 1 ? `${currentSlide+1} / ${total}` : '';
+      arrowPrev.style.display = total > 1 ? 'flex' : 'none';
+      arrowNext.style.display = total > 1 ? 'flex' : 'none';
+
+      currentSlides.forEach((slide, i) => {
+        const el = document.createElement('div');
+        el.className = 'carousel-slide' + (i === currentSlide ? ' active' : '');
+
+        if (slide.type === 'image') {
+          el.classList.add('img-slide');
+          el.innerHTML = `<img src="${slide.src}" alt="${slide.label||''}">`;
+        } else if (slide.type === 'embed') {
+          el.classList.add('img-slide');
+          el.innerHTML = `<iframe src="${slide.src}" title="${slide.label||'Document'}" allow="autoplay" style="width:100%;height:100%;border:0;display:block;background:var(--surface-2);"></iframe>`;
+        } else if (slide.type === 'pdf') {
+          el.innerHTML = `
+            <div class="slide-pdf-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#EF4444" stroke-width="1.5">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                <polyline points="14 2 14 8 20 8"/>
+                <line x1="9" y1="13" x2="15" y2="13"/>
+                <line x1="9" y1="17" x2="15" y2="17"/>
+              </svg>
+            </div>
+            <span class="slide-pdf-title">${slide.label||'PDF Document'}</span>
+            <a href="${slide.src||'#'}" target="_blank" class="slide-pdf-btn">Download PDF</a>`;
+        } else {
+          el.innerHTML = `
+            <div class="slide-placeholder-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="3" y="3" width="18" height="18" rx="2"/>
+                <circle cx="8.5" cy="8.5" r="1.5"/>
+                <path d="m21 15-5-5L5 21"/>
+              </svg>
+            </div>
+            <span class="slide-placeholder-label">${slide.label||'Project screenshot'}</span>
+            <span class="slide-placeholder-hint">Replace with your real image in the PROJECTS data above</span>`;
+        }
+        slidesEl.appendChild(el);
+
+        if (total > 1) {
+          const dot = document.createElement('button');
+          dot.className = 'carousel-dot' + (i === currentSlide ? ' active' : '');
+          dot.onclick = (e) => { e.stopPropagation(); goToSlide(i); };
+          dotsEl.appendChild(dot);
+        }
+      });
+    }
+
+    function goToSlide(index) {
+      const slides = document.querySelectorAll('.carousel-slide');
+      const dots   = document.querySelectorAll('.carousel-dot');
+      const total  = currentSlides.length;
+      currentSlide = (index + total) % total;
+      slides.forEach((s, i) => s.classList.toggle('active', i === currentSlide));
+      dots.forEach((d, i)   => d.classList.toggle('active', i === currentSlide));
+      document.getElementById('modal-counter').textContent = total > 1 ? `${currentSlide+1} / ${total}` : '';
+    }
+
+    function prevSlide(e) { e.stopPropagation(); goToSlide(currentSlide - 1); }
+    function nextSlide(e) { e.stopPropagation(); goToSlide(currentSlide + 1); }
+
+    function closeModal(e) {
+      if (e.target === document.getElementById('modal')) closeModalDirect();
+    }
+    function closeModalDirect() {
+      document.getElementById('modal').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModalDirect(); });
+
+    /* --- Certifications: attach a file to any entry -------------------------
+       Give a cert a `media` object and the card shows it. Three ways:
+
+         GitHub file (recommended — lives with this site):
+           media: { type:'image', src:'certificates/pl-300.png' }
+           media: { type:'pdf',   src:'certificates/pl-300.pdf', name:'PL-300 certificate' }
+
+         Google Drive link (set sharing to "Anyone with the link"):
+           media: { type:'drive', src:'https://drive.google.com/file/d/FILE_ID/view?usp=sharing',
+                    name:'Certificate' }
+
+       Leave `media: null` to keep the empty placeholder slot on that card.
+       Add a new certificate by copying any line below and giving it a new id. */
+    const CERTS = [
+      { id:'c1', mark:'G',  title:'Google Data Analytics Professional Certificate', issuer:'Google · Coursera',
+        media: { type:'drive', src:'https://drive.google.com/file/d/1tXuLInjikQtJZ9D1QUpzin3_N6cyEtVt/view?usp=sharing', name:'Certificate' } },
+      { id:'c2', mark:'PL', title:'Microsoft Power BI Data Analyst (PL-300)', issuer:'Microsoft', media: null },
+      { id:'c3', mark:'T',  title:'Tableau Desktop Specialist', issuer:'Tableau', media: null },
+      { id:'c4', mark:'DC', title:'Data Scientist Career Track', issuer:'DataCamp', media: null },
+      { id:'c5', mark:'BS', title:'BS Statistics', issuer:'University of the Philippines', media: null },
+    ];
+
+    /* Turns a Drive "view" link into an embeddable preview URL. */
+    function driveEmbed(url) {
+      const m = (url || '').match(/\/d\/([^/]+)/);
+      return m ? `https://drive.google.com/file/d/${m[1]}/preview` : url;
+    }
+
+    function buildCertCard(cert) {
+      const card = document.createElement('div');
+      card.className = 'cert-card';
+
+      const media = cert.media || null; // { type:'image'|'pdf', src, name }
+
+      const head = document.createElement('div');
+      head.className = 'cert-card-head';
+      head.innerHTML = `
+        <div class="cert-mark">${cert.mark}</div>
+        <div>
+          <div class="cert-title">${cert.title}</div>
+          <div class="cert-issuer">${cert.issuer}</div>
+        </div>`;
+
+      card.appendChild(head);
+
+      const row = document.createElement('div');
+      row.className = 'cert-media-row';
+
+      const cover = document.createElement('div');
+      cover.className = 'cert-cover' + (media ? ' has-media' : '');
+      if (media && media.type === 'image') {
+        cover.innerHTML = `<img src="${media.src}" alt="${cert.title}">`;
+        cover.onclick = () => openCertMediaModal(cert, media);
+      } else if (media && media.type === 'pdf') {
+        cover.innerHTML = `<div class="cert-cover-pdf"><span class="cert-file-kind">PDF</span><span>${media.name || 'View certificate'}</span></div>`;
+        cover.onclick = () => window.open(media.src, '_blank');
+      } else if (media && media.type === 'drive') {
+        cover.classList.add('cert-cover-embed');
+        cover.innerHTML = `
+          <iframe class="cert-embed" src="${driveEmbed(media.src)}" title="${cert.title}" loading="lazy"></iframe>
+          <button class="cert-embed-expand" type="button">Expand</button>`;
+        cover.querySelector('.cert-embed-expand').onclick = e => {
+          e.stopPropagation();
+          openCertMediaModal(cert, media);
+        };
+      } else {
+        cover.innerHTML = `<div class="cert-cover-empty">
+            <span class="cert-slot-plus">+</span>
+            <span>Certificate file slot — image or PDF</span>
+          </div>`;
+      }
+      row.appendChild(cover);
+
+      card.appendChild(row);
+      return card;
+    }
+
+    function openCertMediaModal(cert, media) {
+      currentSlides = media.type === 'drive'
+        ? [{ type:'embed', src: driveEmbed(media.src), label: cert.title }]
+        : [{ type:'image', src: media.src, label: cert.title }];
+      currentSlide = 0;
+      document.getElementById('modal-category').textContent = 'Certificate';
+      document.getElementById('modal-title').textContent = cert.title;
+      document.getElementById('modal-tools').textContent = cert.issuer;
+      document.getElementById('modal-metrics').innerHTML = '';
+      document.getElementById('modal-desc').textContent = '';
+      document.getElementById('modal-highlights').innerHTML = '';
+      document.getElementById('modal-proof').innerHTML = '';
+      renderCarousel({});
+      document.getElementById('modal').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function renderCerts() {
+      const grid = document.getElementById('certs-grid');
+      grid.innerHTML = '';
+      CERTS.forEach(c => grid.appendChild(buildCertCard(c)));
+    }
+
+    /* --- Init --- */
+    renderFeatured();
+    renderFilters();
+    renderProjects();
+    renderCerts();
+
+  </script>
+</body>
+</html>

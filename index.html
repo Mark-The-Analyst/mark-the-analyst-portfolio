@@ -1,0 +1,2383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mark The Analyst — Data Analyst Portfolio</title>
+  <meta name="description" content="Portfolio of Mark The Analyst — data analyst specialising in forecasting, BI dashboards, machine learning, and experimentation.">
+  <meta property="og:title" content="Mark The Analyst">
+  <meta property="og:description" content="Turning messy data into decisions that move the business.">
+  <meta property="og:url" content="https://marktheanalyst.com">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#F4F1EA">
+  <link rel="canonical" href="https://marktheanalyst.com/">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='6' fill='%231B1917'/%3E%3Ctext x='32' y='46' font-family='Georgia%2Cserif' font-size='40' font-weight='700' fill='white' text-anchor='middle'%3EM%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&family=Karla:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg:           #F5F4F9;
+      --surface:      #FFFFFF;
+      --surface-2:    #EDECF3;
+      --ink:          #0A3E51;
+      --ink-2:        #4A5563;
+      --ink-3:        #8A91A0;
+      --accent:       #0A3E51;
+      --accent-2:     #14708F;
+      --accent-soft:  #E1EAEE;
+      --border:       #E1E0EA;
+      --shadow:       0 1px 2px rgba(10,62,81,.04), 0 6px 20px rgba(10,62,81,.06);
+      --shadow-lg:    0 18px 48px rgba(10,62,81,.16);
+    }
+    [data-theme="dark"] {
+      --bg:           #0C1418;
+      --surface:      #12212A;
+      --surface-2:    #1A2E39;
+      --ink:          #EAF2F5;
+      --ink-2:        #A6B6BF;
+      --ink-3:        #6E8089;
+      --accent:       #6FB2C9;
+      --accent-2:     #A9CEDB;
+      --accent-soft:  #17323F;
+      --border:       #21343E;
+      --shadow:       0 1px 2px rgba(0,0,0,.3), 0 10px 30px rgba(0,0,0,.35);
+      --shadow-lg:    0 22px 60px rgba(0,0,0,.5);
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: 'Karla', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+      transition: background .35s ease, color .35s ease;
+    }
+    a { color: inherit; text-decoration: none; }
+    p { margin: 0; }
+    h1, h2, h3 { margin: 0; font-family: 'EB Garamond', Georgia, serif; }
+    button { font-family: 'Karla', system-ui, sans-serif; cursor: pointer; }
+    ::selection { background: var(--accent-soft); color: var(--ink); }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: none; }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    @keyframes scaleIn {
+      from { opacity: 0; transform: translateY(14px) scale(.985); }
+      to   { opacity: 1; transform: none; }
+    }
+    .page-enter  { animation: fadeUp .5s cubic-bezier(.2,.8,.2,1) both; }
+    .modal-enter { animation: scaleIn .28s cubic-bezier(.2,.8,.2,1) both; }
+    .nav-bar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: color-mix(in srgb, var(--bg) 82%, transparent);
+      backdrop-filter: saturate(140%) blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 32px;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+      border: none;
+      background: none;
+      padding: 0;
+    }
+    .nav-logo-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: var(--ink);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--surface);
+      font-family: 'IBM Plex Mono', monospace;
+      font-weight: 600;
+      font-size: 17px;
+    }
+    .nav-logo-name  { font-family: 'EB Garamond', Georgia, serif; font-weight: 600; font-size: 16px; line-height: 1; }
+    .nav-logo-sub   { font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--ink-3); }
+    .nav-links      { display: flex; align-items: center; gap: 6px; }
+    .nav-btn {
+      border: none;
+      font-weight: 500;
+      font-size: 14.5px;
+      padding: 9px 15px;
+      border-radius: 9px;
+      transition: all .18s ease;
+      background: transparent;
+      color: var(--ink-2);
+    }
+    .nav-btn.active { background: var(--accent-soft); color: var(--accent); }
+    .nav-btn:hover:not(.active) { background: var(--surface-2); }
+    .theme-toggle {
+      margin-left: 8px;
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--ink-2);
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all .2s ease;
+    }
+    .theme-toggle:hover { background: var(--surface-2); }
+    .page { display: none; }
+    .page.active { display: block; }
+    .container      { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+    .container-md   { max-width: 1080px; margin: 0 auto; padding: 0 32px; }
+    .section-pad    { padding: 52px 0; }
+    .eyebrow        { font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); }
+    .section-title  { font-weight: 500; font-size: 42px; letter-spacing: -.6px; margin-top: 10px; }
+    .hero {
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(820px 460px at 80% -14%, color-mix(in srgb, var(--accent) 9%, transparent), transparent 72%);
+      pointer-events: none;
+    }
+    .hero-inner {
+      position: relative;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 84px 32px 64px;
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 56px;
+      align-items: center;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 7px 14px;
+      border-radius: 999px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      letter-spacing: .5px;
+      color: var(--ink-2);
+      box-shadow: var(--shadow);
+    }
+    .hero-badge-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #22C55E;
+      box-shadow: 0 0 0 4px color-mix(in srgb, #22C55E 22%, transparent);
+    }
+    .hero-title {
+      font-weight: 500;
+      font-size: 66px;
+      line-height: 1.06;
+      letter-spacing: -1px;
+      margin: 22px 0 0;
+    }
+    .hero-desc {
+      font-size: 19px;
+      line-height: 1.6;
+      color: var(--ink-2);
+      margin: 22px 0 0;
+      max-width: 540px;
+    }
+    .hero-cta {
+      display: flex;
+      gap: 14px;
+      margin-top: 34px;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      border: none;
+      font-weight: 600;
+      font-size: 15px;
+      padding: 14px 26px;
+      border-radius: 11px;
+      background: var(--accent);
+      color: var(--surface);
+      box-shadow: 0 6px 16px color-mix(in srgb, var(--accent) 26%, transparent);
+      transition: transform .18s ease;
+    }
+    .btn-primary:hover { transform: translateY(-2px); }
+    .btn-secondary {
+      font-weight: 600;
+      font-size: 15px;
+      padding: 14px 26px;
+      border-radius: 11px;
+      background: var(--surface);
+      color: var(--ink);
+      border: 1px solid var(--border);
+      transition: all .18s ease;
+    }
+    .btn-secondary:hover { background: var(--surface-2); }
+    .hero-stats {
+      display: flex;
+      gap: 34px;
+      margin-top: 44px;
+      flex-wrap: wrap;
+    }
+    .stat-num   { font-family: 'EB Garamond', Georgia, serif; font-weight: 600; font-size: 30px; letter-spacing: -.5px; }
+    .stat-label { font-size: 13px; color: var(--ink-3); margin-top: 2px; }
+    .hero-portrait-wrap { position: relative; display: flex; justify-content: center; }
+    .hero-portrait {
+      width: 340px;
+      height: 420px;
+      border-radius: 4px;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+    }
+    .hero-portrait img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .hero-portrait-initial { font-family: 'EB Garamond', Georgia, serif; font-size: 80px; font-weight: 600; color: var(--accent); opacity: .3; }
+    .hero-float-card {
+      position: absolute;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px 18px;
+      box-shadow: var(--shadow-lg);
+    }
+    .hero-float-card.bottom-left { left: -34px; bottom: 44px; min-width: 170px; }
+    .hero-float-card.top-right   { right: -26px; top: 34px; }
+    .float-mono { font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: var(--ink-2); }
+    .float-label { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: var(--ink-3); }
+    .float-metric { font-family: 'EB Garamond', Georgia, serif; font-weight: 600; font-size: 26px; color: var(--accent); margin-top: 3px; }
+    .float-bars { display: flex; gap: 3px; align-items: flex-end; height: 24px; margin-top: 8px; }
+    .float-bar { flex: 1; border-radius: 2px; }
+    .skills-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      align-items: center;
+      padding: 24px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .skills-strip-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11.5px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--ink-3);
+      margin-right: 8px;
+    }
+    .skill-chip {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 13.5px;
+      color: var(--ink-2);
+      padding: 6px 13px;
+      border-radius: 8px;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+    }
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .project-card {
+      cursor: pointer;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform .2s ease, box-shadow .2s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    .project-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+    .card-cover {
+      position: relative;
+      aspect-ratio: 16 / 10;
+      background: var(--surface-2);
+      overflow: hidden;
+    }
+    .card-cover img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .card-cover-label {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: .15;
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 48px;
+      font-weight: 700;
+      color: var(--accent);
+      pointer-events: none;
+    }
+    .card-category {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      letter-spacing: .5px;
+      padding: 5px 10px;
+      border-radius: 7px;
+      background: color-mix(in srgb, var(--surface) 88%, transparent);
+      backdrop-filter: blur(6px);
+      border: 1px solid var(--border);
+      color: var(--ink-2);
+    }
+    .card-body  { padding: 20px 20px 22px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+    .card-title { font-weight: 600; font-size: 20px; letter-spacing: -.3px; }
+    .card-blurb { font-size: 14.5px; line-height: 1.55; color: var(--ink-2); flex: 1; }
+    .card-tools { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--ink-3); }
+    .card-badges { display: flex; flex-wrap: wrap; gap: 6px; }
+    .badge {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      letter-spacing: .3px;
+      padding: 4px 9px;
+      border-radius: 6px;
+      background: var(--accent-soft);
+      color: var(--accent);
+    }
+    .tag-row { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tag {
+      font-size: 11.5px;
+      letter-spacing: .2px;
+      padding: 4px 9px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--surface-2);
+      color: var(--ink-2);
+      white-space: nowrap;
+    }
+    .tag-type { border-color: color-mix(in srgb, var(--accent) 32%, transparent); color: var(--accent); background: var(--accent-soft); }
+    .tag-tool { font-family: 'IBM Plex Mono', monospace; font-size: 11px; }
+    .badge-empty { background: var(--surface-2); color: var(--ink-3); }
+    .card-blurb-empty { color: var(--ink-3); font-style: italic; }
+    .cover-empty {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      background:
+        repeating-linear-gradient(135deg, transparent 0 9px, color-mix(in srgb, var(--accent) 7%, transparent) 9px 10px);
+    }
+    .cover-pdf {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--surface-2);
+    }
+    .cover-pdf-sheet {
+      width: 62%;
+      max-width: 190px;
+      aspect-ratio: 4 / 3;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px;
+      text-align: center;
+    }
+    .cover-pdf-kind {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 1.6px;
+      padding: 3px 8px;
+      border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
+      border-radius: 2px;
+      color: var(--accent);
+    }
+    .cover-pdf-label { font-size: 12.5px; line-height: 1.35; color: var(--ink-2); }
+    .cover-empty-mark { font-family: 'EB Garamond', Georgia, serif; font-size: 30px; font-weight: 600; color: var(--accent); opacity: .35; }
+    .cover-empty-hint { font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 1px; text-transform: uppercase; color: var(--ink-3); }
+    .filter-stack { display: flex; flex-direction: column; gap: 10px; margin: 30px 0 8px; }
+    .filter-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+    .filter-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--ink-3);
+      width: 62px;
+      flex: none;
+    }
+    .search-row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin: 26px 0 4px; }
+    .search-input {
+      flex: 1;
+      min-width: 240px;
+      font-family: 'Karla', system-ui, sans-serif;
+      font-size: 15px;
+      color: var(--ink);
+      padding: 12px 16px;
+      border-radius: 11px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      outline: none;
+    }
+    .search-input:focus { border-color: var(--accent); }
+    .result-count { font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: var(--ink-3); }
+    .reset-btn {
+      font-size: 13px;
+      padding: 9px 15px;
+      border-radius: 9px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--ink-2);
+    }
+    .reset-btn:hover { background: var(--surface-2); }
+    .empty-state { grid-column: 1 / -1; color: var(--ink-3); font-size: 15px; padding: 40px 0; }
+    .proof-empty { font-size: 14px; color: var(--ink-3); }
+    .filter-bar { display: flex; flex-wrap: wrap; gap: 9px; margin: 34px 0 30px; }
+    .filter-btn {
+      font-weight: 500;
+      font-size: 13.5px;
+      padding: 9px 16px;
+      border-radius: 999px;
+      transition: all .18s ease;
+      background: var(--surface);
+      color: var(--ink-2);
+      border: 1px solid var(--border);
+    }
+    .filter-btn.active {
+      background: var(--ink);
+      color: var(--surface);
+      border-color: var(--ink);
+    }
+    .filter-btn:hover:not(.active) { background: var(--surface-2); }
+    .nav-links { flex-wrap: wrap; }
+    /* Multi-select filter dropdowns */
+    .dd { position: relative; }
+    .dd-btn { display:flex; align-items:center; gap:9px; padding:9px 13px; border-radius:8px; border:1px solid var(--border); background:var(--surface); color:var(--ink); font:inherit; font-size:13px; cursor:pointer; }
+    .dd-btn:hover { background: var(--surface-2); }
+    .dd.has-sel .dd-btn { border-color:#0A3E51; box-shadow: inset 0 0 0 1px #0A3E51; }
+    .dd-label { font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:1.1px; text-transform:uppercase; color:var(--ink-3); }
+    .dd-value { font-weight:500; }
+    .dd-caret { font-size:10px; color:var(--ink-3); }
+    .dd-menu { display:none; position:absolute; z-index:40; top:calc(100% + 6px); left:0; min-width:270px; max-height:330px; overflow:auto; padding:6px; border:1px solid var(--border); border-radius:10px; background:var(--surface); box-shadow:0 18px 40px rgba(8,14,26,.16); }
+    .dd.open .dd-menu { display:block; }
+    .dd-opt { display:flex; align-items:flex-start; gap:9px; padding:7px 9px; border-radius:7px; font-size:13.5px; color:var(--ink-2); cursor:pointer; line-height:1.35; }
+    .dd-opt:hover { background: var(--surface-2); }
+    .dd-opt input { margin:2px 0 0; accent-color:#0A3E51; flex:none; }
+    .dd-opt-all { font-weight:500; color:var(--ink); border-bottom:1px solid var(--border); border-radius:7px 7px 0 0; margin-bottom:4px; }
+    /* Project card meta */
+    .card-meta-row { display:flex; align-items:center; gap:10px; margin-bottom:8px; flex-wrap:wrap; }
+    .proj-id { font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:1.2px; color:var(--ink-3); }
+    .status-pill { display:inline-flex; align-items:center; gap:6px; font-family:'IBM Plex Mono',monospace; font-size:9.5px; letter-spacing:1px; text-transform:uppercase; padding:3px 8px; border-radius:999px; }
+    .status-pill.done { color:#166534; background:rgba(22,163,74,.13); }
+    .status-pill.wip  { color:#854D0E; background:rgba(202,138,4,.16); }
+    .status-dot { width:6px; height:6px; border-radius:50%; background:currentColor; flex:none; }
+    body[data-theme="dark"] .status-pill.done { color:#86EFAC; background:rgba(34,197,94,.20); }
+    body[data-theme="dark"] .status-pill.wip  { color:#FDE68A; background:rgba(250,204,21,.20); }
+    .doc-chips { display:flex; flex-wrap:wrap; gap:6px; margin-top:13px; }
+    .doc-chip { font-family:'IBM Plex Mono',monospace; font-size:9.5px; letter-spacing:.8px; text-transform:uppercase; padding:4px 8px; border-radius:6px; background:var(--surface-2); color:var(--ink-3); border:1px solid var(--border); }
+    .doc-chip.on { background:#0A3E51; color:#fff; border-color:#0A3E51; }
+    .doc-btn { display:inline-flex; align-items:center; gap:8px; padding:10px 15px; border-radius:8px; font-size:13.5px; font-weight:500; text-decoration:none; background:#0A3E51; color:#fff; }
+    .doc-btn:hover { opacity:.9; }
+    .doc-btn.off { background:var(--surface-2); color:var(--ink-3); border:1px solid var(--border); pointer-events:none; }
+    .cover-live { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; background:var(--surface-2); overflow:hidden; }
+    .cover-live-frame { position:absolute; top:-7%; left:-7%; width:114%; height:114%; border:0; pointer-events:none; }
+    /* PDF viewer: crop the toolbar and show page 1 across the full tile width */
+    .cover-live-frame.pdf { top:-11%; left:-2%; width:104%; height:235%; }
+    .cover-live-badge { position:absolute; left:10px; bottom:10px; z-index:2; display:inline-flex; align-items:center; gap:5px; font-family:'IBM Plex Mono',monospace; font-size:9px; letter-spacing:1px; text-transform:uppercase; padding:3px 8px; border-radius:5px; background:#0A3E51; color:#fff; }
+    .cover-live-badge.live::before { content:''; width:5px; height:5px; border-radius:50%; background:#4ADE80; }
+    .sync-note { font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:.8px; text-transform:uppercase; color:var(--ink-3); }
+    .sync-note.live { color:#0A3E51; }
+    body[data-theme="dark"] .sync-note.live { color:#7DD3FC; }
+    .cover-live-thumb { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+    .cover-thumb { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; background:var(--surface-2); }
+    .cover-thumb img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+    .cta-banner {
+      position: relative;
+      overflow: hidden;
+      border-radius: 22px;
+      background: var(--ink);
+      padding: 56px 48px;
+      color: var(--surface);
+      box-shadow: var(--shadow-lg);
+    }
+    .cta-banner::after {
+      content: '';
+      position: absolute;
+      right: -40px;
+      top: -40px;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: color-mix(in srgb, var(--surface) 8%, transparent);
+      pointer-events: none;
+    }
+    .cta-content { position: relative; max-width: 640px; }
+    .cta-title { font-weight: 500; font-size: 40px; letter-spacing: -.6px; line-height: 1.1; }
+    .cta-desc  { font-size: 17px; line-height: 1.6; opacity: .92; margin: 16px 0 28px; }
+    .cta-btn {
+      border: none;
+      font-weight: 600;
+      font-size: 15px;
+      padding: 14px 28px;
+      border-radius: 11px;
+      background: var(--surface);
+      color: var(--ink);
+    }
+    .cta-btn:hover { opacity: .9; }
+    .about-grid {
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 52px;
+      align-items: start;
+    }
+    .about-photo-wrap { position: sticky; top: 100px; }
+    .about-photo {
+      width: 100%;
+      aspect-ratio: 4/5;
+      border-radius: 18px;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+    }
+    .about-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .about-photo-initial { font-family: 'EB Garamond', Georgia, serif; font-size: 120px; font-weight: 600; color: var(--accent); opacity: .25; }
+    .about-title { font-weight: 500; font-size: 48px; letter-spacing: -.9px; margin: 12px 0 0; line-height: 1.08; }
+    .about-bio { font-size: 16.5px; line-height: 1.75; color: var(--ink-2); margin-top: 22px; display: flex; flex-direction: column; gap: 16px; }
+    .skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .skill-group {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 22px 24px;
+      box-shadow: var(--shadow);
+    }
+    .skill-group-name {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 14px;
+    }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .skill-tag {
+      font-size: 14px;
+      color: var(--ink);
+      padding: 7px 13px;
+      border-radius: 8px;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+    }
+    .timeline { position: relative; padding-left: 30px; max-width: none; }
+    .timeline-item > .timeline-detail:first-of-type { margin-top: 12px; }
+    .timeline::before { content: ''; position: absolute; left: 6px; top: 6px; bottom: 6px; width: 2px; background: var(--border); }
+    .timeline-item { position: relative; padding-bottom: 30px; }
+    .timeline-dot {
+      position: absolute;
+      left: -30px;
+      top: 5px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 3px solid var(--bg);
+      box-shadow: 0 0 0 2px var(--accent);
+    }
+    .timeline-period { font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; letter-spacing: .5px; color: var(--accent); }
+    .timeline-role   { font-family: 'EB Garamond', Georgia, serif; font-weight: 600; font-size: 19px; margin-top: 5px; }
+    .timeline-org    { font-size: 14px; color: var(--ink-3); margin-top: 2px; }
+    .timeline-detail {
+      font-size: 14.5px;
+      line-height: 1.6;
+      color: var(--ink-2);
+      margin: 9px 0 0;
+      max-width: none;
+      padding-left: 14px;
+      text-indent: -14px;
+      text-wrap: pretty;
+    }
+
+    /* Certifications */
+    .certs-heading-row { margin: 0 0 22px; }
+    .cert-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 18px; }
+    .cert-tab {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Karla', system-ui, sans-serif;
+      font-size: 13.5px;
+      padding: 9px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--ink-2);
+      cursor: pointer;
+      text-align: left;
+    }
+    .cert-tab:hover { background: var(--surface-2); }
+    .cert-tab.active { background: var(--ink); border-color: var(--ink); color: var(--surface); }
+    .cert-tab-count {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      padding: 2px 6px;
+      border-radius: 3px;
+      background: color-mix(in srgb, currentColor 12%, transparent);
+    }
+    .cert-search-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin: 0 0 20px; }
+    .certs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 14px; }
+    .cert-card {
+      display: flex;
+      flex-direction: column;
+      gap: 13px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 18px 18px 16px;
+      box-shadow: var(--shadow);
+    }
+    .cert-card-live { cursor: pointer; transition: border-color .16s ease, transform .16s ease; }
+    .cert-card-live:hover { border-color: color-mix(in srgb, var(--accent) 45%, var(--border)); transform: translateY(-2px); }
+    .cert-thumb {
+      position: relative;
+      aspect-ratio: 4 / 3;
+      border-radius: 7px;
+      overflow: hidden;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .cert-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+      opacity: 0;
+      transition: opacity .25s ease;
+    }
+    .cert-thumb.loaded img { opacity: 1; }
+    .cert-thumb.failed img { display: none; }
+    .cert-thumb-fallback {
+      position: absolute;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10.5px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--ink-3);
+      text-align: center;
+      padding: 0 12px;
+    }
+    .cert-thumb.loaded .cert-thumb-fallback { display: none; }
+    .cert-thumb-blank { border-style: dashed; }
+    .cert-card-head { display: flex; gap: 13px; align-items: flex-start; }
+    .cert-mark {
+      flex: none;
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'EB Garamond', Georgia, serif;
+      font-weight: 600;
+      font-size: 14px;
+      letter-spacing: .3px;
+    }
+    .cert-title { font-weight: 600; font-size: 14.5px; line-height: 1.35; text-wrap: pretty; }
+    .cert-issuer { font-size: 12.5px; color: var(--ink-3); margin-top: 4px; }
+    .cert-slot {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      padding: 9px 11px;
+      border-radius: 7px;
+      border: 1px solid var(--border);
+      background: var(--surface-2);
+      font-size: 12.5px;
+      color: var(--ink-2);
+      min-width: 0;
+    }
+    .cert-slot-empty { border-style: dashed; background: transparent; color: var(--ink-3); }
+    .cert-slot-text { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .cert-slot-action {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10.5px;
+      letter-spacing: 1.1px;
+      text-transform: uppercase;
+      color: var(--accent);
+      flex: none;
+    }
+    .cert-file-kind {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 1.2px;
+      padding: 3px 7px;
+      border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
+      border-radius: 2px;
+      color: var(--accent);
+      flex: none;
+    }
+    .cert-slot-empty .cert-file-kind { border-color: var(--border); color: var(--ink-3); }
+    .cover-embed {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+      background: var(--surface-2);
+    }
+    .cover-embed-shield { position: absolute; inset: 0; }
+
+    .contact-header { text-align: center; max-width: 600px; margin: 0 auto 44px; }
+    .contact-title  { font-weight: 500; font-size: 50px; letter-spacing: -1px; margin: 12px 0 0; line-height: 1.08; }
+    .contact-desc   { font-size: 17px; line-height: 1.6; color: var(--ink-2); margin: 18px 0 0; }
+    .contact-links  { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .contact-card {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px 22px;
+      box-shadow: var(--shadow);
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .contact-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+    .contact-mark {
+      flex: none;
+      width: 46px;
+      height: 46px;
+      border-radius: 11px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'IBM Plex Mono', monospace;
+      font-weight: 600;
+      font-size: 18px;
+    }
+    .contact-label { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: var(--ink-3); }
+    .contact-value { font-weight: 600; font-size: 15.5px; margin-top: 3px; word-break: break-all; }
+    .contact-email-box {
+      margin-top: 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 26px 24px;
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+    .contact-email-hint { font-size: 14.5px; color: var(--ink-2); }
+    .contact-email-link { font-family: 'EB Garamond', Georgia, serif; font-weight: 600; font-size: 24px; color: var(--accent); margin-top: 6px; display: inline-block; }
+    .contact-location   { font-size: 13px; color: var(--ink-3); margin-top: 8px; }
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      background: rgba(8,14,26,.62);
+      backdrop-filter: blur(6px);
+      align-items: flex-start;
+      justify-content: center;
+      padding: 56px 24px;
+      overflow-y: auto;
+      animation: fadeIn .22s ease both;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal-box {
+      width: 100%;
+      max-width: 820px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+      animation: scaleIn .28s cubic-bezier(.2,.8,.2,1) both;
+    }
+    .carousel {
+      position: relative;
+      aspect-ratio: 20/9;
+      background: var(--surface-2);
+      overflow: hidden;
+    }
+    .modal-box.wide { max-width: 1180px; }
+    .carousel.carousel-wide { aspect-ratio: 16/9; }
+    .embed-open {
+      position: absolute;
+      bottom: 12px;
+      left: 14px;
+      z-index: 3;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 7px 12px;
+      border-radius: 7px;
+      background: #0A3E51;
+      color: #fff;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      letter-spacing: .9px;
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+    .embed-open:hover { opacity: .9; }
+    .carousel-slide {
+      display: none;
+      position: absolute;
+      inset: 0;
+    }
+    .carousel-slide.active { display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 12px; }
+    .carousel-slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .carousel-slide.img-slide { padding: 0; }
+    .slide-placeholder-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 16px;
+      background: color-mix(in srgb, var(--accent) 18%, transparent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .slide-placeholder-icon svg { color: var(--accent); }
+    .slide-placeholder-label { font-size: 14px; color: var(--ink-3); }
+    .slide-placeholder-hint  { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--ink-3); opacity: .7; }
+    .slide-pdf-icon {
+      width: 72px;
+      height: 72px;
+      border-radius: 16px;
+      background: color-mix(in srgb, #EF4444 15%, transparent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .slide-pdf-title { font-weight: 600; font-size: 15px; color: var(--ink); }
+    .slide-pdf-btn {
+      font-weight: 600;
+      font-size: 13.5px;
+      padding: 10px 20px;
+      border-radius: 9px;
+      background: var(--accent);
+      color: var(--surface);
+      border: none;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .slide-pdf-btn:hover { opacity: .88; }
+    .carousel-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: color-mix(in srgb, var(--surface) 90%, transparent);
+      backdrop-filter: blur(8px);
+      color: var(--ink);
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background .15s ease;
+      z-index: 2;
+      line-height: 1;
+    }
+    .carousel-arrow:hover { background: var(--surface); }
+    .carousel-arrow.prev { left: 12px; }
+    .carousel-arrow.next { right: 52px; }
+    .carousel-close {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 36px;
+      height: 36px;
+      border-radius: 9px;
+      border: 1px solid var(--border);
+      background: color-mix(in srgb, var(--surface) 90%, transparent);
+      backdrop-filter: blur(6px);
+      color: var(--ink);
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 3;
+    }
+    .carousel-category {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      letter-spacing: .5px;
+      padding: 5px 10px;
+      border-radius: 7px;
+      background: color-mix(in srgb, var(--surface) 88%, transparent);
+      backdrop-filter: blur(6px);
+      border: 1px solid var(--border);
+      color: var(--ink-2);
+      z-index: 2;
+    }
+    .carousel-counter {
+      position: absolute;
+      top: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: var(--ink-3);
+      padding: 5px 10px;
+      border-radius: 7px;
+      background: color-mix(in srgb, var(--surface) 88%, transparent);
+      backdrop-filter: blur(6px);
+      border: 1px solid var(--border);
+      z-index: 2;
+    }
+    .carousel-dots {
+      position: absolute;
+      bottom: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 6px;
+      align-items: center;
+      z-index: 2;
+    }
+    .carousel-dot {
+      height: 7px;
+      border-radius: 999px;
+      border: none;
+      background: rgba(255,255,255,.55);
+      transition: all .2s ease;
+      width: 7px;
+    }
+    .carousel-dot.active {
+      width: 20px;
+      background: var(--accent);
+    }
+    .modal-body { padding: 32px 34px 36px; }
+    .modal-title { font-weight: 500; font-size: 34px; letter-spacing: -.6px; }
+    .modal-tools { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+    .modal-metrics {
+      display: flex;
+      gap: 22px;
+      margin: 22px 0;
+      padding: 18px 20px;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      flex-wrap: wrap;
+    }
+    .metric-value { font-family: 'EB Garamond', Georgia, serif; font-weight: 600; font-size: 26px; letter-spacing: -.4px; color: var(--accent); }
+    .metric-label { font-size: 12.5px; color: var(--ink-3); margin-top: 2px; }
+    .modal-desc   { font-size: 16px; line-height: 1.7; color: var(--ink-2); margin: 0 0 20px; }
+    .modal-section-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11.5px;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--ink-3);
+      margin-bottom: 12px;
+    }
+    .highlight-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 26px; }
+    .highlight-item { display: flex; gap: 12px; align-items: flex-start; font-size: 15px; line-height: 1.55; color: var(--ink); }
+    .highlight-arrow {
+      flex: none;
+      width: 20px;
+      height: 20px;
+      border-radius: 6px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      margin-top: 2px;
+    }
+    .proof-links { display: flex; flex-wrap: wrap; gap: 12px; }
+    .proof-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      font-weight: 600;
+      font-size: 14px;
+      padding: 11px 18px;
+      border-radius: 10px;
+      transition: transform .15s ease;
+    }
+    .proof-link:hover { transform: translateY(-2px); }
+    .proof-link-mono { font-family: 'IBM Plex Mono', monospace; }
+    .proof-link.dark  { background: var(--ink); color: var(--surface); border: 1px solid var(--ink); }
+    .proof-link.blue  { background: var(--accent); color: var(--surface); border: 1px solid var(--accent); }
+    .proof-link.light { background: var(--surface-2); color: var(--ink); border: 1px solid var(--border); }
+    .footer {
+      border-top: 1px solid var(--border);
+      background: var(--surface);
+    }
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 28px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .footer-copy  { font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: var(--ink-3); }
+    .footer-links { display: flex; gap: 18px; font-size: 13.5px; color: var(--ink-3); }
+    .footer-links a:hover { color: var(--accent); }
+    @media (max-width: 900px) {
+      .hero-inner       { grid-template-columns: 1fr; }
+      .hero-portrait-wrap { display: none; }
+      .cards-grid       { grid-template-columns: repeat(2, 1fr); }
+      .about-grid       { grid-template-columns: 1fr; }
+      .about-photo-wrap { position: static; }
+      .contact-links    { grid-template-columns: 1fr; }
+      .skills-grid      { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .cards-grid { grid-template-columns: 1fr; }
+      .hero-title { font-size: 38px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="nav-bar">
+    <nav class="nav-inner">
+      <button class="nav-logo" onclick="showPage('home')">
+        <div class="nav-logo-icon">M</div>
+        <div>
+          <div class="nav-logo-name">Mark</div>
+          <div class="nav-logo-sub">The Analyst</div>
+        </div>
+      </button>
+      <div class="nav-links">
+        <button class="nav-btn active" id="nav-home"     onclick="showPage('home')">Home</button>
+        <button class="nav-btn"        id="nav-projects" onclick="showPage('projects')">Projects</button>
+        <button class="nav-btn"        id="nav-about"    onclick="showPage('about')">About</button>
+        <button class="nav-btn"        id="nav-certs"    onclick="showPage('certs')">Certification and Training</button>
+        <button class="nav-btn"        id="nav-contact"  onclick="showPage('contact')">Contact</button>
+        <button class="theme-toggle"   id="theme-btn"    onclick="toggleTheme()" title="Toggle dark mode">☾</button>
+      </div>
+    </nav>
+  </header>
+
+  <div id="page-home" class="page active page-enter">
+    <section class="hero">
+      <div class="hero-inner">
+        <div>
+          <div class="hero-badge">
+            <span class="hero-badge-dot"></span>
+            Available for data roles &amp; freelance
+          </div>
+          <h1 class="hero-title">Turning messy data into decisions that move the business — ongoing work.</h1>
+          <p class="hero-desc">I'm Mark — a data analyst who builds forecasting models, ships BI dashboards, and runs experiments that leaders actually act on. Every project below ships with proof: code, dashboards, and case studies.</p>
+          <div class="hero-cta">
+            <button class="btn-primary"    onclick="showPage('projects')">View my work</button>
+            <button class="btn-secondary"  onclick="showPage('contact')">Get in touch</button>
+          </div>
+          <div class="hero-stats">
+            <div><div class="stat-num">5+</div><div class="stat-label">Years experience</div></div>
+            <div><div class="stat-num">40+</div><div class="stat-label">Dashboards shipped</div></div>
+            <div><div class="stat-num">67</div><div class="stat-label">Projects</div></div>
+            <div><div class="stat-num">9</div><div class="stat-label">Domains</div></div>
+          </div>
+        </div>
+        <div class="hero-portrait-wrap">
+          <div style="position:relative; width:340px; height:420px;">
+            <div class="hero-portrait">
+              <span class="hero-portrait-initial">M</span>
+            </div>
+            <div class="hero-float-card bottom-left">
+              <div class="float-label">Forecast accuracy</div>
+              <div class="float-metric">↑ 12%</div>
+              <div class="float-bars">
+                <div class="float-bar" style="background:var(--accent-soft);height:40%"></div>
+                <div class="float-bar" style="background:var(--accent-soft);height:62%"></div>
+                <div class="float-bar" style="background:var(--accent);height:80%"></div>
+                <div class="float-bar" style="background:var(--accent);height:100%"></div>
+                <div class="float-bar" style="background:var(--accent-2);height:74%"></div>
+              </div>
+            </div>
+            <div class="hero-float-card top-right">
+              <div class="float-mono">SELECT insight<br>FROM data;</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section style="padding: 8px 0 24px;">
+      <div class="container">
+        <div class="skills-strip">
+          <span class="skills-strip-label">Core stack</span>
+          <span class="skill-chip">Python</span>
+          <span class="skill-chip">SQL</span>
+          <span class="skill-chip">R</span>
+          <span class="skill-chip">Tableau</span>
+          <span class="skill-chip">Power BI</span>
+          <span class="skill-chip">scikit-learn</span>
+          <span class="skill-chip">BigQuery</span>
+          <span class="skill-chip">Git</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-pad">
+      <div class="container">
+        <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:24px; flex-wrap:wrap; margin-bottom:32px;">
+          <div>
+            <div class="eyebrow">Selected work</div>
+            <h2 class="section-title">Featured projects</h2>
+          </div>
+          <button class="btn-secondary" onclick="showPage('projects')">Browse all projects →</button>
+        </div>
+        <div class="cards-grid" id="featured-cards"></div>
+      </div>
+    </section>
+
+    <section style="padding: 0 0 84px;">
+      <div class="container">
+        <div class="cta-banner">
+          <div class="cta-content">
+            <h2 class="cta-title">Have data that needs a story?</h2>
+            <p class="cta-desc">I help teams find the signal, build the dashboard, and make the call. Let's talk about what you're trying to figure out.</p>
+            <button class="cta-btn" onclick="showPage('contact')">Start a conversation</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div id="page-projects" class="page">
+    <main class="container" style="padding-top:64px; padding-bottom:90px;">
+      <div class="eyebrow">Portfolio</div>
+      <h1 style="font-weight:500; font-size:52px; letter-spacing:-1px; margin:12px 0 0;">Projects &amp; case studies</h1>
+      <p style="font-size:17px; line-height:1.6; color:var(--ink-2); max-width:640px; margin:16px 0 0;">
+        The full library. Filter by status, project type, domain or tool — then open any card to preview its documentation.
+      </p>
+      <div class="search-row">
+        <input class="search-input" id="search-input" type="search" placeholder="Search by project ID or title…" oninput="onSearch(this.value)">
+        <span class="result-count" id="result-count"></span>
+        <span class="sync-note" id="sync-note">Checking the tracker sheet…</span>
+        <button class="reset-btn" onclick="resetFilters()">Reset</button>
+      </div>
+      <div class="filter-stack">
+        <div class="filter-row" id="filter-bar"></div>
+      </div>
+      <div style="height:22px;"></div>
+      <div class="cards-grid" id="project-cards"></div>
+    </main>
+  </div>
+
+  <div id="page-about" class="page">
+    <main class="container" style="padding-top:64px; padding-bottom:90px;">
+      <div class="about-grid">
+        <div class="about-photo-wrap">
+          <div class="about-photo">
+            <span class="about-photo-initial">M</span>
+          </div>
+        </div>
+        <div>
+          <div class="eyebrow">About</div>
+          <h1 class="about-title">Analyst by training, storyteller by habit.</h1>
+          <div class="about-bio">
+            <p>I've spent the last five years turning raw, messy data into things people can act on — forecasts, dashboards, and experiments across retail, logistics, and public health. My work sits at the intersection of solid statistics and clear communication.</p>
+            <p>I care about the whole pipeline: clean data in, honest analysis in the middle, and a decision-ready story out. I'd rather ship one dashboard a director checks every morning than ten no one opens.</p>
+          </div>
+        </div>
+      </div>
+
+      <section style="margin-top:72px;">
+        <h2 style="font-weight:500; font-size:34px; letter-spacing:-.5px; margin:0 0 26px;">Skills &amp; tools</h2>
+        <div class="skills-grid">
+          <div class="skill-group">
+            <div class="skill-group-name">Languages</div>
+            <div class="skill-tags">
+              <span class="skill-tag">Python</span><span class="skill-tag">SQL</span><span class="skill-tag">R</span><span class="skill-tag">DAX</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-name">Visualization &amp; BI</div>
+            <div class="skill-tags">
+              <span class="skill-tag">Tableau</span><span class="skill-tag">Power BI</span><span class="skill-tag">Looker</span><span class="skill-tag">Plotly</span><span class="skill-tag">Matplotlib</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-name">ML &amp; Statistics</div>
+            <div class="skill-tags">
+              <span class="skill-tag">scikit-learn</span><span class="skill-tag">XGBoost</span><span class="skill-tag">statsmodels</span><span class="skill-tag">A/B testing</span><span class="skill-tag">Forecasting</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-name">Data engineering</div>
+            <div class="skill-tags">
+              <span class="skill-tag">Pandas</span><span class="skill-tag">dbt</span><span class="skill-tag">Airflow</span><span class="skill-tag">PostgreSQL</span><span class="skill-tag">BigQuery</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section style="margin-top:64px;">
+        <h2 style="font-weight:500; font-size:34px; letter-spacing:-.5px; margin:0 0 30px;">Experience</h2>
+        <div class="timeline">
+          <div class="timeline-item">
+            <span class="timeline-dot"></span>
+            <div class="timeline-period">2023 — Present</div>
+            <div class="timeline-role">Freelance Data Analyst</div>
+            <div class="timeline-org">Multiple Clients</div>
+            <p class="timeline-detail">• Spearheaded end-to-end data analysis projects from collection to visualization, enabling data-driven decisions across diverse client industries.</p>
+            <p class="timeline-detail">• Mined large, structured datasets with SQL and Python/R, surfacing trends and anomalies that directly shaped client business strategy.</p>
+            <p class="timeline-detail">• Engineered custom data models and statistical analyses that exposed key trends and sharpened strategic planning.</p>
+            <p class="timeline-detail">• Designed interactive Tableau and Power BI dashboards that converted complex data into clear insights and accelerated stakeholder decisions.</p>
+            <p class="timeline-detail">• Streamlined data-collection workflows and enforced data-integrity checks, eliminating errors and ensuring reproducible results.</p>
+            <p class="timeline-detail">• Delivered data-driven recommendations that drove cost savings, revenue growth, and operational efficiency.</p>
+            <p class="timeline-detail">• Orchestrated multiple concurrent projects, consistently meeting deadlines and exceeding client expectations.</p>
+          </div>
+
+          <div class="timeline-item">
+            <span class="timeline-dot"></span>
+            <div class="timeline-period">2023 — 2025</div>
+            <div class="timeline-role">Special Science Teacher I</div>
+            <div class="timeline-org">DepEd - Department of Education</div>
+            <p class="timeline-detail">• Implemented the curriculum and tracked academic performance, attendance, and behavior, triggering timely, evidence-based interventions for at-risk learners.</p>
+            <p class="timeline-detail">• Spearheaded school-based data analytics initiatives now relied upon for institutional policy development and teaching-strategy decisions.</p>
+            <p class="timeline-detail">• Mentored students in research methods, data analytics, visualization, data storytelling, and technical writing, strengthening their evidence-based research output through the Capstone Culminating Activity.</p>
+          </div>
+
+          <div class="timeline-item">
+            <span class="timeline-dot"></span>
+            <div class="timeline-period">2023 — 2025</div>
+            <div class="timeline-role">Biological and Chemical Laboratory Head Personnel</div>
+            <div class="timeline-org">DepEd - Department of Education</div>
+            <p class="timeline-detail">• Managed daily laboratory operations, safety protocols, and resource allocations for the biological and chemical laboratories; integrated modern STEM data tools and digitized tracking workflows, which reduced material usage inefficiencies and established real-time inventory visibility.</p>
+            <p class="timeline-detail">• Trained and mentored students in complex protocols, safety standards, and the proper preparation, testing, and calibration of specialized analytical instruments; increased independent equipment proficiency among students and drastically reduced instrumentation downtime.</p>
+            <p class="timeline-detail">• Authored and maintained comprehensive annual inventory logs, safety incident/accident reviews, and operational achievement reports; ensured good compliance with institutional safety standards and streamlined end-of-year administrative audits.</p>
+          </div>
+
+          <div class="timeline-item">
+            <span class="timeline-dot"></span>
+            <div class="timeline-period">January – April 2023</div>
+            <div class="timeline-role">Pharmaceutical Industrial Microbiological Analyst</div>
+            <div class="timeline-org">EL Laboratories, Inc.</div>
+            <p class="timeline-detail">· Complied with regulatory frameworks by strictly executing Good Laboratory Practices (GLP) and current Good Manufacturing Practices (cGMP), contributing to a safe, zero-accident, and audit-ready Quality Control (QC) laboratory environment.</p>
+            <p class="timeline-detail">· Conducted routine physical and chemical analysis on raw materials, in-process/bulk products, finished goods, stability samples (actual/accelerated), validation lots, and packaging materials to verify product quality.</p>
+            <p class="timeline-detail">· Supported Out-of-Specification (OOS) investigations by performing rapid, accurate diagnostic re-testing, ensuring precise data documentation and on-time submission of results.</p>
+            <p class="timeline-detail">· Prepared and standardized laboratory test solutions following approved standard operating procedures (SOPs), ensuring accurate chemical labeling and complete traceability.</p>
+            <p class="timeline-detail">· Performed routine maintenance and calibration checks on assigned analytical laboratory instruments and apparatus, updating operational logs to support equipment availability.</p>
+            <p class="timeline-detail">· Assisted with laboratory inventory management by conducting routine tracking and counts of reagents, glassware, and equipment accessories to prevent supply shortages.</p>
+            <p class="timeline-detail">· Executed hazardous waste handling protocols, ensuring the safe collection, segregation, and containment of chemical and biological waste in compliance with safety standards.</p>
+            <p class="timeline-detail">· Maintained strict data integrity and document control by systematically organizing, archiving, and storing sensitive QC laboratory records for streamlined regulatory review.</p>
+            <p class="timeline-detail">· Collaborated closely with the QC Laboratory Head and Senior Analysts, executing cross-functional testing tasks to help the team meet institutional targets and production objectives.</p>
+          </div>
+
+          <div class="timeline-item">
+            <span class="timeline-dot"></span>
+            <div class="timeline-period">August 2022 – January 2023</div>
+            <div class="timeline-role">Instructor I</div>
+            <div class="timeline-org">Rizal College of Laguna - Calamba City</div>
+            <p class="timeline-detail">• Facilitated knowledge and skills acquisition, developing students' analytical and creative capabilities.</p>
+            <p class="timeline-detail">• Designed course requirements and assessed performance per departmental standards, upholding consistent grading integrity.</p>
+            <p class="timeline-detail">• Tracked and recorded student learning data to drive informed academic advising.</p>
+            <p class="timeline-detail">• Conducted discipline-related research and contributed to curriculum committees and peer evaluation.</p>
+          </div>
+
+          <div class="timeline-item">
+            <span class="timeline-dot"></span>
+            <div class="timeline-period">August 2022 – January 2023</div>
+            <div class="timeline-role">IBM SkillsBuild Program Co-Administrator</div>
+            <div class="timeline-org">Rizal College of Laguna - Calamba City</div>
+            <p class="timeline-detail">• Co-led the pilot rollout of the IBM SkillsBuild online learning program, briefing students and curating the recommended course catalog across technical, workplace, and enrichment tracks.</p>
+            <p class="timeline-detail">• Selected and onboarded priority STEM participants and extended enrollment to additional students, broadening access to digital-skills training.</p>
+            <p class="timeline-detail">• Motivated participants to earn industry-recognized digital skills badges across multiple online courses.</p>
+            <p class="timeline-detail">• Monitored learner progress and produced accomplishment reports documenting badge attainment and course completion.</p>
+            <p class="timeline-detail">• Evaluated and reported program effectiveness against objectives and identified key access barriers (internet connectivity, devices, course difficulty) to guide future rollouts.</p>
+          </div>
+
+          <div class="timeline-item">
+            <span class="timeline-dot"></span>
+            <div class="timeline-period">2021</div>
+            <div class="timeline-role">Laboratory Intern</div>
+            <div class="timeline-org">Philippine Nuclear Research Institute</div>
+            <p class="timeline-detail">• Analyzed and processed classified chromosome images using MS Excel and OneDrive, delivering accurate data for identification.</p>
+            <p class="timeline-detail">• Authored detailed technical reports and communicated findings clearly to supervisors and peers.</p>
+            <p class="timeline-detail">• Completed training in radiation safety, nuclear science, cytogenetics, and biological dosimetry.</p>
+            <p class="timeline-detail">• Upheld Good Laboratory Practices (GLP) across all assigned tasks.</p>
+          </div>
+
+          <div class="timeline-item">
+            <span class="timeline-dot"></span>
+            <div class="timeline-period">November – December 2017</div>
+            <div class="timeline-role">Hospital Intern</div>
+            <div class="timeline-org">Internship</div>
+            <p class="timeline-detail">· Assisted the Patient Care Coordination team in managing patient flow, communication, and care transitions across multiple departments. Actively participated in daily huddles and care planning meetings.</p>
+            <p class="timeline-detail">· Worked alongside the Quality Assurance and Patient Safety Department to observe and analyze clinical operations, quality metrics, and patient safety protocols.</p>
+            <p class="timeline-detail">· Supported various department operations and administrative services with scheduling, resource allocation, compliance management, and reporting. Gained exposure to different aspects of hospital management.</p>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <div id="page-certs" class="page">
+    <main class="container" style="padding-top:64px; padding-bottom:90px;">
+      <div class="eyebrow">Credentials</div>
+      <h1 style="font-weight:500; font-size:52px; letter-spacing:-1px; margin:12px 0 0;">Certification and training</h1>
+      <p style="font-size:17px; line-height:1.6; color:var(--ink-2); max-width:640px; margin:16px 0 0;">
+        Grouped by field. Click any card to preview the certificate.
+      </p>
+      <div style="height:32px;"></div>
+      <div class="cert-tabs" id="cert-tabs"></div>
+      <div class="cert-search-row">
+        <input class="search-input" id="cert-search" type="search" placeholder="Search certificates or issuers…" oninput="onCertSearch(this.value)">
+        <span class="result-count" id="cert-count"></span>
+      </div>
+      <div class="certs-grid" id="certs-grid"></div>
+    </main>
+  </div>
+
+  <div id="page-contact" class="page">
+    <main class="container-md" style="padding-top:76px; padding-bottom:90px;">
+      <div class="contact-header">
+        <div class="eyebrow">Contact</div>
+        <h1 class="contact-title">Let's build something with your data.</h1>
+        <p class="contact-desc">Open to full-time data roles, freelance analytics, and dashboard builds. The fastest way to reach me is email — I usually reply within a day.</p>
+      </div>
+      <div class="contact-links">
+        <a href="mailto:mrgmagsino2026@gmail.com" class="contact-card">
+          <div class="contact-mark">@</div>
+          <div>
+            <div class="contact-label">Email</div>
+            <div class="contact-value">mrgmagsino2026@gmail.com</div>
+          </div>
+        </a>
+        <a href="https://github.com/Mark-The-Analyst" target="_blank" class="contact-card">
+          <div class="contact-mark">GH</div>
+          <div>
+            <div class="contact-label">GitHub</div>
+            <div class="contact-value">github.com/Mark-The-Analyst</div>
+          </div>
+        </a>
+        <a href="https://www.linkedin.com/in/mrgmagsino2026/" target="_blank" class="contact-card">
+          <div class="contact-mark">in</div>
+          <div>
+            <div class="contact-label">LinkedIn</div>
+<<<<<<< HEAD
+            <div class="contact-value">linkedin.com/in/mrgmagsino2026</div>
+=======
+            <div class="contact-value">https://www.linkedin.com/in/mrgmagsino2026/</div>
+>>>>>>> 31f99ec25a6b8d334c69ff417fc5d1c19ed2ae0d
+          </div>
+        </a>
+        <a href="https://public.tableau.com" target="_blank" class="contact-card">
+          <div class="contact-mark">Tb</div>
+          <div>
+            <div class="contact-label">Tableau Public</div>
+            <div class="contact-value">public.tableau.com/mark</div>
+          </div>
+        </a>
+      </div>
+      <div class="contact-email-box">
+        <div class="contact-email-hint">Prefer email? Reach me directly at</div>
+        <a href="mailto:mrgmagsino2026@gmail.com" class="contact-email-link">mrgmagsino2026@gmail.com</a>
+        <div class="contact-location">Based in Manila, Philippines · Working GMT+8, remote-friendly</div>
+      </div>
+    </main>
+  </div>
+
+  <div class="modal-overlay" id="modal" onclick="closeModal(event)">
+    <div class="modal-box modal-enter">
+      <div class="carousel" id="carousel">
+        <button class="carousel-arrow prev" onclick="prevSlide(event)">&#8249;</button>
+        <button class="carousel-arrow next" onclick="nextSlide(event)">&#8250;</button>
+        <button class="carousel-close"      onclick="closeModalDirect()">✕</button>
+        <div class="carousel-category"  id="modal-category"></div>
+        <div class="carousel-counter"   id="modal-counter"></div>
+        <div class="carousel-dots"      id="modal-dots"></div>
+        <div id="carousel-slides"></div>
+      </div>
+      <div class="modal-body">
+        <h2 class="modal-title"  id="modal-title"></h2>
+        <div class="modal-tools" id="modal-tools"></div>
+        <div class="modal-metrics" id="modal-metrics"></div>
+        <p class="modal-desc"    id="modal-desc"></p>
+        <div class="modal-section-label" id="label-highlights">What I did</div>
+        <div class="highlight-list" id="modal-highlights"></div>
+        <div class="modal-section-label">Proof of work</div>
+        <div class="proof-links" id="modal-proof"></div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-copy">© 2026 Mark · The Analyst — hosted free on GitHub Pages</div>
+      <div class="footer-links">
+        <a href="https://github.com/Mark-The-Analyst"       target="_blank">GitHub</a>
+        <a href="https://www.linkedin.com/in/mrgmagsino2026/"  target="_blank">LinkedIn</a>
+        <a href="mailto:mrgmagsino2026@gmail.com">Email</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+
+    /* ============================================================
+       PROJECT LIBRARY — sourced from the project tracker sheet.
+       P(id, title, status, types[], domain, tools[], docs)
+         docs.gh   = column H, GitHub documentation
+         docs.live = column I, live dashboard / Drive preview
+         docs.pdf  = column J, PDF
+       A missing link renders as a muted chip; a present one renders
+       in #0A3E51 and previews inside the project modal.
+    ============================================================ */
+
+    const STATUSES = ['Completed', 'In Progress'];
+
+    const DOMAINS = ['Business','Education','Finance','Health','Logistics','Manufacturing','Science','Others'];
+
+    const TYPES = ['Data Analysis','Dashboard / BI Report','Data Visualization','Machine Learning Model',
+                   'Data Engineering / ETL','Web / App Development','Survey / Research','Process Improvement',
+                   'Computer Vision'];
+
+    const TOOLS = ['Power BI','Power Query','Excel','Google Sheets','Python','R','SQL','PostgreSQL',
+                   'BigQuery','Gephi','Figma'];
+
+    const T_ADV = ['Data Analysis','Dashboard / BI Report','Data Visualization'];
+    const T_AD  = ['Data Analysis','Dashboard / BI Report'];
+    const T_AM  = ['Data Analysis','Machine Learning Model'];
+
+    const PBI = k => 'https://app.powerbi.com/view?r=' + k;
+    const DRV = id => 'https://drive.google.com/file/d/' + id + '/view';
+    const WIP = DRV('1HpS8KAVdbqzMQx1AyDOVTLVXPgKnzXyK');
+
+    const P = (id, title, status, types, domain, tools, docs) => Object.assign({
+      id, title, status, types: types || [], domain: domain || '', tools: tools || [],
+      gh: '', live: '', pdf: '', featured: false
+    }, docs || {});
+
+    const PROJECTS = [
+      P('P-001', "Generating Human Disease Associations Using Recursive Leiden Clustering Of Disease Signalling Pathways", 'Completed', ['Data Analysis','Machine Learning Model','Data Visualization'], 'Health', ['R','Python','Gephi'], { pdf: DRV('1rOfoAjwA5ciOwi4oNGpLszk8m6uHeuT-') }),
+      P('P-002', "Revolutionizing Laboratory Efficiency: Establishing ALIMS – The Automated Laboratory Inventory Management System For PGH-MRL", 'Completed', ['Web / App Development','Data Analysis','Dashboard / BI Report'], 'Logistics', ['PostgreSQL','Figma'], { pdf: DRV('1OGGt7snY_9fmSuga-kLEX2iDO-FAFqdo') }),
+      P('P-003', "Student Attendance Monitoring Dashboard", 'Completed', ['Dashboard / BI Report','Data Analysis','Data Visualization'], 'Education', ['Power Query','Power BI'], { live: PBI('eyJrIjoiMzgwOGIyZTUtY2MyOC00MGYwLThjZWYtZWYzODJlZWM5MjAwIiwidCI6ImJkMDNhNzM1LTJhYTMtNGNjYS05NzIyLTJhZTQ5MjlhYjNlYyIsImMiOjEwfQ%3D%3D') }),
+      P('P-004', "Prostate Cancer Heterogeneity Machine Learning Strategies For Subtype Identification From CNA And Gene Expression Data", 'Completed', T_AM, 'Health', ['R','Python'], { pdf: DRV('19WYEfBwvHev8ZzepahDjmcMSrFzWjeCO') }),
+      P('P-005', "Competitive Marketing Analysis Dashboard", 'Completed', T_AD, 'Business', ['Power BI'], { pdf: DRV('199-iDmfPTUtW0C_1_smgu9g_wkPB7mzA') }),
+      P('P-006', "Manufactuing Productivity Data Dashboard", 'Completed', T_AD, 'Manufacturing', ['Power BI'], { pdf: DRV('1vKEEgVxDz9-0UCd8P8iNNjs-HW7syjt2') }),
+      P('P-007', "Employee Hiring And History Dashboard", 'Completed', T_ADV, 'Logistics', ['Power BI'], { live: PBI('eyJrIjoiNTFiMDA4Y2ItODUyYS00MTA0LTgwMzYtMjZjODVkNmMzMmUwIiwidCI6ImJkMDNhNzM1LTJhYTMtNGNjYS05NzIyLTJhZTQ5MjlhYjNlYyIsImMiOjEwfQ%3D%3D&pageName=ReportSection2') }),
+      P('P-008', "Project SSWIMS — School Supplies Warehouse Inventory Management System", 'Completed', ['Web / App Development'], 'Logistics', ['Python'], { pdf: 'https://drive.google.com/drive/folders/1f7AlJ266rC_OQx-wBwO2lRa7FLXmOXNk?usp=sharing' }),
+      P('P-009', "Dog Breed Profile Explorer", 'Completed', T_AD, 'Logistics', ['Power BI'], { live: PBI('eyJrIjoiNzc4YzE0ZjUtMjg3Mi00ZWU3LWIyOWQtNmFkNjZmZWViOWZmIiwidCI6ImJkMDNhNzM1LTJhYTMtNGNjYS05NzIyLTJhZTQ5MjlhYjNlYyIsImMiOjEwfQ%3D%3D&pageName=6a5c970e6fb884ba071c') }),
+      P('P-010', "DPWH Project Analysis (All Philippine Infrastructure Projects)", 'Completed', T_ADV, 'Others', ['Power BI'], { live: PBI('eyJrIjoiNTcwYjAwYzMtZjY1OC00MGZiLWI1ZjYtNWI1MTM1MDdkNTA5IiwidCI6ImJkMDNhNzM1LTJhYTMtNGNjYS05NzIyLTJhZTQ5MjlhYjNlYyIsImMiOjEwfQ%3D%3D&pageName=f278de4b31eee5e6054d'), featured: true }),
+      P('P-011', "DPWH Building Infrastructure Analysis [ Gusali: P 1 Trilyon, 96,019 Istruktura ]", 'Completed', T_ADV, 'Logistics', ['Power BI'], { live: PBI('eyJrIjoiZGVmMmY1MWQtMjgxOS00MjNjLTk5ZjctZTNmY2ExZGI0ZTc1IiwidCI6ImJkMDNhNzM1LTJhYTMtNGNjYS05NzIyLTJhZTQ5MjlhYjNlYyIsImMiOjEwfQ%3D%3D') }),
+      P('P-012', "DPWH Roads Infrastructure Analysis [ Patag, Butas At Lubak Na Daan ]", 'Completed', T_ADV, 'Logistics', ['Power BI'], { live: PBI('eyJrIjoiY2NkMWZmOGEtMGZiZS00ZTdhLTgyNWEtYjYyZWE3NTNlMTZjIiwidCI6ImJkMDNhNzM1LTJhYTMtNGNjYS05NzIyLTJhZTQ5MjlhYjNlYyIsImMiOjEwfQ%3D%3D') }),
+      P('P-013', "Joint Prediction Of Chronic Kidney Disease Risk And Onset Timing Using Non-Invasive Predictors In Long-Term Diabetic Patients", 'Completed', T_AM, 'Health', ['R','Python'], { live: DRV('1lgxV8gDWgG5rVUxWqvrDItrCOM-Zha1y') }),
+      P('P-014', "Public Health Disease Concerns And Financial Expenditures Trends In The ASEAN-5", 'Completed', ['Data Analysis','Data Visualization'], 'Health', ['Python'], { live: DRV('1W7svprH1MjYqdCkC9aTdy1jxMHQFNe_H') }),
+      P('P-015', "DSA Video Game Sales Analysis", 'Completed', T_ADV, 'Business', ['Python'], { live: DRV('1j8xzwh65sx3NS5WKLakbfNePAvbnT_Oc') }),
+      P('P-016', "Ecommerce (Full-Scale Solution)", 'Completed', T_ADV, 'Business', ['Power BI'], { live: PBI('eyJrIjoiNWUzN2JmMmMtZDJlOS00Y2YyLWE5MDgtNzJmZGJjMDkyZWZmIiwidCI6ImJkMDNhNzM1LTJhYTMtNGNjYS05NzIyLTJhZTQ5MjlhYjNlYyIsImMiOjEwfQ%3D%3D&pageName=9489aac25982a5d81fe8') }),
+      P('P-017', "Vaccine Preventable Disease Dashboard Ver 1", 'Completed', T_AD, 'Health', ['Power BI'], { live: PBI('eyJrIjoiMjY0YTdhMTgtNzRlNS00MjQ0LWEwY2QtMzRmMzM4MWU4NTdlIiwidCI6ImJkMDNhNzM1LTJhYTMtNGNjYS05NzIyLTJhZTQ5MjlhYjNlYyIsImMiOjEwfQ%3D%3D') }),
+      P('P-018', "DPWH Flood Control Project Analysis [ P 1.72 Trilyon Kontra Baha Pero Bumabaha Pa Rin ]", 'Completed', T_ADV, 'Logistics', ['Power BI'], { live: PBI('eyJrIjoiMGFiNDg3N2ItZTk3Yi00YzJlLWE5MzItNDIzZjdjZWFlMGM5IiwidCI6ImJkMDNhNzM1LTJhYTMtNGNjYS05NzIyLTJhZTQ5MjlhYjNlYyIsImMiOjEwfQ%3D%3D'), featured: true }),
+      P('P-019', "DSA – Department Of Transport – Air Travel Consumer Dashboard", 'Completed', T_AD, 'Logistics', ['Power BI'], { live: DRV('1TfSfsafv9gKiUH1KbuYrU34VQGClYa1G') }),
+      P('P-020', "Global Electric Vehicle Sales, Shares, And Stocks Trend", 'Completed', T_ADV, 'Business', ['Power BI'], { live: PBI('eyJrIjoiNDcwYzRkNWUtOWQwYi00NzNhLWE2OTgtNGI1YmUwMWVhYzVjIiwidCI6ImJkMDNhNzM1LTJhYTMtNGNjYS05NzIyLTJhZTQ5MjlhYjNlYyIsImMiOjEwfQ%3D%3D&pageName=30abef532f6df9184da4') }),
+      P('P-021', "MapReduce Implementations For Heart Disease Data: Age Statistics And Thalassemia Distribution Across Disease Categories Using Hadoop, Java, And HiveQL", 'Completed', ['Data Analysis'], '', [], { live: DRV('11-JggKBQ7QLJMcsCncc9y5lNRJ3FyvLZ') }),
+      P('P-022', "MapReduce Implementations For Word Counting Using Bible Text Data Using Hadoop, Java, And HiveQL", 'Completed', [], '', [], { live: DRV('1K3JNrZDLPzojYK6PXWyzQNwzyeq_nzDS') }),
+      P('P-023', "Corporate Spend", 'Completed', T_ADV, '', ['Power BI'], { pdf: DRV('1T6ZGKuXFVAZGswVLfz4PdznvMK5fjCc3') }),
+      P('P-024', "Local Philippine Informal Reading Inventory (Phil-IRI) Reporting System", 'Completed', T_AD, 'Education', ['Power BI'], { pdf: DRV('1YsM684VIIMVS7KhM-Sbo42tlskGxTrw5') }),
+      P('P-025', "Revenue Opportunities", 'Completed', T_ADV, 'Business', ['Power BI'], { pdf: DRV('1R8lJv6n4CqSssF5-KoWJD2pCZi7P9nQO') }),
+      P('P-026', "Store Sales", 'Completed', T_ADV, 'Business', ['Power BI'], { pdf: DRV('1b47_PZhmOUbgmaG-0CRIE66u2zqfD-sL') }),
+      P('P-027', "Population-Health-Intelligence-System-Dashboard – Big Data Analytics", 'Completed', T_AD, 'Health', ['Python','R','Power BI','BigQuery','SQL'], { gh: 'https://github.com/Mark-The-Analyst/Population-Health-Intelligence-System-Dashboard-Synthea', featured: true }),
+      P('P-028', "Dynasty", 'In Progress', T_ADV, 'Others', ['Power BI'], { live: WIP }),
+      P('P-029', "Adventure Works", 'In Progress', T_ADV, 'Logistics', ['Power BI'], { live: WIP }),
+      P('P-030', "Bank Transaction Anomaly Analysis (Google Colab)", 'In Progress', ['Data Analysis','Dashboard / BI Report','Machine Learning Model'], 'Finance', ['Python'], { live: WIP }),
+      P('P-031', "Bank Transaction Anomaly Analysis (HPC)", 'In Progress', T_AM, 'Finance', ['Python','R'], { live: WIP }),
+      P('P-032', "Bioinformatics Evaluation", 'In Progress', ['Data Analysis','Dashboard / BI Report','Survey / Research','Data Visualization'], 'Education', ['Power BI','Power Query','Excel'], { live: WIP }),
+      P('P-033', "Brain Tumor", 'In Progress', ['Data Analysis','Machine Learning Model','Computer Vision'], 'Health', ['Python'], { live: WIP }),
+      P('P-034', "Churn Rate In Data Camp", 'In Progress', ['Data Analysis','Data Visualization'], 'Business', ['Python'], { live: WIP }),
+      P('P-035', "CITES Trade Evaluation", 'In Progress', ['Data Analysis','Dashboard / BI Report','Machine Learning Model','Data Visualization','Survey / Research'], 'Science', ['Python','Power BI'], { live: WIP }),
+      P('P-036', "DepEd Enrollment", 'In Progress', ['Dashboard / BI Report','Data Analysis','Machine Learning Model','Data Visualization'], 'Education', ['R'], { live: WIP }),
+      P('P-037', "Phil IRRI Version 1.0", 'In Progress', T_AD, 'Education', ['Power BI'], { live: WIP }),
+      P('P-038', "Skin Disease Tag", 'In Progress', ['Machine Learning Model','Data Visualization'], 'Health', ['Python'], { live: WIP }),
+      P('P-039', "Synthea – Network Analysis", 'In Progress', ['Data Analysis','Data Visualization'], 'Health', ['Python'], { live: WIP }),
+      P('P-040', "Synthea Machine Learning", 'In Progress', ['Machine Learning Model','Data Analysis'], 'Health', ['Python'], { live: WIP }),
+      P('P-041', "Time Series Using The Synthea Dataset", 'In Progress', ['Data Analysis','Dashboard / BI Report','Machine Learning Model'], '', [], { live: WIP }),
+      P('P-042', "Trade Database", 'In Progress', T_ADV, 'Others', ['Power BI','R'], { live: WIP }),
+      P('P-043', "VanArsdel Sales Repor", 'In Progress', T_ADV, '', ['Power BI'], { live: WIP }),
+      P('P-044', "2026 ER Analysis", 'In Progress', T_ADV, 'Health', ['Power BI','Excel'], { live: WIP }),
+      P('P-045', "Acai Akap", 'In Progress', T_AD, 'Education', ['Google Sheets','Power BI'], { live: WIP }),
+      P('P-046', "AI Impact On Students", 'In Progress', T_ADV, 'Education', ['Power BI'], { live: WIP }),
+      P('P-047', "Animal Shelter", 'In Progress', ['Data Analysis','Dashboard / BI Report','Machine Learning Model'], 'Logistics', ['Power BI'], { live: WIP }),
+      P('P-048', "Café Rewards", 'In Progress', [], 'Business', ['Power BI'], { live: WIP }),
+      P('P-049', "Coffee Shop", 'In Progress', [], 'Business', ['Power BI'], { live: WIP }),
+      P('P-050', "Credit Score Analysis", 'In Progress', ['Data Analysis','Dashboard / BI Report','Data Engineering / ETL'], 'Finance', ['R'], { live: WIP }),
+      P('P-051', "DepEd Health", 'In Progress', T_AD, 'Education', ['Power BI'], { live: WIP }),
+      P('P-052', "DPWH Network Contract", 'In Progress', T_AM, 'Logistics', ['R'], { live: WIP }),
+      P('P-053', "ElaborAid", 'In Progress', T_AD, 'Logistics', ['Power BI'], { live: WIP }),
+      P('P-054', "Food And Beverage Sales", 'In Progress', T_ADV, 'Logistics', ['Power BI'], { live: WIP }),
+      P('P-055', "HR Analytics Case Study", 'In Progress', T_ADV, 'Others', ['Power BI'], { live: WIP }),
+      P('P-056', "HRIS Data Analytics", 'In Progress', T_ADV, 'Others', ['Power BI'], { live: WIP }),
+      P('P-057', "Literacy And Numeracy", 'In Progress', ['Data Analysis','Dashboard / BI Report','Machine Learning Model'], 'Education', ['Power BI'], { live: WIP }),
+      P('P-058', "Project Monitoring", 'In Progress', ['Data Analysis','Dashboard / BI Report','Process Improvement'], 'Logistics', ['Power BI'], { live: WIP }),
+      P('P-059', "Regional Sales Sample", 'In Progress', ['Data Analysis','Data Visualization'], 'Business', ['Power BI'], { live: WIP }),
+      P('P-060', "Voter EDA", 'In Progress', T_ADV, 'Logistics', ['Power BI'], { live: WIP }),
+      P('P-061', "Aurora Bank", 'In Progress', T_AD, 'Finance', ['Power Query','Power BI'], { live: WIP }),
+      P('P-062', "Medicare", 'In Progress', [], 'Health', ['Power BI'], { live: WIP }),
+      P('P-063', "Mental Health Dashboard", 'In Progress', ['Data Analysis','Dashboard / BI Report','Machine Learning Model','Data Visualization'], 'Health', ['Power BI'], { live: WIP }),
+      P('P-064', "Merchandise Sales", 'In Progress', [], 'Business', ['Power BI'], { live: WIP }),
+      P('P-065', "Pharma", 'In Progress', T_AD, 'Health', ['Power BI'], { live: WIP }),
+      P('P-066', "PISA 2022", 'In Progress', [], 'Education', ['Power BI'], { live: WIP }),
+      P('P-067', "Canteen", 'In Progress', T_AD, 'Education', ['Power BI'], { live: WIP }),
+      P('P-068', "Consumer Financial Complaints", 'In Progress', T_ADV, 'Business', ['Power BI'], { live: WIP }),
+      P('P-069', "Customer Satisfaction", 'In Progress', T_AD, 'Business', ['Power BI'], { live: WIP }),
+      P('P-070', "Data Centers Effect", 'In Progress', ['Data Analysis','Dashboard / BI Report','Machine Learning Model','Data Visualization'], 'Health', ['R','Power BI'], { live: WIP }),
+      P('P-071', "Hydrosense: An Automated Physico-Chemical Sensor-Based Monitoring Hydroponics System", 'In Progress', ['Data Analysis','Dashboard / BI Report','Machine Learning Model'], 'Education', ['Power BI'], { live: WIP }),
+    ];
+
+    function showPage(name) {
+      document.querySelectorAll('.page').forEach(p => { p.classList.remove('active','page-enter'); });
+      document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+      const pg = document.getElementById('page-' + name);
+      pg.classList.add('active','page-enter');
+      document.getElementById('nav-' + name).classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'auto' });
+    }
+
+    let dark = false;
+    function toggleTheme() {
+      dark = !dark;
+      document.body.setAttribute('data-theme', dark ? 'dark' : '');
+      document.getElementById('theme-btn').textContent = dark ? '☀' : '☾';
+    }
+
+    function isPBI(u)   { return /app\.powerbi\.com/.test(u || ''); }
+    function isDrive(u) { return /drive\.google\.com\/file/.test(u || ''); }
+    function isDriveFolder(u) { return /drive\.google\.com\/drive\/folders\//.test(u || ''); }
+    function driveFolderEmbed(u) {
+      const m = (u || '').match(/folders\/([^/?#]+)/);
+      return m ? 'https://drive.google.com/embeddedfolderview?id=' + m[1] + '#grid' : u;
+    }
+    function isGhPdf(u) { return /(github\.com|raw\.githubusercontent\.com)\/.+\.pdf(\?.*)?$/i.test(u || ''); }
+    function ghRaw(u) {
+      return (u || '').replace('https://github.com/', 'https://raw.githubusercontent.com/').replace('/blob/', '/');
+    }
+    function pdfEmbed(u) {
+      return 'https://docs.google.com/viewer?embedded=true&url=' + encodeURIComponent(ghRaw(u));
+    }
+    /* GitHub blocks framing, but every repo exposes a social preview image. */
+    function ghOg(u) {
+      const m = (u || '').match(/github\.com\/([^/]+)\/([^/?#.]+)/);
+      return m ? 'https://opengraph.githubassets.com/1/' + m[1] + '/' + m[2] : '';
+    }
+
+    function statusPill(p) {
+      const done = p.status === 'Completed';
+      return `<span class="status-pill ${done ? 'done' : 'wip'}"><span class="status-dot"></span>${p.status}</span>`;
+    }
+
+    function docList(p) {
+      return [['GitHub', p.gh], ['Live Dashboard', p.live], ['PDF', p.pdf]];
+    }
+
+    function docChips(p) {
+      return docList(p).map(([label, url]) => `<span class="doc-chip${url ? ' on' : ''}">${label}</span>`).join('');
+    }
+
+    function coverTile(mark, hint) {
+      return `<div class="cover-empty"><div class="cover-empty-mark">${mark}</div><div class="cover-empty-hint">${hint}</div></div>`;
+    }
+
+    function coverBox(embedUrl, thumbUrl, badge, frameClass) {
+      return `<div class="cover-live"${embedUrl ? ` data-live="${embedUrl}"` : ''}${frameClass ? ` data-frame="${frameClass}"` : ''}>
+          <span class="cover-empty-hint">loading preview…</span>
+          ${thumbUrl ? `<img class="cover-live-thumb" src="${thumbUrl}" alt="" loading="lazy" referrerpolicy="no-referrer">` : ''}
+          <span class="cover-live-badge${badge === 'Live' ? ' live' : ''}">${badge}</span>
+        </div>`;
+    }
+
+    function coverFor(p) {
+      if (isPBI(p.live)) return coverBox(p.live, '', 'Live');
+      const ghPdf = [p.pdf, p.live].find(isGhPdf);
+      if (ghPdf) return coverBox(pdfEmbed(ghPdf) + '#page=1', '', 'PDF', 'pdf');
+      const og = ghOg(p.gh);
+      if (og) return coverBox('', og, 'Repository');
+      const folder = [p.pdf, p.live].find(isDriveFolder);
+      if (folder) return coverBox(driveFolderEmbed(folder), '', 'Folder');
+      const drv = [p.pdf, p.live].find(isDrive);
+      if (drv) return coverBox(driveEmbed(drv), driveThumb(drv), drv === p.pdf ? 'PDF' : 'Document');
+      if (p.pdf || p.live || p.gh) return coverTile('DOC', 'document link');
+      return coverTile('—', 'documentation pending');
+    }
+
+    function buildCard(proj) {
+      const card = document.createElement('div');
+      card.className = 'project-card';
+      card.onclick = () => openModal(proj.id);
+      card.innerHTML = `
+        <div class="card-cover">
+          ${coverFor(proj)}
+          ${proj.domain ? `<span class="card-category">${proj.domain}</span>` : ''}
+        </div>
+        <div class="card-body">
+          <div class="card-meta-row">
+            <span class="proj-id">${proj.id}</span>
+            ${statusPill(proj)}
+          </div>
+          <h3 class="card-title">${proj.title}</h3>
+          <div class="tag-row">
+            ${proj.types.map(t => `<span class="tag tag-type">${t}</span>`).join('')}
+            ${proj.tools.map(t => `<span class="tag tag-tool">${t}</span>`).join('')}
+          </div>
+          <div class="doc-chips">${docChips(proj)}</div>
+        </div>`;
+      return card;
+    }
+
+    /* Live Power BI covers mount only when scrolled into view. */
+    let liveObserver = null;
+    function mountLiveCovers(root) {
+      const boxes = (root || document).querySelectorAll('.cover-live:not([data-loaded])');
+      if (!boxes.length) return;
+      if (!('IntersectionObserver' in window)) {
+        boxes.forEach(b => loadLiveCover(b));
+        return;
+      }
+      liveObserver = liveObserver || new IntersectionObserver((entries, obs) => {
+        entries.forEach(en => {
+          if (!en.isIntersecting) return;
+          loadLiveCover(en.target);
+          obs.unobserve(en.target);
+        });
+      }, { rootMargin: '300px' });
+      boxes.forEach(b => liveObserver.observe(b));
+    }
+
+    function loadLiveCover(box) {
+      if (box.dataset.loaded) return;
+      const img = box.querySelector('.cover-live-thumb');
+      if (img) {
+        const ok = () => { box.dataset.loaded = 'thumb'; };
+        if (img.complete && img.naturalWidth > 0) return ok();
+        img.addEventListener('load', ok);
+        img.addEventListener('error', () => { img.remove(); mountLiveFrame(box); });
+        if (img.complete && img.naturalWidth === 0) { img.remove(); mountLiveFrame(box); }
+        return;
+      }
+      mountLiveFrame(box);
+    }
+
+    function mountLiveFrame(box) {
+      if (box.dataset.loaded || !box.dataset.live) return;
+      box.dataset.loaded = '1';
+      const frame = document.createElement('iframe');
+      frame.className = 'cover-live-frame' + (box.dataset.frame ? ' ' + box.dataset.frame : '');
+      frame.src = box.dataset.live;
+      frame.title = 'Live dashboard preview';
+      frame.loading = 'lazy';
+      frame.setAttribute('scrolling', 'no');
+      frame.setAttribute('referrerpolicy', 'no-referrer-when-downgrade');
+      box.appendChild(frame);
+    }
+
+    function renderFeatured() {
+      const el = document.getElementById('featured-cards');
+      el.innerHTML = '';
+      const feat = PROJECTS.filter(p => p.featured);
+      (feat.length ? feat : PROJECTS).slice(0, 3).forEach(p => el.appendChild(buildCard(p)));
+      mountLiveCovers(el);
+    }
+
+    /* --- Multi-select filters ------------------------------------------- */
+    const FILTER_DEFS = [
+      { key: 'status', label: 'Status',            values: STATUSES, get: p => [p.status] },
+      { key: 'type',   label: 'Project Type',      values: TYPES,    get: p => p.types },
+      { key: 'domain', label: 'Domain / Industry', values: DOMAINS,  get: p => [p.domain] },
+      { key: 'tool',   label: 'Tools',             values: TOOLS,    get: p => p.tools },
+    ];
+    const sel = { status: new Set(), type: new Set(), domain: new Set(), tool: new Set() };
+    let search = '';
+
+    function groupOk(def, proj) {
+      const s = sel[def.key];
+      if (!s.size || s.size === def.values.length) return true;
+      return def.get(proj).some(v => s.has(v));
+    }
+
+    function filtered() {
+      const q = search.trim().toLowerCase();
+      return PROJECTS.filter(p =>
+        FILTER_DEFS.every(def => groupOk(def, p)) &&
+        (!q || (p.id + ' ' + p.title).toLowerCase().includes(q))
+      );
+    }
+
+    function renderProjects() {
+      const el = document.getElementById('project-cards');
+      el.innerHTML = '';
+      const visible = filtered();
+      document.getElementById('result-count').textContent =
+        visible.length + (visible.length === 1 ? ' project' : ' projects');
+      if (!visible.length) {
+        el.innerHTML = '<p class="empty-state">No projects match these filters.</p>';
+        return;
+      }
+      visible.forEach(p => el.appendChild(buildCard(p)));
+      mountLiveCovers(el);
+    }
+
+    function buildFilterBar() {
+      const bar = document.getElementById('filter-bar');
+      bar.innerHTML = '';
+      FILTER_DEFS.forEach(def => {
+        const dd = document.createElement('div');
+        dd.className = 'dd';
+        dd.dataset.key = def.key;
+
+        const btn = document.createElement('button');
+        btn.className = 'dd-btn';
+        btn.innerHTML = `<span class="dd-label">${def.label}</span><span class="dd-value">All</span><span class="dd-caret">▾</span>`;
+        btn.onclick = e => {
+          e.stopPropagation();
+          const wasOpen = dd.classList.contains('open');
+          document.querySelectorAll('.dd').forEach(x => x.classList.remove('open'));
+          if (!wasOpen) dd.classList.add('open');
+        };
+
+        const menu = document.createElement('div');
+        menu.className = 'dd-menu';
+        menu.onclick = e => e.stopPropagation();
+
+        const all = document.createElement('label');
+        all.className = 'dd-opt dd-opt-all';
+        all.innerHTML = '<input type="checkbox"><span>Select all</span>';
+        all.querySelector('input').onchange = e => {
+          sel[def.key].clear();
+          if (e.target.checked) def.values.forEach(v => sel[def.key].add(v));
+          syncFilters(); renderProjects();
+        };
+        menu.appendChild(all);
+
+        def.values.forEach(v => {
+          const l = document.createElement('label');
+          l.className = 'dd-opt';
+          l.innerHTML = `<input type="checkbox" value="${v}"><span>${v}</span>`;
+          l.querySelector('input').onchange = e => {
+            if (e.target.checked) sel[def.key].add(v); else sel[def.key].delete(v);
+            syncFilters(); renderProjects();
+          };
+          menu.appendChild(l);
+        });
+
+        dd.appendChild(btn);
+        dd.appendChild(menu);
+        bar.appendChild(dd);
+      });
+      syncFilters();
+    }
+
+    function syncFilters() {
+      FILTER_DEFS.forEach(def => {
+        const dd = document.querySelector('.dd[data-key="' + def.key + '"]');
+        if (!dd) return;
+        const s = sel[def.key];
+        dd.querySelectorAll('.dd-opt:not(.dd-opt-all) input').forEach(i => { i.checked = s.has(i.value); });
+        dd.querySelector('.dd-opt-all input').checked = s.size === def.values.length;
+        const isAll = !s.size || s.size === def.values.length;
+        dd.querySelector('.dd-value').textContent =
+          isAll ? 'All' : (s.size === 1 ? [...s][0] : s.size + ' selected');
+        dd.classList.toggle('has-sel', !isAll);
+      });
+    }
+
+    document.addEventListener('click', () => {
+      document.querySelectorAll('.dd.open').forEach(d => d.classList.remove('open'));
+    });
+
+    function onSearch(value) { search = value; renderProjects(); }
+
+    function resetFilters() {
+      FILTER_DEFS.forEach(def => sel[def.key].clear());
+      search = '';
+      document.getElementById('search-input').value = '';
+      syncFilters();
+      renderProjects();
+    }
+
+    let currentSlide = 0;
+    let currentSlides = [];
+
+    function docSlides(p) {
+      const out = [];
+      const add = (url, label) => {
+        if (!url) return;
+        if (isGhPdf(url)) { out.push({ type: 'embed', src: pdfEmbed(url), label, open: url }); return; }
+        const og = ghOg(url);
+        if (og)                      out.push({ type: 'image', src: og, label, open: url });
+        else if (isDriveFolder(url)) out.push({ type: 'embed', src: driveFolderEmbed(url), label, open: url });
+        else if (isDrive(url))       out.push({ type: 'embed', src: driveEmbed(url), label, open: url });
+        else if (isPBI(url))         out.push({ type: 'embed', src: url, label, open: url });
+        else                         out.push({ type: 'link', src: url, label });
+      };
+      add(p.live, 'Live dashboard');
+      add(p.pdf, 'PDF documentation');
+      add(p.gh, 'GitHub documentation');
+      return out;
+    }
+
+    function openModal(id) {
+      const proj = PROJECTS.find(p => p.id === id);
+      if (!proj) return;
+
+      document.getElementById('modal-category').textContent = proj.id + (proj.domain ? ' · ' + proj.domain : '');
+      document.getElementById('modal-title').textContent    = proj.title;
+      document.getElementById('modal-tools').innerHTML =
+        statusPill(proj) +
+        proj.types.map(t => `<span class="tag tag-type">${t}</span>`).join('') +
+        proj.tools.map(t => `<span class="tag tag-tool">${t}</span>`).join('');
+
+      const metricsEl = document.getElementById('modal-metrics');
+      metricsEl.innerHTML = '';
+      metricsEl.style.display = 'none';
+
+      const descEl = document.getElementById('modal-desc');
+      descEl.textContent = proj.status === 'Completed'
+        ? 'Documentation is live — preview it above or open the source below.'
+        : 'Build in progress. The working file is previewed above.';
+      descEl.style.opacity = '.7';
+
+      document.getElementById('label-highlights').style.display = 'none';
+      document.getElementById('modal-highlights').innerHTML = '';
+
+      document.getElementById('modal-proof').innerHTML = docList(proj).map(([label, url]) =>
+        url
+          ? `<a href="${url}" target="_blank" rel="noopener" class="doc-btn">${label} ↗</a>`
+          : `<span class="doc-btn off">${label} — none</span>`
+      ).join('');
+
+      const slides = docSlides(proj);
+      currentSlides = slides.length ? slides : [{ type: 'placeholder', label: proj.title }];
+      currentSlide  = 0;
+      renderCarousel(proj);
+
+      document.getElementById('modal').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function renderCarousel(proj) {
+      const slidesEl = document.getElementById('carousel-slides');
+      const dotsEl   = document.getElementById('modal-dots');
+      const arrowPrev = document.querySelector('.carousel-arrow.prev');
+      const arrowNext = document.querySelector('.carousel-arrow.next');
+
+      slidesEl.innerHTML = '';
+      dotsEl.innerHTML   = '';
+
+      const hasEmbed = currentSlides.some(s => s.type === 'embed');
+      document.querySelector('.carousel').classList.toggle('carousel-wide', hasEmbed);
+      document.querySelector('.modal-box').classList.toggle('wide', hasEmbed);
+
+      const total = currentSlides.length;
+      document.getElementById('modal-counter').textContent = total > 1 ? `${currentSlide+1} / ${total}` : '';
+      arrowPrev.style.display = total > 1 ? 'flex' : 'none';
+      arrowNext.style.display = total > 1 ? 'flex' : 'none';
+
+      currentSlides.forEach((slide, i) => {
+        const el = document.createElement('div');
+        el.className = 'carousel-slide' + (i === currentSlide ? ' active' : '');
+
+        if (slide.type === 'image') {
+          el.classList.add('img-slide');
+          el.innerHTML = `<img src="${slide.src}" alt="${slide.label||''}" style="object-fit:contain;background:var(--surface-2);">
+            ${slide.open ? `<a class="embed-open" href="${slide.open}" target="_blank" rel="noopener" onclick="event.stopPropagation()">Open repository ↗</a>` : ''}`;
+        } else if (slide.type === 'embed') {
+          el.classList.add('img-slide');
+          el.innerHTML = `<iframe src="${slide.src}" title="${slide.label||'Document'}" loading="lazy"
+              allowfullscreen allow="fullscreen; autoplay; clipboard-write"
+              referrerpolicy="no-referrer-when-downgrade"
+              style="width:100%;height:100%;border:0;display:block;background:var(--surface-2);"></iframe>
+            ${slide.open ? `<a class="embed-open" href="${slide.open}" target="_blank" rel="noopener" onclick="event.stopPropagation()">Open live ↗</a>` : ''}`;
+        } else if (slide.type === 'link') {
+          el.innerHTML = `
+            <div class="slide-pdf-icon">
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#0A3E51" stroke-width="1.5">
+                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+              </svg>
+            </div>
+            <span class="slide-pdf-title">${slide.label || 'External link'}</span>
+            <a href="${slide.src || '#'}" target="_blank" rel="noopener" class="slide-pdf-btn">Open in new tab</a>`;
+        } else if (slide.type === 'pdf') {
+          el.innerHTML = `
+            <div class="slide-pdf-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#EF4444" stroke-width="1.5">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                <polyline points="14 2 14 8 20 8"/>
+                <line x1="9" y1="13" x2="15" y2="13"/>
+                <line x1="9" y1="17" x2="15" y2="17"/>
+              </svg>
+            </div>
+            <span class="slide-pdf-title">${slide.label||'PDF Document'}</span>
+            <a href="${slide.src||'#'}" target="_blank" class="slide-pdf-btn">Download PDF</a>`;
+        } else {
+          el.innerHTML = `
+            <div class="slide-placeholder-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="3" y="3" width="18" height="18" rx="2"/>
+                <circle cx="8.5" cy="8.5" r="1.5"/>
+                <path d="m21 15-5-5L5 21"/>
+              </svg>
+            </div>
+            <span class="slide-placeholder-label">${slide.label||'Project screenshot'}</span>
+            <span class="slide-placeholder-hint">Replace with your real image in the PROJECTS data above</span>`;
+        }
+        slidesEl.appendChild(el);
+
+        if (total > 1) {
+          const dot = document.createElement('button');
+          dot.className = 'carousel-dot' + (i === currentSlide ? ' active' : '');
+          dot.onclick = (e) => { e.stopPropagation(); goToSlide(i); };
+          dotsEl.appendChild(dot);
+        }
+      });
+    }
+
+    function goToSlide(index) {
+      const slides = document.querySelectorAll('.carousel-slide');
+      const dots   = document.querySelectorAll('.carousel-dot');
+      const total  = currentSlides.length;
+      currentSlide = (index + total) % total;
+      slides.forEach((s, i) => s.classList.toggle('active', i === currentSlide));
+      dots.forEach((d, i)   => d.classList.toggle('active', i === currentSlide));
+      document.getElementById('modal-counter').textContent = total > 1 ? `${currentSlide+1} / ${total}` : '';
+    }
+
+    function prevSlide(e) { e.stopPropagation(); goToSlide(currentSlide - 1); }
+    function nextSlide(e) { e.stopPropagation(); goToSlide(currentSlide + 1); }
+
+    function closeModal(e) {
+      if (e.target === document.getElementById('modal')) closeModalDirect();
+    }
+    function closeModalDirect() {
+      document.getElementById('modal').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModalDirect(); });
+
+    /* --- Certifications ------------------------------------------------------
+       Each entry previews its file inline. Accepted media forms:
+
+         Google Drive (set sharing to "Anyone with the link can view"):
+           media: { type:'drive', src:'https://drive.google.com/file/d/FILE_ID/view' }
+         File committed to this repo:
+           media: { type:'image', src:'certificates/name.png' }
+           media: { type:'pdf',   src:'certificates/name.pdf', name:'Certificate' }
+         No file yet:
+           media: null      → card shows an empty attachment slot
+
+       cat: 'ds'  = Data Science
+            'bio' = Biological, Chemical & Other Research Training
+       Add a certificate by copying any line and giving it a new id. */
+    const CERT_CATS = [
+      { key: 'ds',  label: 'Data Science' },
+      { key: 'bio', label: 'Biological, Chemical & Other Research Training' },
+    ];
+
+    const CERTS = [
+      { id:'ds1', cat:'ds', mark:'AM', title:"AI-ML for Omics Data Analysis", issuer:"Omics Logic", media:{ type:'drive', src:'https://drive.google.com/file/d/1_xQt3EKI8ODEELoI4zVqO9KN9gO1e9gX/view?usp=drivesdk' } },
+      { id:'ds2', cat:'ds', mark:'CA', title:"Career and Data Analytics Skills Training", issuer:"PBEd", media:{ type:'drive', src:'https://drive.google.com/file/d/13Q5LsXJpKO0rlvM4DQYo5iaWottMT_tg/view?usp=drivesdk' } },
+      { id:'ds3', cat:'ds', mark:'ME', title:"Microsoft Excel Data Analyst Professional Certificate", issuer:"DSA", media:{ type:'drive', src:'https://drive.google.com/file/d/1Gwp_I5AyGGTYo1-h7MoHFxJc6L2OKdQr/view?usp=drivesdk' } },
+      { id:'ds4', cat:'ds', mark:'MP', title:"Microsoft Power BI Data Analyst Professional Certificate", issuer:"DSA", media:{ type:'drive', src:'https://drive.google.com/file/d/1opo7ezNFMhHVQyhsIlt8isYSmYWVnvUb/view?usp=drivesdk' } },
+      { id:'ds5', cat:'ds', mark:'MD', title:"MySQL Database Professional Certificate", issuer:"DSA", media:{ type:'drive', src:'https://drive.google.com/file/d/1268eQveDciTcATXCSJ5xA_vJ8e9tBeHr/view?usp=drivesdk' } },
+      { id:'ds6', cat:'ds', mark:'TD', title:"Tableau Data Analyst Professional Certificate", issuer:"DSA", media:{ type:'drive', src:'https://drive.google.com/file/d/1n8Q2Y_4X8cN1FDF67WXQ7yKB0HuM24MU/view?usp=drivesdk' } },
+      { id:'ds7', cat:'ds', mark:'DA', title:"Data Analyst Specialist", issuer:"DSA", media:{ type:'drive', src:'https://drive.google.com/file/d/1spmVDyhbXR8VdGPo8I5aubdQCbEnhlNm/view?usp=drivesdk' } },
+      { id:'ds8', cat:'ds', mark:'PP', title:"Python Programming Professional Certificate", issuer:"DSA", media:{ type:'drive', src:'https://drive.google.com/file/d/1IJAWilcr2Rb3aEFTFkPjOxRxDlrghhPy/view?usp=drivesdk' } },
+      { id:'ds9', cat:'ds', mark:'PA', title:"Python Asia 2026", issuer:"Python Asia", media:{ type:'drive', src:'https://drive.google.com/file/d/1m42cYyrxYoq2EEosbE084Oq68XVyBRHg/view?usp=drivesdk' } },
+      { id:'ds10', cat:'ds', mark:'JO', title:"Joint Online Training Workshop on Responsible Conduct of Research", issuer:"UP Manila – NIH", media:{ type:'drive', src:'https://drive.google.com/file/d/1ns0eu8J7fE4EbSq07aC_bS_LnY1nYpNP/view?usp=drivesdk' } },
+      { id:'ds11', cat:'ds', mark:'EB', title:"Ensembl Browser Workshop", issuer:"EMBL-EBI Ensembl", media:{ type:'drive', src:'https://drive.google.com/file/d/1wBMmFOQz8Mchf8Trtwg-z_lQFpiYTJvr/view?usp=drivesdk' } },
+      { id:'ds12', cat:'ds', mark:'ET', title:"Ensembl Train the Trainer Workshop", issuer:"EMBL-EBI Ensembl", media:{ type:'drive', src:'https://drive.google.com/file/d/1IRlD6lfMp-3ZiaHSX3o8o_29O9umM-r9/view?usp=drivesdk' } },
+      { id:'ds13', cat:'ds', mark:'EG', title:"Ensembl Genome Browser Workshop", issuer:"UPLB", media:{ type:'drive', src:'https://drive.google.com/file/d/1eHYB_YftDm9r8NIs1d9Wza_UTEHbZrZe/view?usp=drivesdk' } },
+      { id:'ds14', cat:'ds', mark:'AM', title:"AI-ML for Omics Data Analysis Program", issuer:"", media:{ type:'drive', src:'https://drive.google.com/file/d/1Af_QOk7Bhn1_yelgLhH-hNXo_D3NDVA6/view?usp=drivesdk' } },
+      { id:'ds15', cat:'ds', mark:'HP', title:"High-Performance Computing Training", issuer:"", media:{ type:'drive', src:'https://drive.google.com/file/d/1Pg2OiOxuc9gN7qkAq4__WgLQwbSqltKi/view?usp=drivesdk' } },
+      { id:'ds16', cat:'ds', mark:'IT', title:"Information Technology Specialist — Data Analytics", issuer:"Certiport", media:{ type:'drive', src:'https://drive.google.com/file/d/1sB6dAP4eesnEn3dKVDEL-39AYbnJ36Fs/view?usp=drivesdk' } },
+      { id:'ds17', cat:'ds', mark:'DK', title:"Domain Knowledge: Human Resources — Microspecialization Pathway", issuer:"", media:{ type:'drive', src:'https://drive.google.com/file/d/1SeEZV4DQzMczZdsr-edUEVLzgkxbCcXT/view?usp=drivesdk' } },
+      { id:'ds18', cat:'ds', mark:'CI', title:"Computing in Python", issuer:"", media:{ type:'drive', src:'https://drive.google.com/file/d/1PBMbueuZWko_PV2085PflaqRk3OPrRov/view?usp=drivesdk' } },
+      { id:'ds19', cat:'ds', mark:'AA', title:"Analytics Applications in Operations", issuer:"", media:{ type:'drive', src:'https://drive.google.com/file/d/1Q5qaHCtGh6WTI7eGwsy6_9HEPAKb__Qw/view?usp=drivesdk' } },
+      { id:'ds20', cat:'ds', mark:'DM', title:"Data Management Fundamentals", issuer:"", media:{ type:'drive', src:'https://drive.google.com/file/d/1BpUTWRjtx-xO21xaKaMveADDk-4SA3pL/view?usp=drivesdk' } },
+      { id:'ds21', cat:'ds', mark:'CM', title:"Computing — Microspecialization Pathway", issuer:"", media:{ type:'drive', src:'https://drive.google.com/file/d/1JFaqWVPSbSDfF2S3kxNvoZCoNBDpJFHw/view?usp=drivesdk' } },
+      { id:'ds22', cat:'ds', mark:'DV', title:"Data Visualization Fundamentals", issuer:"", media:{ type:'drive', src:'https://drive.google.com/file/d/1zDIGmafcIDKCM9VRIn50L9Mp5rl5wRZZ/view?usp=drivesdk' } },
+      { id:'ds23', cat:'ds', mark:'SF', title:"SQL for Business Users", issuer:"", media:{ type:'drive', src:'https://drive.google.com/file/d/1a-cT6e_nAzYMyoR0fUwmwTCa0rI6bf8v/view?usp=drivesdk' } },
+      { id:'ds24', cat:'ds', mark:'DT', title:"Design Thinking for Analytics", issuer:"", media:{ type:'drive', src:'https://drive.google.com/file/d/1oOpjO9TuoqUSpZTREyCdmkdR3bNRGeuv/view?usp=drivesdk' } },
+      { id:'ds25', cat:'ds', mark:'AA', title:"Applied Analytics in Public Human Resource Management", issuer:"", media:{ type:'drive', src:'https://drive.google.com/file/d/1ShEyrl_5FyRWbxg-nlEB2I2D2yHI2-Tw/view?usp=drivesdk' } },
+      { id:'ds26', cat:'ds', mark:'DE', title:"Data Engineering in e-Governance Systems", issuer:"", media:{ type:'drive', src:'https://drive.google.com/file/d/1m65-tab97Calt2_XQrYwyRgVinxSGwZk/view?usp=drivesdk' } },
+      { id:'ds27', cat:'ds', mark:'DA', title:"Dashboards and Drill-Down Analytics", issuer:"", media:{ type:'drive', src:'https://drive.google.com/file/d/1QV6VgAyugMsz7njfC0hDaOMTq0P-7z43/view?usp=drivesdk' } },
+      { id:'ds28', cat:'ds', mark:'DS', title:"Data Science and Analytics Project Management", issuer:"", media:{ type:'drive', src:'https://drive.google.com/file/d/1WUkz280yq-XyVzWATiwoHXSMhPkfFY6i/view?usp=drivesdk' } },
+      { id:'ds29', cat:'ds', mark:'DK', title:"Domain Knowledge: Analytics Project Management — Microspecialization Pathway", issuer:"", media:{ type:'drive', src:'https://drive.google.com/file/d/1GAvXFOqbrf1lKjnuU2Y8J6l46IC61biY/view?usp=drivesdk' } },
+      { id:'ds30', cat:'ds', mark:'DD', title:"Data-Driven Research Fundamentals", issuer:"", media:{ type:'drive', src:'https://drive.google.com/file/d/1_banZ3jogMTzuo4fo06pEoXA7EwZVYjm/view?usp=drivesdk' } },
+      { id:'ds31', cat:'ds', mark:'DV', title:"Data Visualization Using Tableau and Python", issuer:"", media:{ type:'drive', src:'https://drive.google.com/file/d/1o5oJrI594YmtfpfMOK2QIj9m4J8OJljL/view?usp=drivesdk' } },
+      { id:'ds32', cat:'ds', mark:'DD', title:"Data-Driven Policy Analysis", issuer:"", media:{ type:'drive', src:'https://drive.google.com/file/d/10VI9l-LbK2dfHIk6-PDTxkTxWUNwvfW7/view?usp=drivesdk' } },
+      { id:'ds33', cat:'ds', mark:'EE', title:"Essential Excel Skills for Data Preparation and Analysis", issuer:"", media:{ type:'drive', src:'https://drive.google.com/file/d/1KSgAFV921-lWtwfODuLTYSEQx-tmSPbu/view?usp=drivesdk' } },
+      { id:'ds34', cat:'ds', mark:'OA', title:"Operational Analytics — Microspecialization Pathway", issuer:"", media:{ type:'drive', src:'https://drive.google.com/file/d/1WtnY6SyWHs2mCGccHUW-GW3Txn9bK28m/view?usp=drivesdk' } },
+      { id:'ds35', cat:'ds', mark:'PP', title:"Public Policy and Governance — Microspecialization Pathway", issuer:"", media:{ type:'drive', src:'https://drive.google.com/file/d/1wQ-1JCco8WsCjbTvyrByRnR5y2GOmp8_/view?usp=drivesdk' } },
+      { id:'ds36', cat:'ds', mark:'GG', title:"Getting Grounded on Analytics", issuer:"", media:{ type:'drive', src:'https://drive.google.com/file/d/19_cTTC8n9kKRyZ9B_pv9kxnHYlLmjQqL/view?usp=drivesdk' } },
+      { id:'ds37', cat:'ds', mark:'DA', title:"Data Analyst Certificate", issuer:"DataCamp", media:{ type:'drive', src:'https://drive.google.com/file/d/1PRXd9UE5FDrGs4M_3u4LlogsvOo0lsG5/view?usp=drivesdk' } },
+      { id:'ds38', cat:'ds', mark:'IT', title:"Introduction to Statistics", issuer:"DataCamp", media:{ type:'drive', src:'https://drive.google.com/file/d/18f1gE43_HaDnWJPvCr0hHdJtd-QjD2FB/view?usp=drivesdk' } },
+      { id:'ds39', cat:'ds', mark:'FF', title:"Functions for Manipulating Data", issuer:"DataCamp", media:{ type:'drive', src:'https://drive.google.com/file/d/1sFHfPfWsvbsRalRaa6qEuZ17nK7DymxP/view?usp=drivesdk' } },
+      { id:'ds40', cat:'ds', mark:'DV', title:"Data Visualization in Power BI", issuer:"DataCamp", media:{ type:'drive', src:'https://drive.google.com/file/d/1W0JbCs4hLynKfTJeoU2cV4FvYyIuCVn9/view?usp=drivesdk' } },
+      { id:'ds41', cat:'ds', mark:'IT', title:"Introduction to DAX in Power BI", issuer:"DataCamp", media:{ type:'drive', src:'https://drive.google.com/file/d/1E0pCo0DOH0QWlo04STgegpHuXCBRGd2p/view?usp=drivesdk' } },
+      { id:'ds42', cat:'ds', mark:'IT', title:"Introduction to R", issuer:"DataCamp", media:{ type:'drive', src:'https://drive.google.com/file/d/1D6b0QJN00kiWYqJPVUoOqSMzmqPCEufq/view?usp=drivesdk' } },
+      { id:'ds43', cat:'ds', mark:'UD', title:"Understanding Data Engineering", issuer:"DataCamp", media:{ type:'drive', src:'https://drive.google.com/file/d/1-ajXzuzIs3NiHkwaYytHyvctdExPiM8n/view?usp=drivesdk' } },
+      { id:'ds44', cat:'ds', mark:'IT', title:"Introduction to Python", issuer:"DataCamp", media:{ type:'drive', src:'https://drive.google.com/file/d/1YySgx9HgfDTA6XjJWOYYPolaA-J-ORHq/view?usp=drivesdk' } },
+      { id:'ds45', cat:'ds', mark:'IT', title:"Introduction to SQL", issuer:"DataCamp", media:{ type:'drive', src:'https://drive.google.com/file/d/1bpMS2Kye5PcdPmtkSO-dOnkcMMtWfKwR/view?usp=drivesdk' } },
+      { id:'ds46', cat:'ds', mark:'IS', title:"Intermediate SQL", issuer:"DataCamp", media:{ type:'drive', src:'https://drive.google.com/file/d/1aCrai32qGGidTgcVWhpbbzz3qTQK6fZv/view?usp=drivesdk' } },
+      { id:'ds47', cat:'ds', mark:'JD', title:"Joining Data in SQL", issuer:"DataCamp", media:{ type:'drive', src:'https://drive.google.com/file/d/1napJfKLCfQRpg2D-e6sCNfsJtcqqDrqd/view?usp=drivesdk' } },
+      { id:'ds48', cat:'ds', mark:'DM', title:"Data Manipulation in SQL", issuer:"DataCamp", media:{ type:'drive', src:'https://drive.google.com/file/d/1AlUOZMYgDfBW6LbycZZAhqkT6b-t1jKj/view?usp=drivesdk' } },
+      { id:'ds49', cat:'ds', mark:'PS', title:"PostgreSQL Summary Stats and Window Functions", issuer:"DataCamp", media:{ type:'drive', src:'https://drive.google.com/file/d/1Xg3qb2rHMRQERm8mPDzXsWIxOFccel5I/view?usp=drivesdk' } },
+      { id:'bc1', cat:'bio', mark:'RI', title:"Research is Life: Have a Date with Data — Common Statistical Analyses Used in Quantitative Research", issuer:"UPLB Learning Resource Center", media:{ type:'drive', src:'https://drive.google.com/file/d/1-zjHbMLBw97C8DJLZfgKd94XOC9GTTjc/view?usp=drivesdk' } },
+      { id:'bc2', cat:'bio', mark:'L2', title:"LIMITLESS 2022 — Day 2", issuer:"UP Statistical Society", media:{ type:'drive', src:'https://drive.google.com/file/d/11h8glCIZ_V7j2uE93_2ZVI4jrGHn6WQA/view?usp=drivesdk' } },
+      { id:'bc3', cat:'bio', mark:'RN', title:"Rummaging Nature Arsenal Botanicals Versus SARS-Cov-2", issuer:"UPLB Museum of Natural History", media:{ type:'drive', src:'https://drive.google.com/file/d/137wcp_j_xcP6vRuQ406m1-5cDLTXWhFA/view?usp=drivesdk' } },
+      { id:'bc4', cat:'bio', mark:'TN', title:"The New Normal: Countering COVID as an Economic Contagion", issuer:"UP Diliman – BRSL", media:{ type:'drive', src:'https://drive.google.com/file/d/13de4-gGEEkQAQ6jUOvPeftqgRoC_59xT/view?usp=drivesdk' } },
+      { id:'bc5', cat:'bio', mark:'VH', title:"Virus Hunter The Role of UPLB MNH in bat virus research in the Philippines", issuer:"UPLB Museum of Natural History", media:{ type:'drive', src:'https://drive.google.com/file/d/159yAEQ5OujbY0f_O5Qvubd12-UeoEKaw/view?usp=drivesdk' } },
+      { id:'bc6', cat:'bio', mark:'BO', title:"Basic of Research Ethics", issuer:"UPLB Learning Resource Center", media:{ type:'drive', src:'https://drive.google.com/file/d/17hfhUyjZNdIX96c9eDhnSEnSzhvnbhm8/view?usp=drivesdk' } },
+      { id:'bc7', cat:'bio', mark:'M2', title:"MSP 2022 Symposium", issuer:"Microscopy Society of the Philippines", media:{ type:'drive', src:'https://drive.google.com/file/d/1829pItQCfJva5gcQVA5BzjNYsDDN7oIC/view?usp=drivesdk' } },
+      { id:'bc8', cat:'bio', mark:'C', title:"CHEMTalks", issuer:"UPLB", media:{ type:'drive', src:'https://drive.google.com/file/d/1AGn7BmPXKQ6CfvCn4uPIGYCL643ywrl0/view?usp=drivesdk' } },
+      { id:'bc9', cat:'bio', mark:'DL', title:"Digital Literacy", issuer:"TESDA", media:{ type:'drive', src:'https://drive.google.com/file/d/1ClghmSLPlcfa0uS8A9-mWNcFQwRzHaVV/view?usp=drivesdk' } },
+      { id:'bc10', cat:'bio', mark:'OA', title:"Oral and Visual Presentation of Research", issuer:"UPLB Learning Resource Center", media:{ type:'drive', src:'https://drive.google.com/file/d/1E0uZcnEmHGth0d96wCJjxkAQ5f6S1MMG/view?usp=drivesdk' } },
+      { id:'bc11', cat:'bio', mark:'L2', title:"LIMITLESS 2022 — Day 1", issuer:"UP Statistical Society", media:{ type:'drive', src:'https://drive.google.com/file/d/1FQz2oZkQq8uWykSENRdX-CaSnqvrbzRn/view?usp=drivesdk' } },
+      { id:'bc12', cat:'bio', mark:'OI', title:"Omics in Food", issuer:"Philippine Genome Center", media:{ type:'drive', src:'https://drive.google.com/file/d/1FmsvDunSXTtrce08GdUoiPfIuqbqR4Qy/view?usp=drivesdk' } },
+      { id:'bc13', cat:'bio', mark:'OI', title:"Omics in Agriculture", issuer:"Philippine Genome Center", media:{ type:'drive', src:'https://drive.google.com/file/d/1Gm-0LHobK0qH9_uhxD4MnBIVmO28Z6dc/view?usp=drivesdk' } },
+      { id:'bc14', cat:'bio', mark:'WT', title:"Writing the Manuscript and Getting Published", issuer:"UPLB Learning Resource Center", media:{ type:'drive', src:'https://drive.google.com/file/d/1Ltl9NfqiBFHyiJCJhffXYQggImupKprZ/view?usp=drivesdk' } },
+      { id:'bc15', cat:'bio', mark:'RA', title:"Receiving and Responding to Workplace Communication", issuer:"TESDA", media:{ type:'drive', src:'https://drive.google.com/file/d/1PI7SBhFfBazr_QEFxx0A2BkJEgvszkb0/view?usp=drivesdk' } },
+      { id:'bc16', cat:'bio', mark:'NR', title:"Nuclear Research Training", issuer:"Philippine Nuclear Research Institute", media:{ type:'drive', src:'https://drive.google.com/file/d/1RKE6vGbCxEqhIBTfnIR3vR-7JZAfkk8H/view?usp=drivesdk' } },
+      { id:'bc17', cat:'bio', mark:'SP', title:"Sample Preparation for Proximate Analysis of Food & for Scanning Electron Microscopy", issuer:"UPLB BIOTECH", media:{ type:'drive', src:'https://drive.google.com/file/d/1UEM06r0ffEvnHGszrGKb9QTu1En8zXRZ/view?usp=drivesdk' } },
+      { id:'bc18', cat:'bio', mark:'GC', title:"Good Clinical Practice", issuer:"NIDA Clinical Trials Network", media:{ type:'drive', src:'https://drive.google.com/file/d/1X_7i1y21NbVhJqybLs2ierogpfM9qf02/view?usp=drivesdk' } },
+      { id:'bc19', cat:'bio', mark:'E', title:"eSTEM", issuer:"TESDA", media:{ type:'drive', src:'https://drive.google.com/file/d/1ZI_koYgh8q2ZdS2lOiegRB1eNd66prWG/view?usp=drivesdk' } },
+      { id:'bc20', cat:'bio', mark:'WO', title:"Webinar on Longitudinal Data Analysis And Missing Data", issuer:"UP Cebu", media:{ type:'drive', src:'https://drive.google.com/file/d/1_HjzWSyBcKxRpsiHY0oJH1defPDOwBfN/view?usp=drivesdk' } },
+      { id:'bc21', cat:'bio', mark:'OI', title:"Online IB Safety Webinar", issuer:"UP Diliman – Institute of Biology", media:{ type:'drive', src:'https://drive.google.com/file/d/1_vjzmIltIfnWDfGE14u-5ZhrvrxMMs8R/view?usp=drivesdk' } },
+      { id:'bc22', cat:'bio', mark:'DT', title:"Don’t Touch the Birdie: Avian Zoonoses", issuer:"UPLB Museum of Natural History", media:{ type:'drive', src:'https://drive.google.com/file/d/1bAfIVwo4qWaLlxazgY73Wd5pjqDhzYPW/view?usp=drivesdk' } },
+      { id:'bc23', cat:'bio', mark:'QR', title:"Qualitative Research and Data Analysis", issuer:"UPLB Learning Resource Center", media:{ type:'drive', src:'https://drive.google.com/file/d/1bioPuooWNvjbNzA5qus4ZPwJIUHaFBtk/view?usp=drivesdk' } },
+      { id:'bc24', cat:'bio', mark:'CO', title:"Certificate of Appreciation", issuer:"IBM SkillsBuild", media:{ type:'drive', src:'https://drive.google.com/file/d/1d4H08NcNln56jpml9CikK19aJQN50G3Y/view?usp=drivesdk' } },
+      { id:'bc25', cat:'bio', mark:'PI', title:"Participating in Workplace Communication", issuer:"TESDA", media:{ type:'drive', src:'https://drive.google.com/file/d/1eECp1-gJ1CZUCbaMNx5O4NOmCh1uzqRw/view?usp=drivesdk' } },
+      { id:'bc26', cat:'bio', mark:'RC', title:"Responsible Conduct of Research (RCR)", issuer:"", media:{ type:'drive', src:'https://drive.google.com/file/d/1fm6MBtkb66TBZdZ-u_yS5jGTqUSHwvaz/view?usp=drivesdk' } },
+      { id:'bc27', cat:'bio', mark:'RT', title:"Recent Trends of Microplastics Research in Aquatic Environments and Its Legal Implications", issuer:"Mindanao State University", media:{ type:'drive', src:'https://drive.google.com/file/d/1gzHcmyqtsE7R24h38yZlhV8JDc98WukJ/view?usp=drivesdk' } },
+      { id:'bc28', cat:'bio', mark:'ZD', title:"Zoonotic Diseases in Long-tailed Macaques", issuer:"UPLB Museum of Natural History", media:{ type:'drive', src:'https://drive.google.com/file/d/1hFEg6VWTHN3px5JJ2d5IYXAsz_QKJobV/view?usp=drivesdk' } },
+      { id:'bc29', cat:'bio', mark:'OI', title:"Omics in Health", issuer:"Philippine Genome Center", media:{ type:'drive', src:'https://drive.google.com/file/d/1m_VHAW4Q3O5VaQCrRg1hE1fiUJGRn4sv/view?usp=drivesdk' } },
+      { id:'bc30', cat:'bio', mark:'EF', title:"English for STEM Education", issuer:"TESDA", media:{ type:'drive', src:'https://drive.google.com/file/d/1oS3smUmNg2jY3Rp2huFG7lmPvRnHIuJV/view?usp=drivesdk' } },
+      { id:'bc31', cat:'bio', mark:'SO', title:"SCS orientation Be a Career Scientist", issuer:"National Museum of the Philippines", media:{ type:'drive', src:'https://drive.google.com/file/d/1p2eEazv2NtVm7NGiM_T8k-IVOrxmI4R3/view?usp=drivesdk' } },
+      { id:'bc32', cat:'bio', mark:'PF', title:"Pandemic Forum", issuer:"Philippine Society of Parasitology", media:{ type:'drive', src:'https://drive.google.com/file/d/1qNoUfGRqts5mSuOdbepi50_mq0gh-Bqm/view?usp=drivesdk' } },
+      { id:'bc33', cat:'bio', mark:'DR', title:"Doing Research with Social Relevance", issuer:"UPLB Learning Resource Center", media:{ type:'drive', src:'https://drive.google.com/file/d/1qQ7b8T6horQZmbWIKwgcQHT_EoV9_2wi/view?usp=drivesdk' } },
+      { id:'bc34', cat:'bio', mark:'TN', title:"Tracking Neglected Tropical Diseases (NTDs) using environmental DNA (eDNA) for a more sensitive and specific surveillanace and monitoring", issuer:"MCC", media:{ type:'drive', src:'https://drive.google.com/file/d/1sSsBEqczfMMkBo3Agym7bBmPJSeniVI_/view?usp=drivesdk' } },
+      { id:'bc35', cat:'bio', mark:'AA', title:"Advances and Challenges in Lactic Acid Bacteria Research for Food and Industry Applications", issuer:"Philippine Society for Lactic Acid Bacteria", media:{ type:'drive', src:'https://drive.google.com/file/d/1t3aSdMYWP92HJiJZ14hNCFIjdasxc1Rj/view?usp=drivesdk' } },
+      { id:'bc36', cat:'bio', mark:'BS', title:"Best Strategies in Literature Review", issuer:"UPLB Learning Resource Center", media:{ type:'drive', src:'https://drive.google.com/file/d/1tMztWITfswjwvRS_h-v5xzOJ2NhfLxvt/view?usp=drivesdk' } },
+      { id:'bc37', cat:'bio', mark:'PI', title:"Participating in Workplace Communication (Level 2)", issuer:"TESDA", media:{ type:'drive', src:'https://drive.google.com/file/d/1u2Xm6O5yvMcy_22vUKnz4GBK-b4O-R7J/view?usp=drivesdk' } },
+      { id:'bc38', cat:'bio', mark:'OI', title:"Omics in Diagnostics", issuer:"Philippine Genome Center", media:{ type:'drive', src:'https://drive.google.com/file/d/1uZgDBmBRaDY1Pp00aHIOfNQnpguKVPSK/view?usp=drivesdk' } },
+      { id:'bc39', cat:'bio', mark:'HA', title:"HIV and COVID-19 Webinar Series Session 1", issuer:"UP Manila", media:{ type:'drive', src:'https://drive.google.com/file/d/1ubMqJnSW0IN4kKRUUSSOgQ2f0jwTUAtd/view?usp=drivesdk' } },
+      { id:'bc40', cat:'bio', mark:'M', title:"Microfluidics", issuer:"UP – PCHRD", media:{ type:'drive', src:'https://drive.google.com/file/d/1wZdutTtMoxf1brKoDu6I81nlGdnr8O7W/view?usp=drivesdk' } },
+      { id:'bc41', cat:'bio', mark:'PS', title:"Pandemic Symposium", issuer:"Philippine Society of Parasitology", media:{ type:'drive', src:'https://drive.google.com/file/d/1xX1gWCu-NL50W2bNpG3rykiAyV-hpIUN/view?usp=drivesdk' } },
+      { id:'bc42', cat:'bio', mark:'EA', title:"English as a Medium of Instruction", issuer:"TESDA", media:{ type:'drive', src:'https://drive.google.com/file/d/1yA90J4M_hxE8VfwDg1pB57ZXkbtmkmGL/view?usp=drivesdk' } },
+      { id:'bc43', cat:'bio', mark:'UE', title:"Using Educational Technology in the English Language", issuer:"TESDA", media:{ type:'drive', src:'https://drive.google.com/file/d/1ymxoCls8UqpmoDn6F5OodJXeo3uHIfKl/view?usp=drivesdk' } },
+      { id:'bc44', cat:'bio', mark:'AO', title:"Airborne or Aerosol-How COVID-19 transmitted", issuer:"University of the Philippines", media:{ type:'drive', src:'https://drive.google.com/file/d/1ysiLMQ4r3ssUTspGOkBFg95tPrj7We5w/view?usp=drivesdk' } },
+      { id:'bc45', cat:'bio', mark:'PC', title:"PSM Cluster 2 Symposium", issuer:"Philippine Society for Microbiology", media:{ type:'drive', src:'https://drive.google.com/file/d/1zNIoTomviLBtk56sZ_yvVl4X3vU4FUHO/view?usp=drivesdk' } },
+      { id:'bc46', cat:'bio', mark:'GS', title:"GENETICS SCIENCES DEPARTMENT Next Generation Healthcare through Precision medicine", issuer:"Philippine Genome Center", media:{ type:'drive', src:'https://drive.google.com/file/d/1zaKtmxhrJBp9qJfRN4fm8557JJbWnEIY/view?usp=drivesdk' } },
+      { id:'bc47', cat:'bio', mark:'PH', title:"Proper handling of multi-drug resistant bacteria", issuer:"DOST – ITDI", media:{ type:'drive', src:'https://drive.google.com/file/d/1-Kk_TFg4udMBua5O6dlyjnt43wRgV-N5/view?usp=drivesdk' } },
+      { id:'bc48', cat:'bio', mark:'FS', title:"FOod Security and Opportunies underthe New Normal", issuer:"DOST – PCAARRD", media:{ type:'drive', src:'https://drive.google.com/file/d/13rcGtGRqDIT0hlIOFXZLgcxlTd6jM1pJ/view?usp=drivesdk' } },
+      { id:'bc49', cat:'bio', mark:'VB', title:"Vector Biology, Ecology & Control of Mosquitoes", issuer:"De La Salle University", media:{ type:'drive', src:'https://drive.google.com/file/d/14QoOH-JS6foZbGiv_dTKuoNXo7A6Yv0m/view?usp=drivesdk' } },
+      { id:'bc51', cat:'bio', mark:'CO', title:"Certificate of Participation", issuer:"", media:{ type:'drive', src:'https://drive.google.com/file/d/18U0XrZ-M4ckcUejhZ2L7CC_IdCf4FIK2/view?usp=drivesdk' } },
+      { id:'bc52', cat:'bio', mark:'GF', title:"Guidelines for research invovling recombinant and synthetic nucleic acid molecules", issuer:"DOST – ITDI", media:{ type:'drive', src:'https://drive.google.com/file/d/19JpiwpRsf3m1nvyPDnrIENfgzRCemZQa/view?usp=drivesdk' } },
+      { id:'bc53', cat:'bio', mark:'FL', title:"From Labs to Lives Building R&D Capacities and Opportunities for Sustainable Recovery", issuer:"DOST – PCAARRD", media:{ type:'drive', src:'https://drive.google.com/file/d/1B3VEmY6KKUlgUa4hoktQGm8yBlxCR_LO/view?usp=drivesdk' } },
+      { id:'bc54', cat:'bio', mark:'BA', title:"Biosafety and Biosecurity (BSS) in the realm of Dual Use Research of Concenr (DURC)", issuer:"DOST – ITDI", media:{ type:'drive', src:'https://drive.google.com/file/d/1L0E1nwoTpg6WLJCy3WfWvoldshXOSZJ2/view?usp=drivesdk' } },
+      { id:'bc55', cat:'bio', mark:'ER', title:"Engineering Research and Development for Technology", issuer:"DOST – ERDT", media:{ type:'drive', src:'https://drive.google.com/file/d/1QYozYvpwcIY_Vy4iL2i0AgPA2Zm_SaS_/view?usp=drivesdk' } },
+      { id:'bc56', cat:'bio', mark:'SR', title:"Science Research Ideas", issuer:"FilSciHub", media:{ type:'drive', src:'https://drive.google.com/file/d/1R_s-KSbYhI_187qllkIrrvULvAHU5yQ2/view?usp=drivesdk' } },
+      { id:'bc57', cat:'bio', mark:'MF', title:"Microfluidics Future of Precision Diagnostics", issuer:"DOST – UP Diliman", media:{ type:'drive', src:'https://drive.google.com/file/d/1SdnvnIWQj3CIt-bwnyHSlI-y88sq4lCR/view?usp=drivesdk' } },
+      { id:'bc58', cat:'bio', mark:'IV', title:"In vivo pathogenicity of clinical Candida albicans using Galleria mellonella model (Greater Wax Moth)", issuer:"De La Salle University", media:{ type:'drive', src:'https://drive.google.com/file/d/1Z6ew4fRKXyMkI8o7nWuRxdVRvl0fU2R-/view?usp=drivesdk' } },
+      { id:'bc59', cat:'bio', mark:'FS', title:"Food Safety at Home", issuer:"DOST", media:{ type:'drive', src:'https://drive.google.com/file/d/1Zrszz8AUJqpbZs79ZJGi9Fzq9-mNhAsX/view?usp=drivesdk' } },
+      { id:'bc60', cat:'bio', mark:'AP', title:"ACUT Participants Certificate — Phase 1", issuer:"IACUC", media:{ type:'drive', src:'https://drive.google.com/file/d/1bYNZeSY7ctSgYMVqiytIe_UuFxbVoaCH/view?usp=drivesdk' } },
+      { id:'bc61', cat:'bio', mark:'IT', title:"Innovative Technologies & Applications in Vector-borne DIseases", issuer:"De La Salle University", media:{ type:'drive', src:'https://drive.google.com/file/d/1cAeDfvDNCRwUiRbXVex-8PQpIS4JrNhU/view?usp=drivesdk' } },
+      { id:'bc62', cat:'bio', mark:'EW', title:"E-waste Biomonitoring and Management in the Philippines for Environmental Sustainability", issuer:"BIOTA Philippines", media:{ type:'drive', src:'https://drive.google.com/file/d/1g2KskZVor-968e09_l7UaxWuQNYNDFZO/view?usp=drivesdk' } },
+      { id:'bc63', cat:'bio', mark:'NO', title:"NSTW ORDA Virtual Paper Presentation", issuer:"DOST – NAST", media:{ type:'drive', src:'https://drive.google.com/file/d/1g7BailGbZi1rMXyiVIk5JF2RdNek7CG4/view?usp=drivesdk' } },
+      { id:'bc64', cat:'bio', mark:'IO', title:"Immunology of Viral Infections in Vertebrates", issuer:"DOST – ITDI", media:{ type:'drive', src:'https://drive.google.com/file/d/1myBIA7uYzbfP7MepCoTPfdhAVw3UCTds/view?usp=drivesdk' } },
+      { id:'bc65', cat:'bio', mark:'DV', title:"Diagnostic Virology", issuer:"DOST – ITDI", media:{ type:'drive', src:'https://drive.google.com/file/d/1nhihrfFnKkQOtjjZ48kug5sLEHsaLy44/view?usp=drivesdk' } },
+      { id:'bc66', cat:'bio', mark:'AP', title:"ACUT Participants Certificate — Phase 2", issuer:"IACUC", media:{ type:'drive', src:'https://drive.google.com/file/d/1qCCtEQH6TQh9ukrD44b3ZcUM39GCwgF_/view?usp=drivesdk' } },
+      { id:'bc67', cat:'bio', mark:'UT', title:"Understanding the Science of COVID-19 Testing", issuer:"DOST – NAST", media:{ type:'drive', src:'https://drive.google.com/file/d/1r2xIDkwrPcyL4PYJrOOBekmKZKUWD2bI/view?usp=drivesdk' } },
+      { id:'bc68', cat:'bio', mark:'BO', title:"Bioethics on the use of animals in research Proper animal handling", issuer:"DOST – ITDI", media:{ type:'drive', src:'https://drive.google.com/file/d/1x6WEXF2xlT0A6HcJNE8cXT9PbWNf4e2i/view?usp=drivesdk' } },
+      { id:'bc69', cat:'bio', mark:'PT', title:"Preventing the Spread of COVID-19 Through Facility Disinfection and Proper Waste DIsposa", issuer:"DOST – ITDI", media:{ type:'drive', src:'https://drive.google.com/file/d/1xKsG513llID_9Co_6Y0AvUTU8J6v0116/view?usp=drivesdk' } },
+      { id:'bc70', cat:'bio', mark:'BO', title:"Bioethics on the Use of Animals in Research Sampling, Transport, and Proper Handling of Avian Species", issuer:"DOST – ITDI", media:{ type:'drive', src:'https://drive.google.com/file/d/1y5ebUAX8Jy9EMZs4kNW4kH4MCUHz7wqu/view?usp=drivesdk' } },
+      { id:'bc71', cat:'bio', mark:'VB', title:"Vector Biology, Ecology & Control of Mosquitoes Webinar Series Forging Internal collaboration in the pursuite of controlling Vector borne Diseases", issuer:"De La Salle University", media:{ type:'drive', src:'https://drive.google.com/file/d/1z335GIEM--rCR_DzaUzkpUcgHvKPLyva/view?usp=drivesdk' } },
+      { id:'bc72', cat:'bio', mark:'TO', title:"Training on Molecular Approaches in Biodiversity Assessment", issuer:"Caraga State University", media:{ type:'drive', src:'https://drive.google.com/file/d/10hHaP6lrX05nzPvtWjx9hTElMxKFnJQv/view?usp=drivesdk' } },
+      { id:'bc73', cat:'bio', mark:'IT', title:"Introduction to In Silico and Meta-Analysis Research", issuer:"UP Diliman", media:{ type:'drive', src:'https://drive.google.com/file/d/13FJdXhlE-z0RPWPn1GBg9mwtllMhNgct/view?usp=drivesdk' } },
+      { id:'bc74', cat:'bio', mark:'EO', title:"Essential of Scientific Writing and Publication", issuer:"Caraga State University – NRCP", media:{ type:'drive', src:'https://drive.google.com/file/d/1BHJEy-Y1VA2SbdINiz5gngK0ZVYMn-vt/view?usp=drivesdk' } },
+      { id:'bc75', cat:'bio', mark:'CY', title:"COVID You Know - Debunking Misconceptions on COVID-19 and Understanding the Pandemic Crisis", issuer:"Pamantasan ng Lungsod ng Maynila", media:{ type:'drive', src:'https://drive.google.com/file/d/1HJa_nXxX3s7iPiTvhtejIR4coUefN39U/view?usp=drivesdk' } },
+      { id:'bc76', cat:'bio', mark:'BM', title:"Basic Mycology", issuer:"PUP Mycology Laboratory", media:{ type:'drive', src:'https://drive.google.com/file/d/1RQcZGeF98YswrkvyogpfNAfNonmiPLlb/view?usp=drivesdk' } },
+      { id:'bc77', cat:'bio', mark:'CM', title:"Complexly Microbial: A Webinar Series on Microbial Life", issuer:"UP Diliman – BRSL", media:{ type:'drive', src:'https://drive.google.com/file/d/1TAYUPLLR00XdDVXnOqCCmP7-ZynT1ESf/view?usp=drivesdk' } },
+      { id:'bc78', cat:'bio', mark:'RF', title:"Research Forum A Discussion on Methodologies Used Across Researches", issuer:"PUP Graduate School", media:{ type:'drive', src:'https://drive.google.com/file/d/1bQ16_mx_GcqdDrghucQw-iIq-WMv58Gd/view?usp=drivesdk' } },
+      { id:'bc79', cat:'bio', mark:'BD', title:"BioCode Decoding Biological Data", issuer:"Pamantasan ng Lungsod ng Maynila", media:{ type:'drive', src:'https://drive.google.com/file/d/1f5IcVOXBH_m74DC4v1Pvyu3fjBJNAHwy/view?usp=drivesdk' } },
+      { id:'bc80', cat:'bio', mark:'JE', title:"Journal Editorial Process", issuer:"Caraga State University", media:{ type:'drive', src:'https://drive.google.com/file/d/1gfOafVvBVH_4qtc4UWXrP0mBF9hVw8t9/view?usp=drivesdk' } },
+      { id:'bc81', cat:'bio', mark:'BA', title:"BIOTA–AABE Conference", issuer:"BIOTA Philippines", media:{ type:'drive', src:'https://drive.google.com/file/d/1h7Q1KJ4IAyo2oUsGZ5-QPlZF8xej6SYN/view?usp=drivesdk' } },
+      { id:'bc82', cat:'bio', mark:'PO', title:"Pouring Oil on Troubled Waters", issuer:"University of the Philippines", media:{ type:'drive', src:'https://drive.google.com/file/d/1k9zStW5GknND6e2c6n83l9pNdn4oU6oN/view?usp=drivesdk' } },
+      { id:'bc83', cat:'bio', mark:'CO', title:"Certificate of Associate Membership", issuer:"BIOTA Philippines", media:{ type:'drive', src:'https://drive.google.com/file/d/13s7-yh2KQ80vxWUlkS8OsQ8OpOVqT9yX/view?usp=drivesdk' } },
+      { id:'bc84', cat:'bio', mark:'PV', title:"Plants vs Stress and Pathogens The Story of the CPK Gene Family, and Overcoming Drought and Nitrogen Challenges in Crops The Role of Crop Biotechnology", issuer:"BIOTA Philippines", media:{ type:'drive', src:'https://drive.google.com/file/d/1DOs2zEq2CzrYnAMjoDB6qyGQ7M05-ph_/view?usp=drivesdk' } },
+      { id:'bc85', cat:'bio', mark:'CO', title:"Certificate of Membership", issuer:"Philippine Society for Developmental Biology", media:{ type:'drive', src:'https://drive.google.com/file/d/1KDC9Vvetg0G9_q6EEp8AlS8U83I6HHcN/view?usp=drivesdk' } },
+    ];
+
+    /* Drive file id → thumbnail image (works for "anyone with the link" files). */
+    function driveThumb(url, w) {
+      const m = (url || '').match(/\/d\/([^/]+)/);
+      return m ? `https://drive.google.com/thumbnail?id=${m[1]}&sz=w${w || 700}` : '';
+    }
+
+    /* Turns a Drive "view" link into an embeddable preview URL. */
+    function driveEmbed(url) {
+      const m = (url || '').match(/\/d\/([^/]+)/);
+      return m ? `https://drive.google.com/file/d/${m[1]}/preview` : url;
+    }
+
+    function certMediaMeta(media) {
+      if (!media) return { kind: 'NONE', label: 'No file attached yet' };
+      if (media.type === 'drive') return { kind: 'DRIVE', label: media.name || 'Google Drive file' };
+      if (media.type === 'pdf')   return { kind: 'PDF',   label: media.name || 'PDF certificate' };
+      return { kind: 'IMAGE', label: media.name || 'Certificate image' };
+    }
+
+    function buildCertCard(cert) {
+      const card = document.createElement('div');
+      card.className = 'cert-card';
+      const media = cert.media || null;
+      const meta = certMediaMeta(media);
+
+      let thumbSrc = '';
+      if (media && media.type === 'drive') thumbSrc = driveThumb(media.src);
+      else if (media && media.type === 'image') thumbSrc = media.src;
+
+      const thumbHTML = thumbSrc
+        ? `<div class="cert-thumb">
+             <img src="${thumbSrc}" alt="${cert.title}" loading="lazy" referrerpolicy="no-referrer"
+                  onload="this.parentNode.classList.add('loaded')"
+                  onerror="this.parentNode.classList.add('failed')">
+             <span class="cert-thumb-fallback">${meta.kind} · preview on click</span>
+           </div>`
+        : `<div class="cert-thumb cert-thumb-blank">
+             <span class="cert-thumb-fallback">${media ? meta.kind + ' · preview on click' : 'Attach an image or PDF'}</span>
+           </div>`;
+
+      card.innerHTML = `
+        ${thumbHTML}
+        <div class="cert-card-head">
+          <div class="cert-mark">${cert.mark}</div>
+          <div style="min-width:0;">
+            <div class="cert-title">${cert.title}</div>
+            ${cert.issuer ? `<div class="cert-issuer">${cert.issuer}</div>` : ''}
+          </div>
+        </div>
+        <div class="cert-slot${media ? '' : ' cert-slot-empty'}">
+          <span class="cert-file-kind">${meta.kind}</span>
+          <span class="cert-slot-text">${meta.label}</span>
+          ${media ? '<span class="cert-slot-action">Preview</span>' : ''}
+        </div>`;
+
+      if (media) {
+        card.classList.add('cert-card-live');
+        card.onclick = () => openCertMediaModal(cert, media);
+      }
+      return card;
+    }
+
+    let certCat = 'ds';
+    let certSearch = '';
+
+    function certsInCat() {
+      const q = certSearch.trim().toLowerCase();
+      return CERTS.filter(c => c.cat === certCat &&
+        (!q || c.title.toLowerCase().includes(q) || (c.issuer || '').toLowerCase().includes(q)));
+    }
+
+    function renderCertTabs() {
+      const row = document.getElementById('cert-tabs');
+      row.innerHTML = '';
+      CERT_CATS.forEach(cat => {
+        const n = CERTS.filter(c => c.cat === cat.key).length;
+        const btn = document.createElement('button');
+        btn.className = 'cert-tab' + (cat.key === certCat ? ' active' : '');
+        btn.innerHTML = `${cat.label} <span class="cert-tab-count">${n}</span>`;
+        btn.onclick = () => { certCat = cat.key; renderCerts(); };
+        row.appendChild(btn);
+      });
+    }
+
+    function onCertSearch(v) { certSearch = v; renderCerts(); }
+
+    function renderCerts() {
+      renderCertTabs();
+      const grid = document.getElementById('certs-grid');
+      grid.innerHTML = '';
+      const list = certsInCat();
+      document.getElementById('cert-count').textContent =
+        list.length + (list.length === 1 ? ' certificate' : ' certificates');
+      if (!list.length) {
+        grid.innerHTML = '<p class="empty-state">No certificates match that search.</p>';
+        return;
+      }
+      list.forEach(c => grid.appendChild(buildCertCard(c)));
+    }
+
+    function openCertMediaModal(cert, media) {
+      currentSlides = media.type === 'drive'
+        ? [{ type:'embed', src: driveEmbed(media.src), label: cert.title }]
+        : media.type === 'pdf'
+          ? [{ type:'embed', src: media.src, label: cert.title }]
+          : [{ type:'image', src: media.src, label: cert.title }];
+      currentSlide = 0;
+      document.getElementById('modal-category').textContent = 'Certificate';
+      document.getElementById('modal-title').textContent = cert.title;
+      document.getElementById('modal-tools').innerHTML =
+        cert.issuer ? `<span class="tag tag-type">${cert.issuer}</span>` : '';
+      const metricsEl = document.getElementById('modal-metrics');
+      metricsEl.innerHTML = '';
+      metricsEl.style.display = 'none';
+      document.getElementById('modal-desc').textContent = '';
+      document.getElementById('label-highlights').style.display = 'none';
+      document.getElementById('modal-highlights').innerHTML = '';
+      document.getElementById('modal-proof').innerHTML =
+        `<a href="${media.src}" target="_blank" rel="noopener" class="proof-link dark">Open file in new tab</a>`;
+      renderCarousel({});
+      document.getElementById('modal').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    /* --- Live sync with the tracker sheet ------------------------------------
+       The sheet must stay shared as "Anyone with the link can view".
+       Add or edit a row there and this page picks it up on next load;
+       if the fetch fails, the built-in PROJECTS list above is used. */
+    const SHEET_ID = '1KEzheaDZYN7ylhFAUNo2qy8NKzddV2lkRcCj8eeCIuw';
+    const SHEET_URLS = [
+      'https://docs.google.com/spreadsheets/d/' + SHEET_ID + '/gviz/tq?tqx=out:csv&sheet=Sheet1',
+      'https://docs.google.com/spreadsheets/d/' + SHEET_ID + '/export?format=csv'
+    ];
+    const FEATURED_IDS = ['P-027', 'P-010', 'P-018'];
+    /* Links the sheet does not carry yet, merged onto the synced rows. */
+    const OVERRIDES = {};
+
+    function parseCSV(text) {
+      const rows = []; let row = [], field = '', quoted = false;
+      for (let i = 0; i < text.length; i++) {
+        const c = text[i];
+        if (quoted) {
+          if (c === '"') { if (text[i + 1] === '"') { field += '"'; i++; } else quoted = false; }
+          else field += c;
+        } else if (c === '"') quoted = true;
+        else if (c === ',') { row.push(field); field = ''; }
+        else if (c === '\n') { row.push(field); rows.push(row); row = []; field = ''; }
+        else if (c !== '\r') field += c;
+      }
+      if (field || row.length) { row.push(field); rows.push(row); }
+      return rows;
+    }
+
+    function rowToProject(r) {
+      const clean = s => (s || '').replace(/\s+/g, ' ').trim();
+      const id = clean(r[0]);
+      if (!/^P-?\d+$/i.test(id)) return null;
+      const split = s => clean(s).split(',').map(x => x.trim()).filter(Boolean);
+      const status = /progress/i.test(clean(r[2])) ? 'In Progress' : 'Completed';
+      return Object.assign({
+        id, title: clean(r[1]), status,
+        types: split(r[4]), domain: clean(r[5]), tools: split(r[6]),
+        gh: clean(r[7]), live: clean(r[8]), pdf: clean(r[9]),
+        featured: FEATURED_IDS.includes(id)
+      }, OVERRIDES[id] || {});
+    }
+
+    function refreshFilterValues() {
+      const uniq = arr => [...new Set(arr.filter(Boolean))];
+      const order = (base, vals) =>
+        base.filter(v => vals.includes(v)).concat(vals.filter(v => !base.includes(v)).sort());
+      FILTER_DEFS[0].values = order(STATUSES, uniq(PROJECTS.map(p => p.status)));
+      FILTER_DEFS[1].values = order(TYPES,    uniq(PROJECTS.flatMap(p => p.types)));
+      FILTER_DEFS[2].values = order(DOMAINS,  uniq(PROJECTS.map(p => p.domain)));
+      FILTER_DEFS[3].values = order(TOOLS,    uniq(PROJECTS.flatMap(p => p.tools)));
+      FILTER_DEFS.forEach(def => sel[def.key].clear());
+    }
+
+    function setSyncNote(text, live) {
+      const el = document.getElementById('sync-note');
+      el.textContent = text;
+      el.classList.toggle('live', !!live);
+    }
+
+    async function syncFromSheet() {
+      for (const url of SHEET_URLS) {
+        try {
+          const res = await fetch(url, { cache: 'no-store' });
+          if (!res.ok) continue;
+          const list = parseCSV(await res.text()).map(rowToProject).filter(Boolean);
+          if (list.length < 5) continue;
+          PROJECTS.length = 0;
+          PROJECTS.push(...list);
+          refreshFilterValues();
+          renderFeatured();
+          buildFilterBar();
+          renderProjects();
+          setSyncNote('Live from tracker · ' + list.length + ' rows', true);
+          return;
+        } catch (e) { /* try the next endpoint */ }
+      }
+      setSyncNote('Built-in copy · sheet not reachable');
+    }
+
+    /* --- Init --- */
+    refreshFilterValues();
+    renderFeatured();
+    buildFilterBar();
+    renderProjects();
+    renderCerts();
+    syncFromSheet();
+
+  </script>
+</body>
+</html>
